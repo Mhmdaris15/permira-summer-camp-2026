@@ -1,0 +1,66 @@
+{
+  "sections": [
+    {
+      "id": "overview",
+      "title": "Event Overview",
+      "body": "PERMIRA Summer Camp 2026 — Taste of Nusantara is a three-day cultural exchange programme bringing together Indonesian and Russian students through Indonesian cuisine. The theme is \"Culinary Diplomacy Through Shared Experience.\" Dates: August 4–6, 2026. Location: Saint Petersburg, Russia. Audience: students aged 18–25 from Indonesia and Russia."
+    },
+    {
+      "id": "schedule",
+      "title": "Schedule",
+      "body": "Day 1 — Connect (Aug 4): Pasar Pagi market walk-through (10:00), communal Soto lunch (13:00), Bonfire stories evening (19:00).\nDay 2 — Create (Aug 5): Spice Atelier identifying eight Nusantara spices (09:30), pair-cooking Sate, Soto, and Ayam Lengkuas (12:00), plate-and-trade tasting (17:00).\nDay 3 — Celebrate (Aug 6): The Long Table dinner with twelve dishes (16:00), Sundanese angklung meets Russian balalaika (19:00), Recipe Exchange and farewell (21:30)."
+    },
+    {
+      "id": "registration",
+      "title": "Registration",
+      "body": "Registration opens in early 2026. Reserve your seat through the website's registration form. Required: full name, nationality (Indonesia or Russia), university, age (16–35), gender, email, phone, Telegram or WhatsApp handle, dietary restrictions, prior international/cultural-program experience (optional), motivation essay (40–800 chars). Selected participants will be notified by email."
+    },
+    {
+      "id": "logistics",
+      "title": "Logistics",
+      "body": "Venue: Saint Petersburg, Russia (exact address shared after registration). Accommodation and meals during the three days are provided by the organisers. Travel to Saint Petersburg is the participant's responsibility. Visa support letters can be issued for confirmed participants — request after acceptance."
+    },
+    {
+      "id": "what-to-bring",
+      "title": "What to Bring",
+      "body": "Comfortable closed-toe shoes for the kitchen sessions, an apron (optional — we can provide), a notebook for the Recipe Exchange on Day 3, your favourite recipe from home (handwritten), an open mind, and an empty stomach."
+    },
+    {
+      "id": "rules",
+      "title": "Rules and Code of Conduct",
+      "body": "Be respectful of cultures, dietary needs, and religious practices. No alcohol during cooking sessions. Photo/video consent will be collected on arrival. The organisers reserve the right to dismiss participants for harassment or unsafe behaviour."
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-cost",
+      "question": "How much does it cost?",
+      "answer": "Programme participation, meals, and accommodation during the three days are free for selected participants. Travel to Saint Petersburg is at your own expense."
+    },
+    {
+      "id": "faq-cooking",
+      "question": "Do I need cooking experience?",
+      "answer": "No — every cooking session is led by experienced Indonesian chefs and you'll be paired with a partner from the other culture. Curiosity matters more than skill."
+    },
+    {
+      "id": "faq-language",
+      "question": "What language is the camp in?",
+      "answer": "Sessions are conducted in English. You don't need to speak Indonesian or Russian, though picking up a few food words by the end of Day 3 is unavoidable."
+    },
+    {
+      "id": "faq-visa",
+      "question": "Can I get help with my Russian visa?",
+      "answer": "Yes — once you're accepted, the organisers will issue a visa support letter on request."
+    },
+    {
+      "id": "faq-deadline",
+      "question": "What is the registration deadline?",
+      "answer": "Registration opens in early 2026; the exact deadline will be announced on this page and sent to subscribers by email."
+    }
+  ],
+  "contact": {
+    "email": "info@permiraspb.org",
+    "telegram": "@permiraspb"
+  },
+  "updatedAt": "2026-05-06T22:13:53.360Z"
+}

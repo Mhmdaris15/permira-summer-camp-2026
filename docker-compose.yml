@@ -1,0 +1,102 @@
+# =============================================================================
+# PERMIRA Summer Camp 2026 — production compose for Coolify (split domains)
+#
+# Default deploy targets:
+#   Web : https://summercamp2026.permiraspb.org
+#   API : https://api-summercamp2026.permiraspb.org
+#
+# Coolify reads SERVICE_FQDN_<SERVICE>_<PORT> to auto-wire Traefik routing
+# and Let's Encrypt. Override domains via Coolify UI if you need to.
+#
+# Local:
+#   docker compose up -d --build
+# =============================================================================
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    image: permira/api:latest
+    restart: unless-stopped
+    # Coolify exposes this port via Traefik on the FQDN below.
+    expose:
+      - "8787"
+    environment:
+      # Coolify magic: maps this FQDN+port to a public Traefik route + TLS.
+      SERVICE_FQDN_API_8787: ${API_FQDN:-https://api-summercamp2026.permiraspb.org}
+
+      NODE_ENV: production
+      PORT: 8787
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+      # --- Secrets (set in Coolify, never commit) ---
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      ADMIN_TOKEN: ${ADMIN_TOKEN}
+      JWT_SECRET: ${JWT_SECRET}
+      LLM_MODEL: ${LLM_MODEL:-gemini-2.5-flash-lite}
+
+      # --- CORS allowlist — MUST list every origin the browser will use ---
+      # Comma-separated. Without this, the API rejects cross-origin requests
+      # and the browser logs "blocked by CORS policy".
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-https://summercamp2026.permiraspb.org}
+
+      RATE_LIMIT_GLOBAL: ${RATE_LIMIT_GLOBAL:-300}
+      RATE_LIMIT_TIGHT:  ${RATE_LIMIT_TIGHT:-10}
+    volumes:
+      - permira-data:/app/server/data
+      - permira-uploads:/app/server/uploads
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8787/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+    networks:
+      - permira-net
+    labels:
+      - coolify.managed=true
+      - coolify.type=application
+      - coolify.name=permira-api
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        # VITE_API_URL is BAKED into the JS bundle at build time — runtime
+        # env won't reach the browser. Set it once here, rebuild on change.
+        VITE_API_URL: ${VITE_API_URL:-https://api-summercamp2026.permiraspb.org}
+        # Origin of the API for nginx CSP `connect-src` directive.
+        API_ORIGIN:   ${VITE_API_URL:-https://api-summercamp2026.permiraspb.org}
+    image: permira/web:latest
+    restart: unless-stopped
+    expose:
+      - "80"
+    environment:
+      SERVICE_FQDN_WEB_80: ${WEB_FQDN:-https://summercamp2026.permiraspb.org}
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 5s
+      start_period: 5s
+      retries: 3
+    networks:
+      - permira-net
+    labels:
+      - coolify.managed=true
+      - coolify.type=application
+      - coolify.name=permira-web
+
+volumes:
+  permira-data:
+    name: permira-data
+  permira-uploads:
+    name: permira-uploads
+
+networks:
+  permira-net:
+    driver: bridge

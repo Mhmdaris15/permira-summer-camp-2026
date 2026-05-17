@@ -1,0 +1,49 @@
+name: Docker Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build ${{ matrix.image }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: web
+            dockerfile: Dockerfile.web
+          - image: api
+            dockerfile: Dockerfile.api
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build (no push — validation only)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          push: false
+          load: true
+          tags: permira/${{ matrix.image }}:ci
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to:   type=gha,scope=${{ matrix.image }},mode=max
+          build-args: |
+            VITE_API_URL=
+
+      - name: Smoke test image
+        run: |
+          docker images permira/${{ matrix.image }}:ci
+          docker inspect permira/${{ matrix.image }}:ci > /dev/null

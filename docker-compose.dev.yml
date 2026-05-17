@@ -1,0 +1,24 @@
+# =============================================================================
+# Local-only override — bind-mounts source for hot reload, exposes ports.
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+# =============================================================================
+
+services:
+  api:
+    command: ["npx", "tsx", "watch", "server/index.ts"]
+    environment:
+      NODE_ENV: development
+      LOG_LEVEL: debug
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./server:/app/server
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+      - permira-data:/app/server/data
+      - permira-uploads:/app/server/uploads
+
+  web:
+    ports:
+      - "5173:80"

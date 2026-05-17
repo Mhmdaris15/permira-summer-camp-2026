@@ -1,0 +1,41 @@
+# Source-control / editor noise
+.git
+.gitignore
+.gitattributes
+.github
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+
+# Local installs / builds
+node_modules
+dist
+server/dist
+*.log
+
+# Local env / secrets
+.env
+.env.*
+!.env.example
+
+# Local DB state — must NOT bake into the image. Persistent volumes only.
+server/data/participants.json
+server/uploads
+server/data/surreal
+
+# Test/probe artifacts
+probe-*.mjs
+coverage
+
+# Docs
+README.md
+DEPLOYMENT.md
+*.md
+!server/README.md
+
+# Docker artifacts
+Dockerfile*
+docker-compose*.yml
+.dockerignore
