@@ -43,8 +43,8 @@ RUN ORIGIN="${API_ORIGIN:-${VITE_API_URL}}"; \
 
 COPY --from=build /app/dist /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 8081
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-  CMD wget -qO- http://127.0.0.1/healthz || exit 1
+  CMD wget -qO- http://127.0.0.1:8081/healthz || exit 1
 
 CMD ["nginx", "-g", "daemon off;"]

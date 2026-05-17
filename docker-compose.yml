@@ -72,14 +72,14 @@ services:
     image: permira/web:latest
     restart: unless-stopped
     expose:
-      - "80"
+      - "8081"
     environment:
-      SERVICE_FQDN_WEB_80: ${WEB_FQDN:-https://summercamp2026.permiraspb.org}
+      SERVICE_FQDN_WEB_8081: ${WEB_FQDN:-https://summercamp2026.permiraspb.org}
     depends_on:
       api:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8081/healthz"]
       interval: 30s
       timeout: 5s
       start_period: 5s
