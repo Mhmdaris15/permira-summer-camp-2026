@@ -4,6 +4,7 @@ import { SmoothScroll } from "./lib/SmoothScroll";
 import { LandingPage } from "./pages/LandingPage";
 import { Admin } from "./pages/Admin";
 import { AdminParticipants } from "./pages/AdminParticipants";
+import { LayoutProposal } from "./pages/LayoutProposal";
 import { RegistrationModal } from "./components/registration/RegistrationModal";
 import { ChatWidget } from "./components/chat/ChatWidget";
 
@@ -33,6 +34,7 @@ function AppShell() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/participants" element={<AdminParticipants />} />
+        <Route path="/proposal" element={<LayoutProposal />} />
       </Routes>
       <RegistrationModal open={open} onClose={() => setOpen(false)} />
       <ChatWidget />
