@@ -6,6 +6,7 @@ import { CulinaryHighlights } from "../components/CulinaryHighlights";
 import { CulturalExchange } from "../components/CulturalExchange";
 import { Memories } from "../components/Memories";
 import { JoinTheTable } from "../components/JoinTheTable";
+import { Partners } from "../components/Partners";
 import { Footer } from "../components/Footer";
 
 export function LandingPage() {
@@ -20,6 +21,7 @@ export function LandingPage() {
         <CulturalExchange />
         <Memories />
         <JoinTheTable />
+        <Partners />
       </main>
       <Footer />
     </>

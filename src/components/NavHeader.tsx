@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { cn } from "../lib/cn";
+import PermiraLogo from "../assets/organization/permira-logo-big.png";
 
 const links = [
   { href: "#journey", label: "Journey" },
@@ -30,13 +31,9 @@ export function NavHeader() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:py-5">
         <a href="#top" className="group flex items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-terracotta-500 text-cream-50 shadow-sm transition-transform group-hover:rotate-12">
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 3c2 4 5 5 5 9a5 5 0 0 1-10 0c0-4 3-5 5-9z" strokeLinejoin="round" />
-            </svg>
-          </span>
+          <img src={PermiraLogo} alt="Permira logo" className="h-12 w-12" />
           <span className="font-display text-lg font-semibold text-clove-900">
-            Permira <span className="text-terracotta-500">·</span> Nusantara
+            Permira SPB<span className="text-terracotta-500"> · </span>Nusantara
           </span>
         </a>
 

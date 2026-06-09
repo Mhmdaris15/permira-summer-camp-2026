@@ -1,14 +1,16 @@
+import { eventLogo } from "../data/organizations";
+
 export function Footer() {
   return (
     <footer className="border-t border-cream-200 bg-cream-100 py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 md:flex-row md:items-center">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-terracotta-500 text-cream-50">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 3c2 4 5 5 5 9a5 5 0 0 1-10 0c0-4 3-5 5-9z" strokeLinejoin="round" />
-              </svg>
-            </span>
+          <div className="flex items-center gap-3">
+            <img
+              src={eventLogo}
+              alt="PERMIRA Summer Camp 2026"
+              className="h-10 w-10 rounded-full object-cover shadow-sm ring-1 ring-black/10"
+            />
             <span className="font-display text-lg font-semibold text-clove-900">
               Permira <span className="text-terracotta-500">·</span> Nusantara
             </span>

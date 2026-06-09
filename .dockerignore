@@ -29,6 +29,11 @@ server/data/surreal
 probe-*.mjs
 coverage
 
+# Raw art source — the full 169MB Medieval Village MegaKit lives here for
+# future asset picks. Only the curated subset under public/kit/ ever ships.
+# Never copy this into the image or let Vite see it.
+art-source
+
 # Docs
 README.md
 DEPLOYMENT.md

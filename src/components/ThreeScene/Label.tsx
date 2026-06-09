@@ -1,12 +1,9 @@
 /**
  * Label — HTML overlay anchored to a 3D position. Glassmorphic chips
- * read as premium architectural callouts and tie the UI to the scene
- * optically (blurred background absorbs the colour of the zone beneath).
+ * tie the UI optically to the scene (blur picks up the colour beneath).
  *
- * Variants:
- *   primary — main zone names
- *   small   — short marks like "N"
- *   arrow   — bold uppercase pill for entrance/exit
+ * When `highlighted` is true (set by Zone hover), the chip scales up
+ * gently via a CSS transition — no per-frame React state updates.
  */
 import { Html } from "@react-three/drei";
 
@@ -14,6 +11,7 @@ type Props = {
   position?: [number, number, number];
   children: React.ReactNode;
   variant?: "primary" | "small" | "arrow";
+  highlighted?: boolean;
 };
 
 const baseFont: React.CSSProperties = {
@@ -22,6 +20,8 @@ const baseFont: React.CSSProperties = {
   letterSpacing: 0.2,
   pointerEvents: "none",
   whiteSpace: "nowrap",
+  transition: "transform 220ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms, background 220ms",
+  transformOrigin: "center",
 };
 
 const styles: Record<NonNullable<Props["variant"]>, React.CSSProperties> = {
@@ -62,9 +62,24 @@ const styles: Record<NonNullable<Props["variant"]>, React.CSSProperties> = {
   },
 };
 
-export function Label({ position = [0, 0, 0], children, variant = "primary" }: Props) {
+export function Label({
+  position = [0, 0, 0],
+  children,
+  variant = "primary",
+  highlighted = false,
+}: Props) {
+  const style: React.CSSProperties = {
+    ...styles[variant],
+    ...(highlighted
+      ? {
+          transform: "scale(1.08)",
+          background: "rgba(255,255,255,0.88)",
+          boxShadow: "0 10px 28px -10px rgba(196, 80, 42, 0.45), 0 1px 0 rgba(255,255,255,0.8) inset",
+        }
+      : {}),
+  };
   return (
-    <Html position={position} center zIndexRange={[40, 0]} style={styles[variant]}>
+    <Html position={position} center zIndexRange={[40, 0]} style={style}>
       {children}
     </Html>
   );

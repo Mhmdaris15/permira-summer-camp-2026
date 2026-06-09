@@ -64,19 +64,26 @@ export function CulinaryHighlights() {
               key={d.id}
               onClick={() => setActiveId(d.id)}
               className={cn(
-                "reveal group relative overflow-hidden rounded-2xl border border-cream-100/10 p-5 text-left transition-all hover:border-saffron/40 hover:-translate-y-1",
-                activeId === d.id && "border-saffron/60",
+                "reveal group relative overflow-hidden rounded-2xl border border-cream-100/10 text-left transition-all hover:border-saffron/40 hover:-translate-y-1",
+                activeId === d.id && "border-saffron/60 ring-1 ring-saffron/40",
               )}
-              style={{
-                background: `linear-gradient(135deg, ${d.palette[0]}22, ${d.palette[1]}55)`,
-              }}
             >
-              <div className="font-mono text-[10px] uppercase tracking-widest text-cream-100/60">
-                {d.region}
-              </div>
-              <div className="mt-2 font-display text-xl text-cream-50">{d.name}</div>
-              <div className="mt-1 text-sm italic text-cream-100/70">
-                /{d.pronunciation}/
+              {/* Photo backdrop */}
+              <img
+                src={d.image}
+                alt={d.name}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-clove-900/90 via-clove-900/50 to-clove-900/25" />
+              <div className="relative p-5">
+                <div className="font-mono text-[10px] uppercase tracking-widest text-cream-100/70">
+                  {d.region}
+                </div>
+                <div className="mt-12 font-display text-xl text-cream-50 md:mt-16">{d.name}</div>
+                <div className="mt-1 text-sm italic text-cream-100/70">
+                  /{d.pronunciation}/
+                </div>
               </div>
             </button>
           ))}
@@ -92,20 +99,21 @@ function DishFeature({ dish }: { dish: Dish }) {
       key={dish.id}
       className="mt-12 grid grid-cols-1 items-stretch gap-8 rounded-3xl border border-cream-100/10 bg-cream-100/[0.04] p-2 backdrop-blur md:grid-cols-[1fr_1.2fr] md:p-3"
     >
-      {/* Visual block — gradient stand-in for dish photo */}
+      {/* Visual block — real dish photography with a warm scrim for text */}
       <div
         className="relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:min-h-[460px]"
         style={{
           background: `radial-gradient(circle at 30% 25%, ${dish.palette[0]}, ${dish.palette[1]} 80%)`,
         }}
       >
-        <div
-          className="absolute inset-0 opacity-30 mix-blend-overlay"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>\")",
-          }}
+        <img
+          src={dish.image}
+          alt={dish.name}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-105"
         />
+        {/* Gradient scrim keeps the overlaid label legible over any photo */}
+        <div className="absolute inset-0 bg-gradient-to-t from-clove-900/85 via-clove-900/20 to-clove-900/30" />
         <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8">
           <div className="flex items-center gap-2 text-cream-50/80">
             <span className="h-px flex-1 bg-cream-50/30" />

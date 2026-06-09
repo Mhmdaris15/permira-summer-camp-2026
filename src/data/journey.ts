@@ -26,7 +26,7 @@ export const journeyDays: JourneyDay[] = [
     index: 1,
     label: "Day One",
     verb: "Connect",
-    date: "Aug 04, 2026",
+    date: "July 17, 2026",
     headline: "Strangers meet at the same table.",
     body:
       "We open with names, stories, and the quiet ceremony of a shared meal. No script — just curiosity and the warmth of welcome.",
@@ -41,7 +41,7 @@ export const journeyDays: JourneyDay[] = [
     index: 2,
     label: "Day Two",
     verb: "Create",
-    date: "Aug 05, 2026",
+    date: "July 18, 2026",
     headline: "Hands learn what words can't say.",
     body:
       "Cooking together. Russian and Indonesian students pair up to make Satay, Soto, and Ayam Lengkuas — every recipe an invitation to listen with your hands.",
@@ -56,7 +56,7 @@ export const journeyDays: JourneyDay[] = [
     index: 3,
     label: "Day Three",
     verb: "Celebrate",
-    date: "Aug 06, 2026",
+    date: "July 19, 2026",
     headline: "A night that tastes of both shores.",
     body:
       "A long table, candles, music from both cultures. We close with gratitude and a recipe card from each guest — to carry the camp home.",

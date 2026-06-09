@@ -20,6 +20,10 @@ dist-ssr
 server/uploads/
 server/data/participants.json
 
+# Raw art source (169MB Medieval Village MegaKit). Only public/kit/ is used.
+# Keep locally for future asset picks; never commit or build it.
+art-source/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

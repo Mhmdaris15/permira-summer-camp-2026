@@ -87,7 +87,7 @@ export function useChat() {
             id: cryptoId(),
             role: "assistant",
             content:
-              "I couldn't reach the server just now. Please try again, or write to hello@permira.id.",
+              "I couldn't reach the server just now. Please try again, or write to info@permiraspb.org.",
           },
         ]);
       } finally {

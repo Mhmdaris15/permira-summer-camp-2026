@@ -50,17 +50,17 @@ export function JoinTheTable() {
             </svg>
           </a>
           <a
-            href="mailto:hello@permira.id"
+            href="mailto:info@permiraspb.org"
             className="text-sm font-medium text-cream-100/70 underline-offset-4 transition-colors hover:text-cream-50 hover:underline"
           >
-            or write to hello@permira.id
+            or write to info@permiraspb.org
           </a>
         </div>
 
         <div className="reveal mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-6 border-t border-cream-100/10 pt-10 text-left">
-          <Detail label="Dates" value="Aug 04–06, 2026" />
+          <Detail label="Dates" value="July 17–19, 2026" />
           <Detail label="Location" value="Saint Petersburg" />
-          <Detail label="For" value="Students · 18–25" />
+          <Detail label="For" value="Students · 18–30" />
         </div>
       </div>
     </section>

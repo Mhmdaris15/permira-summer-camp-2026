@@ -1,43 +1,54 @@
 /**
- * Scene — top-level R3F canvas composing every visual layer:
+ * Scene — composition root for the campsite. Three architectural layers:
  *
- *   • atmospheric background + fog  (sense of air)
- *   • hemisphere + warm directional lighting
- *   • soft contact shadow under the central campsite area
- *   • terrain → paths → zones → tents → trees → props → focal points
- *   • sky cloud puffs + interactive orbit controls with damping
+ *   ENVIRONMENT  — what the world IS  (sky, terrain, trees, props, kit)
+ *   STORY        — what HAPPENS here  (zones, tents, focal architecture)
+ *   WAYFINDING   — how visitors NAVIGATE  (paths, signs, north, arrows)
  *
- * Everything reads positions from `layout.ts`. Animation lives only in
- * Campfire and Sky — both subtle.
+ * Camera + focus animations live in CameraController (drives both the
+ * intro fly-in and the click-to-focus). Interactivity flows through
+ * SceneStateProvider mounted in LayoutProposal.tsx so HTML overlays
+ * (InfoPanel, hints, reset button) share the same store.
  */
+import { Suspense, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrthographicCamera, OrbitControls, ContactShadows } from "@react-three/drei";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
-import {
-  COLORS,
-  PATHS,
-  TENT_CLUSTERS,
-  TERRAIN,
-  TREES,
-  ZONES,
-} from "./layout";
+import { COLORS, PATHS, TENT_CLUSTERS, TERRAIN, TREES, ZONES } from "./layout";
+
+// Environment
 import { Terrain } from "./Terrain";
-import { Path } from "./Path";
+import { Sky } from "./Sky";
+import { SkyDome } from "./SkyDome";
+import { Tree } from "./Tree";
+import { Props } from "./Props";
+import { Lighting } from "./Lighting";
+import { VillageProps } from "./VillageProps";
+import { SafeGroup } from "./SafeGroup";
+
+// Story
 import { Zone } from "./Zone";
 import { Tent } from "./Tent";
-import { Tree } from "./Tree";
 import { Campfire } from "./Campfire";
 import { CommitteePost } from "./CommitteePost";
 import { AssemblyMarker } from "./AssemblyMarker";
+import { StringLights } from "./StringLights";
+
+// Wayfinding
+import { Path } from "./Path";
 import { NorthIndicator } from "./NorthIndicator";
 import { EntryArrow } from "./EntryArrow";
-import { Lighting } from "./Lighting";
-import { Sky } from "./Sky";
-import { Props } from "./Props";
+import { EntranceSign } from "./EntranceSign";
+
+// Systems
+import { CameraController } from "./CameraController";
+
+const CAMERA_POSITION: [number, number, number] = [26, 22, 30];
+const CAMERA_ZOOM = 23;
 
 export function Scene() {
-  // Slightly off-axis to feel intentional, not orthogonal-perfect.
-  const cameraZoom = 23;
+  const controlsRef = useRef<OrbitControlsImpl | null>(null);
 
   return (
     <Canvas
@@ -46,19 +57,17 @@ export function Scene() {
       dpr={[1, 2]}
       style={{ width: "100%", height: "100%" }}
     >
-      {/* Atmospheric sky background + warm fog give the scene "air". */}
-      <color attach="background" args={["#dceaf6"]} />
-      <fog attach="fog" args={["#dceaf6", 38, 95]} />
+      <fog attach="fog" args={[COLORS.skyHorizon, 38, 105]} />
 
-      {/* Cinematic isometric camera, very slightly off-axis */}
       <OrthographicCamera
         makeDefault
-        position={[26, 22, 30]}
-        zoom={cameraZoom}
+        position={CAMERA_POSITION}
+        zoom={CAMERA_ZOOM}
         near={-200}
-        far={200}
+        far={300}
       />
       <OrbitControls
+        ref={controlsRef}
         target={[0, 0, 0]}
         enableDamping
         dampingFactor={0.08}
@@ -67,71 +76,93 @@ export function Scene() {
         enableZoom
         minZoom={15}
         maxZoom={48}
-        // Restrict awkward angles — never go below the horizon, never top-down.
         minPolarAngle={Math.PI / 5.5}
         maxPolarAngle={Math.PI / 2.4}
         makeDefault
       />
+      <CameraController
+        controlsRef={controlsRef}
+        defaultPosition={CAMERA_POSITION}
+        defaultZoom={CAMERA_ZOOM}
+      />
 
       <Lighting />
 
-      {/* Far backdrop — sky puffs */}
-      <Sky />
+      {/* ─────────── ENVIRONMENT ─────────── */}
+      <group name="environment">
+        <SkyDome />
+        <Sky />
+        <Terrain />
+        {TREES.map(([x, z, scale, variant], i) => (
+          <Tree key={i} position={[x, 0, z]} scale={scale} variant={variant} />
+        ))}
+        <Props />
+        {/* GLB assets — Suspense + error boundary. If anything in here
+            fails (texture 404, parse error, missing buffer) the rest of
+            the scene still renders. */}
+        <SafeGroup name="village-props">
+          <Suspense fallback={null}>
+            <VillageProps />
+          </Suspense>
+        </SafeGroup>
+      </group>
 
-      {/* Ground + scene contents */}
-      <Terrain />
+      {/* ─────────── STORY ─────────── */}
+      <group name="story">
+        {ZONES.map((z) => (
+          <Zone key={z.id} zone={z} />
+        ))}
 
-      {PATHS.map((p) => (
-        <Path key={p.id} path={p} />
-      ))}
+        {TENT_CLUSTERS.map((cluster) => {
+          const xs = Array.from({ length: cluster.cols }, (_, i) => i - (cluster.cols - 1) / 2);
+          const zs = Array.from({ length: cluster.rows }, (_, i) => i - (cluster.rows - 1) / 2);
+          return (
+            <group key={cluster.id}>
+              {zs.map((zMul) =>
+                xs.map((xMul) => {
+                  const x = cluster.origin[0] + xMul * cluster.spacing[0];
+                  const z = cluster.origin[1] + zMul * cluster.spacing[1];
+                  const seed = Math.abs(Math.sin(x * 12.9898 + z * 78.233) * 43758.5453);
+                  const jitter = seed - Math.floor(seed);
+                  const useAlt = cluster.colorAlt && (xMul + zMul) % 2 === 1;
+                  const color = useAlt && cluster.colorAlt ? COLORS[cluster.colorAlt] : COLORS[cluster.color];
+                  return (
+                    <Tent
+                      key={`${cluster.id}-${xMul}-${zMul}`}
+                      position={[x, 0.05, z]}
+                      color={color}
+                      scale={0.92 + jitter * 0.16}
+                      rotationY={(cluster.rotationY ?? 0) + (jitter - 0.5) * 0.35}
+                    />
+                  );
+                }),
+              )}
+            </group>
+          );
+        })}
 
-      {ZONES.map((z) => (
-        <Zone key={z.id} zone={z} />
-      ))}
+        <Campfire />
+        <CommitteePost />
+        <AssemblyMarker />
+        <StringLights />
+      </group>
 
-      {/* Tent clusters */}
-      {TENT_CLUSTERS.map((cluster) => {
-        const xs = Array.from({ length: cluster.cols }, (_, i) => i - (cluster.cols - 1) / 2);
-        const zs = Array.from({ length: cluster.rows }, (_, i) => i - (cluster.rows - 1) / 2);
-        return (
-          <group key={cluster.id}>
-            {zs.map((zMul) =>
-              xs.map((xMul) => {
-                const x = cluster.origin[0] + xMul * cluster.spacing[0];
-                const z = cluster.origin[1] + zMul * cluster.spacing[1];
-                return (
-                  <Tent
-                    key={`${cluster.id}-${xMul}-${zMul}`}
-                    position={[x, 0.05, z]}
-                    color={COLORS[cluster.color]}
-                    rotationY={cluster.rotationY ?? 0}
-                  />
-                );
-              }),
-            )}
-          </group>
-        );
-      })}
+      {/* ─────────── WAYFINDING ─────────── */}
+      <group name="wayfinding">
+        {PATHS.map((p) => (
+          <Path key={p.id} path={p} />
+        ))}
+        <NorthIndicator />
+        <EntranceSign />
+        <EntryArrow position={[-19, 2]} rotationY={0} label="Entrance" />
+        <EntryArrow position={[ 19, 4]} rotationY={0} label="Exit" />
+      </group>
 
-      {TREES.map(([x, z, scale, variant], i) => (
-        <Tree key={i} position={[x, 0, z]} scale={scale} variant={variant} />
-      ))}
-
-      <Props />
-      <Campfire />
-      <CommitteePost />
-      <AssemblyMarker />
-
-      <NorthIndicator />
-      <EntryArrow position={[-19, 2]} rotationY={0} label="Entrance" />
-      <EntryArrow position={[ 19, 4]} rotationY={0} label="Exit" />
-
-      {/* Soft contact shadow grounding every casting object onto the lawn */}
       <ContactShadows
         position={[0, 0.18, 0]}
-        opacity={0.55}
+        opacity={0.5}
         scale={TERRAIN.width + 4}
-        blur={2.6}
+        blur={2.8}
         far={6}
         resolution={1024}
         color="#3a2a18"

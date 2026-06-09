@@ -333,7 +333,7 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/) for commi
 - **Containers run as non-root** (`USER node` / `nginx`).
 - **File uploads:** mime-allowlist, 10 MB cap, UUID filenames, files served only with valid JWT.
 
-Found a vulnerability? Email **security@permira.id** rather than opening a public issue.
+Found a vulnerability? Email **security@permiraspb.org** rather than opening a public issue.
 
 ---
 

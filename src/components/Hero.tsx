@@ -1,76 +1,149 @@
-import { useEffect, useRef } from "react";
-import heroImg from "../assets/hero.png";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { dishes } from "../data/dishes";
+import { eventLogo, flags } from "../data/organizations";
+
+/**
+ * Hero — full-viewport cinematic opener.
+ *
+ * Composition:
+ *   • Left  — editorial headline, flag eyebrow, CTAs, stats
+ *   • Right — a parallax cluster of real archive + dish photos, fanned like
+ *             scattered prints, with the event logo as a wax-stamp badge
+ *   • Base  — an auto-scrolling marquee of past-camp moments
+ *
+ * Motion: Framer Motion handles staggered entrance + perpetual gentle float;
+ * pointer parallax is driven by CSS custom properties (--px/--py) set on the
+ * section, so it costs zero React re-renders.
+ */
+
+// Pull every archive photo (build-optimised) for the collage + marquee.
+const archiveModules = import.meta.glob<string>(
+  "../assets/archives/*.{jpg,jpeg,png,webp}",
+  { eager: true, query: "?url", import: "default" },
+);
+const archives: string[] = Object.entries(archiveModules)
+  .sort(([a], [b]) => idx(a) - idx(b))
+  .map(([, url]) => url);
+
+function idx(p: string) {
+  const m = p.match(/\((\d+)\)/);
+  return m ? Number(m[1]) : 0;
+}
+
+// Curated collage cards — mix of camp moments + a hero dish.
+const collage = [
+  { src: archives[7] ?? archives[0], depth: 26, className: "left-0 top-2 w-[58%] rotate-[-6deg]", float: 6.5, delay: 0.15, caption: "Day 2 · the wok" },
+  { src: dishes[0].image,            depth: 16, className: "right-2 top-0 w-[46%] rotate-[5deg]",  float: 5.0, delay: 0.3,  caption: "Sate Madura" },
+  { src: archives[2] ?? archives[1], depth: 38, className: "right-0 bottom-6 w-[52%] rotate-[4deg]", float: 7.5, delay: 0.45, caption: "two flags, one table" },
+  { src: archives[12] ?? archives[3], depth: 22, className: "left-6 bottom-0 w-[42%] rotate-[-4deg]", float: 6.0, delay: 0.6,  caption: "the long table" },
+];
 
 export function Hero() {
-  const orbRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      const orb = orbRef.current;
-      if (!orb) return;
-      const x = (e.clientX / window.innerWidth - 0.5) * 24;
-      const y = (e.clientY / window.innerHeight - 0.5) * 24;
-      orb.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+  function handleMove(e: React.MouseEvent) {
+    const el = sectionRef.current;
+    if (!el) return;
+    const nx = (e.clientX / window.innerWidth - 0.5) * 2;  // -1..1
+    const ny = (e.clientY / window.innerHeight - 0.5) * 2;
+    el.style.setProperty("--px", String(nx));
+    el.style.setProperty("--py", String(ny));
+  }
 
   return (
     <section
+      ref={sectionRef}
       id="top"
-      className="relative isolate overflow-hidden bg-batik bg-grain pt-32 pb-24 md:pt-40 md:pb-32"
+      onMouseMove={handleMove}
+      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-batik bg-grain pt-28 pb-28 md:pt-32"
+      style={{ "--px": 0, "--py": 0 } as React.CSSProperties}
     >
-      {/* Soft warm wash */}
+      {/* Warm directional wash */}
       <div
+        aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 0%, rgba(224,123,60,0.20), transparent 55%), radial-gradient(ellipse at 80% 100%, rgba(196,80,42,0.18), transparent 50%)",
+            "radial-gradient(ellipse at 75% 15%, rgba(224,123,60,0.22), transparent 55%), radial-gradient(ellipse at 10% 90%, rgba(196,80,42,0.16), transparent 50%)",
         }}
       />
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="relative">
-          <span className="reveal inline-flex items-center gap-2 rounded-full border border-terracotta-500/30 bg-cream-50/70 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-terracotta-600 backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-terracotta-500" />
-            Summer · 2026
-          </span>
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1.04fr_0.96fr] lg:gap-8">
+        {/* ─────────── LEFT: editorial ─────────── */}
+        <div className="relative z-10">
+          {/* Flag eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex items-center gap-3 rounded-full border border-terracotta-500/25 bg-cream-50/70 py-1.5 pl-2 pr-4 text-xs font-medium uppercase tracking-[0.16em] text-terracotta-600 backdrop-blur-sm"
+          >
+            <span className="flex items-center -space-x-1.5">
+              <img src={flags[0].flag} alt="Indonesia" className="h-5 w-5 rounded-full object-cover ring-2 ring-cream-50" />
+              <img src={flags[1].flag} alt="Russia" className="h-5 w-5 rounded-full object-cover ring-2 ring-cream-50" />
+            </span>
+            Indonesia × Russia · Summer 2026
+          </motion.div>
 
-          <h1 className="reveal mt-6 font-display text-balance text-5xl font-light leading-[1.02] tracking-[-0.02em] text-clove-900 md:text-7xl lg:text-[5.25rem]">
-            Taste of{" "}
-            <span className="relative inline-block">
-              <span className="italic font-medium text-terracotta-500">Nusantara</span>
-              <svg
-                viewBox="0 0 220 14"
-                aria-hidden
-                className="absolute -bottom-2 left-0 h-2.5 w-full text-turmeric"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
+          <h1 className="mt-6 font-display text-balance text-5xl font-light leading-[1.0] tracking-[-0.02em] text-clove-900 md:text-7xl lg:text-[5rem]">
+            {["Taste of", "where flavor", "becomes friendship"].map((line, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="block"
               >
-                <path d="M2 9 C 50 2, 110 14, 218 5" />
-              </svg>
-            </span>
-            <br />
-            <span className="text-clove-900/80">where flavor</span>
-            <br />
-            <span className="font-script text-saffron text-6xl md:text-8xl lg:text-9xl leading-none">
-              becomes friendship
-            </span>
+                {i === 0 ? (
+                  <>
+                    Taste of{" "}
+                    <span className="relative inline-block">
+                      <span className="italic font-medium text-terracotta-500">Nusantara</span>
+                      <svg
+                        viewBox="0 0 220 14"
+                        aria-hidden
+                        className="absolute -bottom-2 left-0 h-2.5 w-full text-turmeric"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                      >
+                        <path d="M2 9 C 50 2, 110 14, 218 5" />
+                      </svg>
+                    </span>
+                  </>
+                ) : i === 1 ? (
+                  <span className="text-clove-900/80">{line}</span>
+                ) : (
+                  <span className="font-script text-saffron text-6xl md:text-8xl lg:text-[7rem] leading-none">
+                    {line}
+                  </span>
+                )}
+              </motion.span>
+            ))}
           </h1>
 
-          <p className="reveal mt-8 max-w-xl text-pretty text-lg leading-relaxed text-clove-700/85">
-            PERMIRA Summer Camp 2026 invites Indonesian and Russian students to
-            cook, share, and celebrate across three unforgettable days — a story
-            of cultures meeting at the same table.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-clove-700/85"
+          >
+            A three-day culinary exchange where Indonesian and Russian students
+            cook, share, and celebrate at the same table — in the heart of
+            Saint Petersburg.
+          </motion.p>
 
-          <div className="reveal mt-10 flex flex-wrap items-center gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.62 }}
+            className="mt-9 flex flex-wrap items-center gap-4"
+          >
             <a
               href="#register"
-              className="group inline-flex items-center gap-2 rounded-full bg-clove-900 px-7 py-3.5 text-sm font-medium text-cream-50 shadow-[0_10px_30px_-10px_rgba(74,32,20,0.6)] transition-all hover:bg-terracotta-500 hover:shadow-[0_14px_36px_-10px_rgba(196,80,42,0.6)]"
+              className="group inline-flex items-center gap-2 rounded-full bg-clove-900 px-7 py-3.5 text-sm font-medium text-cream-50 shadow-[0_12px_30px_-10px_rgba(74,32,20,0.6)] transition-all hover:bg-terracotta-500 hover:shadow-[0_16px_40px_-10px_rgba(196,80,42,0.6)]"
             >
               Reserve your seat
               <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -83,54 +156,101 @@ export function Hero() {
             >
               See the journey
             </a>
-          </div>
+          </motion.div>
 
-          <div className="reveal mt-12 grid max-w-md grid-cols-3 gap-6 text-clove-700">
-            <div>
-              <div className="font-display text-3xl font-medium text-terracotta-500">3</div>
-              <div className="mt-1 text-xs uppercase tracking-wider text-clove-700/70">Days · Three acts</div>
-            </div>
-            <div>
-              <div className="font-display text-3xl font-medium text-terracotta-500">12+</div>
-              <div className="mt-1 text-xs uppercase tracking-wider text-clove-700/70">Dishes shared</div>
-            </div>
-            <div>
-              <div className="font-display text-3xl font-medium text-terracotta-500">2</div>
-              <div className="mt-1 text-xs uppercase tracking-wider text-clove-700/70">Cultures, one table</div>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.74 }}
+            className="mt-12 grid max-w-md grid-cols-3 gap-6 text-clove-700"
+          >
+            <Stat value="3" label="Days · three acts" />
+            <Stat value="12+" label="Dishes shared" />
+            <Stat value="July 17" label="2026 · St. Petersburg" />
+          </motion.div>
         </div>
 
-        {/* Visual focal point */}
-        <div className="relative mx-auto w-full max-w-xl">
-          <div
-            ref={orbRef}
-            className="relative aspect-square w-full transition-transform duration-300 ease-out"
+        {/* ─────────── RIGHT: parallax collage ─────────── */}
+        <div className="relative mx-auto hidden aspect-[4/5] w-full max-w-lg lg:block">
+          {/* Soft halo behind the cluster */}
+          <div className="absolute inset-8 rounded-[40%] bg-gradient-to-br from-terracotta-500/15 via-saffron/10 to-turmeric/15 blur-3xl" />
+
+          {collage.map((card, i) => (
+            <ParallaxCard key={i} depth={card.depth} className={card.className}>
+              <motion.figure
+                initial={{ opacity: 0, y: 40, scale: 0.92 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: card.delay, ease: [0.22, 1, 0.36, 1] }}
+                className="group relative"
+              >
+                <motion.div
+                  animate={{ y: [0, -card.float, 0] }}
+                  transition={{ duration: 5 + i, repeat: Infinity, ease: "easeInOut" }}
+                  className="overflow-hidden rounded-2xl bg-cream-50 p-1.5 shadow-[0_24px_60px_-20px_rgba(74,32,20,0.5)] ring-1 ring-black/5"
+                >
+                  <img
+                    src={card.src}
+                    alt={card.caption}
+                    loading="eager"
+                    className="aspect-[4/3] w-full rounded-xl object-cover"
+                  />
+                  <figcaption className="px-1 pt-1.5 pb-0.5 font-script text-base text-clove-700">
+                    {card.caption}
+                  </figcaption>
+                </motion.div>
+              </motion.figure>
+            </ParallaxCard>
+          ))}
+
+          {/* Event-logo wax stamp */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
+            animate={{ opacity: 1, scale: 1, rotate: -8 }}
+            transition={{ duration: 0.7, delay: 0.9, ease: [0.34, 1.56, 0.64, 1] }}
+            className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
           >
-            {/* Concentric batik rings */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-terracotta-500/15 via-saffron/10 to-turmeric/15 blur-2xl" />
-            <div className="absolute inset-6 rounded-full border border-terracotta-500/20" />
-            <div className="absolute inset-14 rounded-full border border-terracotta-500/15" />
-            <div className="absolute inset-24 rounded-full border border-terracotta-500/10" />
-
-            {/* Orbiting spice tags */}
-            <SpiceTag label="cinnamon" className="left-[-2%] top-[18%]" rotation={-8} />
-            <SpiceTag label="lemongrass" className="right-[-4%] top-[32%]" rotation={6} />
-            <SpiceTag label="galangal" className="left-[6%] bottom-[12%]" rotation={4} />
-            <SpiceTag label="kemiri" className="right-[8%] bottom-[6%]" rotation={-5} />
-
-            <img
-              src={heroImg}
-              alt="A bowl from the Nusantara"
-              className="relative z-10 mx-auto h-full w-full object-contain drop-shadow-[0_30px_50px_rgba(74,32,20,0.25)]"
-            />
-          </div>
+            <div className="grid h-28 w-28 place-items-center rounded-full bg-cream-50 p-2 shadow-[0_18px_44px_-12px_rgba(74,32,20,0.55)] ring-1 ring-terracotta-500/20">
+              <img src={eventLogo} alt="PERMIRA Summer Camp 2026" className="h-full w-full rounded-full object-cover" />
+            </div>
+          </motion.div>
         </div>
       </div>
 
+      {/* ─────────── BASE: moments marquee ─────────── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1 }}
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10"
+      >
+        <div className="mb-3 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.3em] text-clove-700/50">
+          <span className="h-px w-8 bg-clove-700/20" />
+          Moments from past camps
+          <span className="h-px w-8 bg-clove-700/20" />
+        </div>
+        <div className="relative overflow-hidden py-3 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <motion.div
+            className="flex w-max gap-3"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          >
+            {[...archives, ...archives].map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt=""
+                aria-hidden
+                loading="lazy"
+                className="h-16 w-24 shrink-0 rounded-lg object-cover opacity-70 shadow-sm ring-1 ring-black/5 md:h-20 md:w-32"
+              />
+            ))}
+          </motion.div>
+        </div>
+      </motion.div>
+
       {/* Scroll cue */}
-      <div className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2">
-        <div className="flex flex-col items-center gap-2 text-clove-700/50">
+      <div className="pointer-events-none absolute bottom-32 left-1/2 hidden -translate-x-1/2 lg:block">
+        <div className="flex flex-col items-center gap-2 text-clove-700/40">
           <span className="text-[10px] uppercase tracking-[0.3em]">Scroll the story</span>
           <span className="block h-8 w-px animate-pulse bg-clove-700/30" />
         </div>
@@ -139,21 +259,38 @@ export function Hero() {
   );
 }
 
-function SpiceTag({
-  label,
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div>
+      <div className="font-display text-3xl font-medium text-terracotta-500">{value}</div>
+      <div className="mt-1 text-xs uppercase tracking-wider text-clove-700/70">{label}</div>
+    </div>
+  );
+}
+
+/**
+ * ParallaxCard — positions a card absolutely and shifts it with the pointer
+ * via the section's --px/--py custom properties. `depth` is the pixel travel
+ * at the screen edge; larger = the card appears closer to the viewer.
+ */
+function ParallaxCard({
+  depth,
   className,
-  rotation,
+  children,
 }: {
-  label: string;
+  depth: number;
   className: string;
-  rotation: number;
+  children: React.ReactNode;
 }) {
   return (
     <div
-      className={`absolute z-20 rounded-full border border-clove-900/10 bg-cream-50/90 px-3 py-1 font-script text-xl text-clove-800 shadow-sm backdrop-blur ${className}`}
-      style={{ transform: `rotate(${rotation}deg)` }}
+      className={`absolute ${className}`}
+      style={{
+        transform: `translate(calc(var(--px) * ${depth}px), calc(var(--py) * ${depth}px))`,
+        transition: "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
+      }}
     >
-      {label}
+      {children}
     </div>
   );
 }
