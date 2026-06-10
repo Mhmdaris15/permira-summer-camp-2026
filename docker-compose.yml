@@ -71,15 +71,20 @@ services:
         API_ORIGIN:   ${VITE_API_URL:-https://api-summercamp2026.permiraspb.org}
     image: permira/web:latest
     restart: unless-stopped
+    # Internal container port only. Traefik reaches this over the private
+    # Docker network — :80 here never conflicts with the host's :80/:443
+    # (those belong to coolify-proxy) or with other projects' containers.
     expose:
-      - "8081"
+      - "80"
     environment:
-      SERVICE_FQDN_WEB_8081: ${WEB_FQDN:-https://summercamp2026.permiraspb.org}
+      # The trailing _80 tells Coolify which internal port to route Traefik
+      # to AND sets loadbalancer.server.port=80, removing port ambiguity.
+      SERVICE_FQDN_WEB_80: ${WEB_FQDN:-https://summercamp2026.permiraspb.org}
     depends_on:
       api:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8081/healthz"]
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
       interval: 30s
       timeout: 5s
       start_period: 5s
