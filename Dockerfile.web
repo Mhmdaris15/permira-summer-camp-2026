@@ -2,21 +2,28 @@
 
 # =============================================================================
 # Frontend image — Vite static build served by nginx.
-# Multi-stage to keep the final image small (~50MB) and dependency-free.
+# Multi-stage; the final image is just nginx + static dist/ (~50MB, no node).
 # =============================================================================
 
-# ---- Stage 1: install deps (with cache mount for speed) ----
+# ---- Stage 1: install deps (cache-mounted; layer reused unless lockfile changes) ----
 FROM node:22-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
+# --include=dev: Vite needs the frontend libs (which live in devDependencies)
+# --no-audit --no-fund: skip slow registry round-trips during CI/Coolify builds
 RUN --mount=type=cache,target=/root/.npm \
-    npm ci --legacy-peer-deps
+    npm ci --legacy-peer-deps --include=dev --no-audit --no-fund
 
 # ---- Stage 2: build the static bundle ----
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+# Copy ONLY frontend build inputs (not server/) so a backend-only change
+# never invalidates this layer's cache.
+COPY package.json package-lock.json ./
+COPY tsconfig.json tsconfig.app.json tsconfig.node.json vite.config.ts index.html ./
+COPY src ./src
+COPY public ./public
 
 # VITE_API_URL is baked at build time — runtime env won't reach the browser.
 ARG VITE_API_URL=""
@@ -28,7 +35,6 @@ RUN npm run build:web
 FROM nginx:1.27-alpine AS runtime
 
 # API origin used by the CSP `connect-src` directive in nginx.conf.
-# Defaults to VITE_API_URL so they stay in sync, but can be overridden.
 ARG VITE_API_URL=""
 ARG API_ORIGIN=""
 

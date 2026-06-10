@@ -1,25 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 const API_PORT = process.env.SERVER_PORT ?? "8787";
 
+// Source images are pre-optimised at commit time via scripts/optimize-images.mjs,
+// so there is no build-time image plugin here — that keeps the Docker build free
+// of the native `sharp` dependency (which failed to compile on Alpine and caused
+// 15+ minute Coolify builds).
+//
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-    // Compress imported images at build time. The archive photos ship at
-    // 2–4.5MB each raw; this brings them down dramatically without touching
-    // source files. Only runs on `vite build`, not in dev.
-    ViteImageOptimizer({
-      jpg: { quality: 72 },
-      jpeg: { quality: 72 },
-      webp: { quality: 78 },
-      png: { quality: 80 },
-    }),
-  ],
+  plugins: [react(), tailwindcss()],
   server: {
     proxy: {
       "/api": {
