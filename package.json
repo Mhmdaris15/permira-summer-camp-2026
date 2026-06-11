@@ -15,6 +15,7 @@
     "lint": "eslint .",
     "typecheck": "tsc -b --noEmit && tsc -p server/tsconfig.json --noEmit",
     "seed": "tsx server/scripts/seed.ts",
+    "seed:participants": "tsx server/scripts/seed-participants.ts",
     "docker:build": "docker compose build",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down"

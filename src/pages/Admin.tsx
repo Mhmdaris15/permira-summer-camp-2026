@@ -8,6 +8,7 @@ import {
   verifyAdminSession,
 } from "../lib/adminAuth";
 import { KnowledgeEditor } from "../components/admin/KnowledgeEditor";
+import LogoPermira from "../assets/organization/permira-logo-small.png";
 
 type AuthState =
   | { status: "checking" }
@@ -56,11 +57,8 @@ export function Admin() {
       <header className="border-b border-clove-900/8 bg-cream-50">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <Link to="/" className="flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-terracotta-500 text-cream-50">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 3c2 4 5 5 5 9a5 5 0 0 1-10 0c0-4 3-5 5-9z" strokeLinejoin="round" />
-              </svg>
-            </span>
+            {/* Logo Permira */}
+            <img src={LogoPermira} alt="Permira logo" className="h-12" />
             <span className="font-display text-lg font-semibold text-clove-900">
               Permira <span className="text-terracotta-500">·</span> Admin
             </span>

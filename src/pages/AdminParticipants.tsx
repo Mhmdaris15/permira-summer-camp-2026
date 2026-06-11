@@ -14,6 +14,7 @@ import { StatusPill } from "../components/admin/StatusPill";
 import { ConfirmDialog } from "../components/admin/ConfirmDialog";
 import { ParticipantDetail } from "../components/admin/ParticipantDetail";
 import { cn } from "../lib/cn";
+import LogoPermira from "../assets/organization/permira-logo-small.png";
 
 const STATUS_OPTIONS: { value: ParticipantStatus | ""; label: string }[] = [
   { value: "", label: "All statuses" },
@@ -121,14 +122,10 @@ export function AdminParticipants() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
             <Link to="/admin" className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-terracotta-500 text-cream-50">
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 3c2 4 5 5 5 9a5 5 0 0 1-10 0c0-4 3-5 5-9z" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <span className="font-display text-lg font-semibold text-clove-900">
-                Permira <span className="text-terracotta-500">·</span> Admin
-              </span>
+          <img src={LogoPermira} alt="Permira logo" className="h-12" />
+          <span className="font-display text-lg font-semibold text-clove-900">
+            Permira SPB<span className="text-terracotta-500"> · </span>Admin
+          </span>
             </Link>
             <span className="text-clove-700/40">/</span>
             <span className="font-display text-base text-clove-700">Participants</span>

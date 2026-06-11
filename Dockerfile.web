@@ -29,6 +29,13 @@ COPY public ./public
 ARG VITE_API_URL=""
 ENV VITE_API_URL=$VITE_API_URL
 
+# Bound the build's heap. On a memory-constrained VPS (especially with the
+# web + api images building in parallel) an unbounded Node heap can be
+# OOM-killed mid-build, which shows up as a log that just stops with no
+# error. A ceiling makes the build either finish under budget or fail with
+# a clear "JavaScript heap out of memory" message instead of a silent kill.
+ENV NODE_OPTIONS=--max-old-space-size=2048
+
 RUN npm run build:web
 
 # ---- Stage 3: serve with nginx ----
