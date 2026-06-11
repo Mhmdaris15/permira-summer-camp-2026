@@ -13,7 +13,7 @@
 FROM node:22-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN --mount=type=cache,target=/root/.npm \
+RUN --mount=type=cache,id=npm-api,sharing=locked,target=/root/.npm \
     npm ci --legacy-peer-deps --include=dev --no-audit --no-fund
 
 # ---- Stage 2: compile server TypeScript (copies only server sources) ----
@@ -28,9 +28,12 @@ RUN npm run build:server
 FROM node:22-alpine AS prod-deps
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN --mount=type=cache,target=/root/.npm \
-    npm ci --legacy-peer-deps --omit=dev --no-audit --no-fund \
- && npm cache clean --force
+# No `npm cache clean`: the cache lives in a discarded BuildKit mount (never
+# in the image layer), so cleaning saves nothing and its destructive rmdir
+# races concurrent writers on the shared cache → ENOTEMPTY. `sharing=locked`
+# serializes this stage against the `deps` stage that uses the same cache id.
+RUN --mount=type=cache,id=npm-api,sharing=locked,target=/root/.npm \
+    npm ci --legacy-peer-deps --omit=dev --no-audit --no-fund
 
 # ---- Stage 4: slim runtime ----
 FROM node:22-alpine AS runtime

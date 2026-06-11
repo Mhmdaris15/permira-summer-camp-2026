@@ -11,7 +11,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 # --include=dev: Vite needs the frontend libs (which live in devDependencies)
 # --no-audit --no-fund: skip slow registry round-trips during CI/Coolify builds
-RUN --mount=type=cache,target=/root/.npm \
+RUN --mount=type=cache,id=npm-web,sharing=locked,target=/root/.npm \
     npm ci --legacy-peer-deps --include=dev --no-audit --no-fund
 
 # ---- Stage 2: build the static bundle ----
