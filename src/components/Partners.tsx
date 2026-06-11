@@ -1,42 +1,50 @@
 /**
- * Partners — "Presented by" logo strip + a collaboration flag line.
- * Sits between the CTA and the Footer to lend institutional credibility.
+ * Partners — tiered logo strip (Organised by / In partnership with /
+ * Supported by) + a collaboration flag line. Sits between the CTA and the
+ * Footer to lend institutional credibility without crowding the warmth.
+ *
+ * Official emblems render in full colour (no grayscale) out of respect for
+ * government/partner brand marks.
  */
-import { partners, flags } from "../data/organizations";
+import {
+  partners,
+  flags,
+  PARTNER_TIER_LABELS,
+  type Partner,
+  type PartnerTier,
+} from "../data/organizations";
+
+const TIER_ORDER: PartnerTier[] = ["organiser", "partner", "supporter"];
 
 export function Partners() {
   return (
     <section className="relative bg-cream-100 py-16 md:py-20">
       <div className="mx-auto max-w-5xl px-6 text-center">
         <span className="reveal text-xs font-medium uppercase tracking-[0.3em] text-terracotta-500">
-          Presented &amp; Supported by
+          Friends of the Camp
         </span>
 
-        {/* Partner logos */}
-        <div className="reveal mt-8 flex flex-wrap items-center justify-center gap-10 md:gap-16">
-          {partners.map((p) => {
-            const img = (
-              <img
-                src={p.logo}
-                alt={p.name}
-                loading="lazy"
-                className="h-16 w-auto object-contain opacity-80 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0 md:h-20"
-              />
-            );
-            return p.href ? (
-              <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer" title={p.name}>
-                {img}
-              </a>
-            ) : (
-              <div key={p.name} title={p.name}>
-                {img}
+        <div className="reveal mt-10 flex flex-col gap-10">
+          {TIER_ORDER.map((tier) => {
+            const group = partners.filter((p) => p.tier === tier);
+            if (group.length === 0) return null;
+            return (
+              <div key={tier} className="flex flex-col items-center gap-4">
+                <span className="text-[10px] font-medium uppercase tracking-[0.28em] text-clove-700/55">
+                  {PARTNER_TIER_LABELS[tier]}
+                </span>
+                <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14">
+                  {group.map((p) => (
+                    <PartnerLogo key={p.name} partner={p} />
+                  ))}
+                </div>
               </div>
             );
           })}
         </div>
 
         {/* Collaboration flags */}
-        <div className="reveal mt-12 flex flex-col items-center gap-4">
+        <div className="reveal mt-14 flex flex-col items-center gap-4">
           <span className="text-[11px] uppercase tracking-[0.25em] text-clove-700/55">
             A collaboration across
           </span>
@@ -52,14 +60,45 @@ export function Partners() {
                   />
                   <span className="text-sm font-medium text-clove-800">{f.label}</span>
                 </div>
-                {i < flags.length - 1 && (
-                  <span className="text-terracotta-500/50">·</span>
-                )}
+                {i < flags.length - 1 && <span className="text-terracotta-500/50">·</span>}
               </div>
             ))}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function PartnerLogo({ partner }: { partner: Partner }) {
+  const img = (
+    <img
+      src={partner.logo}
+      alt={partner.name}
+      loading="lazy"
+      className="h-14 w-auto max-w-[200px] object-contain opacity-85 transition-all duration-300 hover:opacity-100 md:h-16"
+    />
+  );
+
+  return (
+    <div className="flex flex-col items-center gap-1.5" title={partner.name}>
+      {partner.href ? (
+        <a href={partner.href} target="_blank" rel="noopener noreferrer">
+          {img}
+        </a>
+      ) : (
+        <div>{img}</div>
+      )}
+      {partner.altHref && (
+        <a
+          href={partner.altHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[10px] font-medium uppercase tracking-wider text-clove-700/50 transition-colors hover:text-terracotta-500"
+        >
+          VK ↗
+        </a>
+      )}
+    </div>
   );
 }

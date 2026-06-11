@@ -51,10 +51,22 @@ Variables) so the web bundle is baked with the right API origin.
 **Compose File: `docker-compose.prod.yml`** (instead of `docker-compose.yml`).
 That file has no `build:` sections — Coolify pulls `:latest` and starts.
 
-**D. Auto-deploy on push.** With the GitHub webhook enabled (Coolify → Webhooks),
-push to `main` → CI builds & pushes images → trigger a Coolify redeploy (webhook,
-or Coolify's "Check for new images"). Deploys become a ~10s pull instead of a
-20-min build.
+**D. Auto-deploy on push.** The workflow's `deploy` job calls a Coolify deploy
+webhook after both images publish, so `push main → build → publish → redeploy`
+is fully automatic. Set it up once:
+
+1. In Coolify, open the resource → **Webhooks** → copy the **Deploy Webhook**
+   URL (looks like `https://<coolify-host>/api/v1/deploy?uuid=XXXXXXXX`).
+2. Create a Coolify **API token** (Coolify → Keys & Tokens) if your instance
+   requires auth on the deploy endpoint.
+3. In GitHub → **Settings → Secrets and variables → Actions → Secrets**, add:
+   - `COOLIFY_WEBHOOK` = the deploy URL (required)
+   - `COOLIFY_TOKEN` = the API token (optional; sent as `Bearer` if present)
+
+If `COOLIFY_WEBHOOK` is absent the `deploy` job no-ops and the workflow still
+passes — so you can defer this and trigger redeploys manually in Coolify.
+
+Deploys become a ~10s image pull instead of a 20-min VPS build.
 
 > Pin a specific build instead of `:latest` by setting `WEB_IMAGE` / `API_IMAGE`
 > env in Coolify to the `sha-<short>` tag.

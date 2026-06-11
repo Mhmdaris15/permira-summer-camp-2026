@@ -80,3 +80,39 @@ jobs:
           build-args: |
             VITE_API_URL=${{ matrix.image == 'web' && (vars.VITE_API_URL || 'https://api-summercamp2026.permiraspb.org') || '' }}
             API_ORIGIN=${{ matrix.image == 'web' && (vars.VITE_API_URL || 'https://api-summercamp2026.permiraspb.org') || '' }}
+
+  # ---------------------------------------------------------------------------
+  # Trigger a Coolify redeploy AFTER both images are published. Coolify then
+  # pulls the fresh :latest images (docker-compose.prod.yml). Only runs on a
+  # real push to main — never on PRs.
+  #
+  # Configure once in GitHub → Settings → Secrets and variables → Actions:
+  #   COOLIFY_WEBHOOK  (required)  the resource's Deploy Webhook URL, e.g.
+  #                                https://<coolify-host>/api/v1/deploy?uuid=XXXXXXXX
+  #   COOLIFY_TOKEN    (optional)  Coolify API token; sent as Bearer if set.
+  # If COOLIFY_WEBHOOK is unset the job no-ops (so the workflow still passes).
+  # ---------------------------------------------------------------------------
+  deploy:
+    name: Trigger Coolify deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Call Coolify deploy webhook
+        env:
+          WEBHOOK: ${{ secrets.COOLIFY_WEBHOOK }}
+          TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+        run: |
+          if [ -z "$WEBHOOK" ]; then
+            echo "::warning::COOLIFY_WEBHOOK secret not set — skipping auto-deploy."
+            exit 0
+          fi
+          echo "Triggering Coolify deploy…"
+          code=$(curl -fsS -o /dev/null -w "%{http_code}" \
+            ${TOKEN:+-H "Authorization: Bearer $TOKEN"} \
+            "$WEBHOOK" || true)
+          echo "Coolify responded: HTTP $code"
+          case "$code" in
+            2*) echo "✅ Deploy triggered." ;;
+            *)  echo "::error::Coolify webhook failed (HTTP $code)."; exit 1 ;;
+          esac

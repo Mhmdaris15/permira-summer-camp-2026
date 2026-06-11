@@ -18,6 +18,12 @@
   --color-ink: #1a0e07;
   --color-leaf: #4a6b3a;
 
+  /* Nature / sustainability palette (eco partnership rebrand) */
+  --color-pine: #2f5d3a;
+  --color-fern: #6f9e57;
+  --color-river: #3f7c93;
+  --color-birch: #e8e2d1;
+
   /* Typography */
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
