@@ -13,6 +13,54 @@ public services on separate subdomains:
 
 ---
 
+## Two deploy modes
+
+| Mode | Compose file | Where images are built | Use when |
+| ---- | ------------ | ---------------------- | -------- |
+| **Pull prebuilt (recommended)** | `docker-compose.prod.yml` | GitHub Actions → GHCR | Always, esp. on small VPSs — no build on the box |
+| Build on VPS | `docker-compose.yml` | On the Coolify host | Quick one-off / no CI |
+
+The VPS is memory-constrained (8GB shared with other apps), so **building images
+on it OOM-kills the Vite build**. Build them on GitHub's runners instead and have
+Coolify pull. See **"Prebuilt images via GHCR"** below.
+
+---
+
+## Prebuilt images via GHCR (recommended)
+
+**A. CI publishes the images.** `.github/workflows/docker.yml` builds both images
+on every push to `main` and pushes them to:
+
+```
+ghcr.io/mhmdaris15/permira-summer-camp-2026/web:latest
+ghcr.io/mhmdaris15/permira-summer-camp-2026/api:latest
+```
+
+(Also tagged `sha-<short>` per commit, and `vX.Y.Z` on git tags.) No secrets
+needed — it uses the built-in `GITHUB_TOKEN`. If your API domain differs, set a
+repo **variable** `VITE_API_URL` (Settings → Secrets and variables → Actions →
+Variables) so the web bundle is baked with the right API origin.
+
+**B. Make the packages pullable by Coolify.** Two options:
+- *Simplest:* on GitHub, open each package (`…/web`, `…/api`) → **Package settings
+  → Change visibility → Public**. Coolify then pulls with no credentials.
+- *Private:* in Coolify add a **Docker registry**: `ghcr.io`, username = your
+  GitHub username, password = a PAT with `read:packages`.
+
+**C. Point Coolify at the pull compose.** In the resource config set
+**Compose File: `docker-compose.prod.yml`** (instead of `docker-compose.yml`).
+That file has no `build:` sections — Coolify pulls `:latest` and starts.
+
+**D. Auto-deploy on push.** With the GitHub webhook enabled (Coolify → Webhooks),
+push to `main` → CI builds & pushes images → trigger a Coolify redeploy (webhook,
+or Coolify's "Check for new images"). Deploys become a ~10s pull instead of a
+20-min build.
+
+> Pin a specific build instead of `:latest` by setting `WEB_IMAGE` / `API_IMAGE`
+> env in Coolify to the `sha-<short>` tag.
+
+---
+
 ## DNS
 
 Point both subdomains at your Coolify host's public IP:
@@ -32,7 +80,8 @@ the next step — Let's Encrypt will fail HTTP-01 challenges otherwise.
 1. **Projects → New Resource → Public Repository**
 2. Paste repo URL, branch `main`
 3. **Build Pack:** `Docker Compose`
-4. **Compose File:** `docker-compose.yml`
+4. **Compose File:** `docker-compose.prod.yml` (pull prebuilt from GHCR — recommended)
+   · or `docker-compose.yml` to build on the VPS
 5. Save
 
 Coolify reads the two `SERVICE_FQDN_*_*` env vars in compose and auto-provisions
