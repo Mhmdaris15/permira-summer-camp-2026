@@ -4,6 +4,7 @@ import { Hero } from "../components/Hero";
 import { ExperienceJourney } from "../components/ExperienceJourney";
 import { CulinaryHighlights } from "../components/CulinaryHighlights";
 import { CulturalExchange } from "../components/CulturalExchange";
+import { Stewardship } from "../components/Stewardship";
 import { MapVideo } from "../components/MapVideo";
 import { Memories } from "../components/Memories";
 import { JoinTheTable } from "../components/JoinTheTable";
@@ -20,6 +21,7 @@ export function LandingPage() {
         <ExperienceJourney />
         <CulinaryHighlights />
         <CulturalExchange />
+        <Stewardship />
         <MapVideo />
         <Memories />
         <JoinTheTable />
