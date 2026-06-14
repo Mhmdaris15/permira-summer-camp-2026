@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { submitRegistration, type SubmitResult } from "../../lib/api";
 import { useRegistrationForm } from "./useRegistrationForm";
 import { LIMITS } from "./types";
@@ -8,6 +9,7 @@ import { TextField, TextAreaField, SelectField, RadioGroup, FileField } from "./
 type Status = "idle" | "submitting" | "success" | "error";
 
 export function RegistrationForm({ onClose }: { onClose: () => void }) {
+  const { t } = useTranslation();
   const form = useRegistrationForm();
   const { data, errors, touched, setField, markTouched, touchAll, isValid, reset } = form;
 
@@ -64,12 +66,12 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
         </label>
       </div>
 
-      <Section title="About you" subtitle="Just the basics so we know who's coming.">
+      <Section title={t("registration.sectionAbout")} subtitle={t("registration.sectionAboutSub")}>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <TextField
-            label="Full name"
+            label={t("registration.fullName")}
             required
-            placeholder="e.g. Anya Petrova"
+            placeholder={t("registration.fullNamePh")}
             autoComplete="name"
             value={data.fullName}
             onChange={(e) => setField("fullName", e.target.value)}
@@ -80,9 +82,9 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             max={LIMITS.fullName}
           />
           <SelectField
-            label="Nationality"
+            label={t("registration.nationality")}
             required
-            placeholder="Choose one"
+            placeholder={t("registration.nationalityPh")}
             value={data.nationality}
             onChange={(e) => {
               setField("nationality", e.target.value as typeof data.nationality);
@@ -90,16 +92,16 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             }}
             onBlur={() => markTouched("nationality")}
             options={[
-              { value: "Indonesia", label: "🇮🇩 Indonesia" },
-              { value: "Russia", label: "🇷🇺 Russia" },
+              { value: "Indonesia", label: `🇮🇩 ${t("registration.indonesia")}` },
+              { value: "Russia", label: `🇷🇺 ${t("registration.russia")}` },
             ]}
             error={errors.nationality}
             showError={showErr("nationality")}
           />
           <TextField
-            label="University"
+            label={t("registration.university")}
             required
-            placeholder="Where you study"
+            placeholder={t("registration.universityPh")}
             value={data.university}
             onChange={(e) => setField("university", e.target.value)}
             onBlur={() => markTouched("university")}
@@ -109,13 +111,13 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             max={LIMITS.university}
           />
           <TextField
-            label="Age"
+            label={t("registration.age")}
             required
             type="number"
             min={18}
             max={35}
             inputMode="numeric"
-            placeholder="18"
+            placeholder={t("registration.agePh")}
             value={data.age}
             onChange={(e) => setField("age", e.target.value)}
             onBlur={() => markTouched("age")}
@@ -125,7 +127,7 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
         </div>
         <div className="mt-5">
           <RadioGroup
-            label="Gender"
+            label={t("registration.gender")}
             required
             name="gender"
             value={data.gender}
@@ -134,10 +136,10 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
               markTouched("gender");
             }}
             options={[
-              { value: "Female", label: "Female" },
-              { value: "Male", label: "Male" },
-              { value: "Non-binary", label: "Non-binary" },
-              { value: "Prefer not to say", label: "Prefer not to say" },
+              { value: "Female", label: t("registration.female") },
+              { value: "Male", label: t("registration.male") },
+              { value: "Non-binary", label: t("registration.nonbinary") },
+              { value: "Prefer not to say", label: t("registration.prefer") },
             ]}
             error={errors.gender}
             showError={showErr("gender")}
@@ -145,14 +147,14 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
         </div>
       </Section>
 
-      <Section title="How to reach you" subtitle="We'll only write you about the camp.">
+      <Section title={t("registration.sectionContact")} subtitle={t("registration.sectionContactSub")}>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <TextField
-            label="Email"
+            label={t("registration.email")}
             required
             type="email"
             autoComplete="email"
-            placeholder="you@example.com"
+            placeholder={t("registration.emailPh")}
             value={data.email}
             onChange={(e) => setField("email", e.target.value)}
             onBlur={() => markTouched("email")}
@@ -160,11 +162,11 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             showError={showErr("email")}
           />
           <TextField
-            label="Phone"
+            label={t("registration.phone")}
             required
             type="tel"
             autoComplete="tel"
-            placeholder="+7 921 000 00 00"
+            placeholder={t("registration.phonePh")}
             value={data.phone}
             onChange={(e) => setField("phone", e.target.value)}
             onBlur={() => markTouched("phone")}
@@ -172,9 +174,9 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             showError={showErr("phone")}
           />
           <TextField
-            label="Telegram or WhatsApp"
+            label={t("registration.messenger")}
             required
-            placeholder="@your_handle or +country code"
+            placeholder={t("registration.messengerPh")}
             value={data.messenger}
             onChange={(e) => setField("messenger", e.target.value)}
             onBlur={() => markTouched("messenger")}
@@ -186,12 +188,12 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
       </Section>
 
       <Section
-        title="Documents"
-        subtitle="We need these on file before we can review your application."
+        title={t("registration.sectionDocs")}
+        subtitle={t("registration.sectionDocsSub")}
       >
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <FileField
-            label="Passport scan"
+            label={t("registration.passport")}
             required
             accept="image/jpeg,image/png,image/webp,application/pdf"
             value={data.passport}
@@ -201,10 +203,10 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             }}
             error={errors.passport}
             showError={showErr("passport")}
-            hint="A clear scan of your passport's photo page."
+            hint={t("registration.passportHint")}
           />
           <FileField
-            label="Signed consent form"
+            label={t("registration.consent")}
             required
             accept="image/jpeg,image/png,image/webp,application/pdf"
             value={data.consent}
@@ -214,20 +216,20 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             }}
             error={errors.consent}
             showError={showErr("consent")}
-            hint="Download the form from our site, sign it, and re-upload."
+            hint={t("registration.consentHint")}
           />
         </div>
       </Section>
 
       <Section
-        title="Tell us a little more"
-        subtitle="The parts where your voice matters most."
+        title={t("registration.sectionMore")}
+        subtitle={t("registration.sectionMoreSub")}
       >
         <div className="flex flex-col gap-5">
           <TextAreaField
-            label="Dietary restrictions"
-            hint="Allergies, halal, vegetarian, etc. Optional, but helps us plan."
-            placeholder="e.g. peanut allergy, halal"
+            label={t("registration.dietary")}
+            hint={t("registration.dietaryHint")}
+            placeholder={t("registration.dietaryPh")}
             value={data.dietary}
             onChange={(e) => setField("dietary", e.target.value)}
             onBlur={() => markTouched("dietary")}
@@ -237,9 +239,9 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             max={LIMITS.dietary}
           />
           <TextAreaField
-            label="Prior experience with cultural or international programs"
-            hint="Optional. Conferences, exchanges, language camps — anything counts."
-            placeholder="Share briefly if you have."
+            label={t("registration.prior")}
+            hint={t("registration.priorHint")}
+            placeholder={t("registration.priorPh")}
             value={data.priorExperience}
             onChange={(e) => setField("priorExperience", e.target.value)}
             onBlur={() => markTouched("priorExperience")}
@@ -249,10 +251,10 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             max={LIMITS.priorExperience}
           />
           <TextAreaField
-            label="Why do you want to join PERMIRA Summer Camp 2026?"
+            label={t("registration.motivation")}
             required
-            hint="A short essay. We read every one — be honest, not perfect."
-            placeholder="What draws you to the table?"
+            hint={t("registration.motivationHint")}
+            placeholder={t("registration.motivationPh")}
             value={data.motivation}
             onChange={(e) => setField("motivation", e.target.value)}
             onBlur={() => markTouched("motivation")}
@@ -272,13 +274,13 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
           role="alert"
           className="rounded-xl border border-terracotta-500/30 bg-terracotta-500/8 px-4 py-3 text-sm text-terracotta-600"
         >
-          <strong className="font-medium">Submission failed.</strong> {errorMessage}
+          <strong className="font-medium">{t("registration.failed")}</strong> {errorMessage}
         </motion.div>
       )}
 
       <div className="flex flex-col-reverse gap-3 border-t border-clove-900/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-clove-700/60">
-          By submitting you agree we may contact you about the camp. <span className="text-terracotta-500">*</span> required.
+          {t("registration.agree")} <span className="text-terracotta-500">*</span> {t("registration.required")}.
         </p>
         <div className="flex gap-3 sm:justify-end">
           <button
@@ -287,7 +289,7 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             disabled={submitting}
             className="rounded-full border border-clove-900/15 bg-cream-50 px-6 py-3 text-sm font-medium text-clove-900 transition hover:border-clove-900/30 disabled:opacity-50"
           >
-            Cancel
+            {t("registration.cancel")}
           </button>
           <button
             type="submit"
@@ -296,11 +298,11 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
           >
             {submitting ? (
               <>
-                <Spinner /> Sending…
+                <Spinner /> {t("registration.submitting")}
               </>
             ) : (
               <>
-                Reserve my seat
+                {t("registration.submit")}
                 <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -349,6 +351,7 @@ function SuccessState({
   onClose: () => void;
   confirmationId: string | null;
 }) {
+  const { t } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -372,13 +375,13 @@ function SuccessState({
       </div>
       <div>
         <h3 className="font-display text-3xl font-light text-clove-900 md:text-4xl">
-          Your seat is held.
+          {t("registration.successTitle")}
         </h3>
         <p className="mx-auto mt-3 max-w-md text-pretty text-base leading-relaxed text-clove-700/80">
-          Thank you. We'll write you in early 2026 with the next steps — and a recipe to read while you wait.
+          {t("registration.successBody")}
         </p>
         {confirmationId && confirmationId !== "ok" && (
-          <p className="mt-4 font-mono text-xs text-clove-700/50">Reference · {confirmationId}</p>
+          <p className="mt-4 font-mono text-xs text-clove-700/50">{t("registration.ref")} · {confirmationId}</p>
         )}
       </div>
       <button
@@ -386,9 +389,9 @@ function SuccessState({
         onClick={onClose}
         className="rounded-full bg-clove-900 px-7 py-3 text-sm font-medium text-cream-50 transition hover:bg-terracotta-500"
       >
-        Back to the story
+        {t("registration.successBack")}
       </button>
-      <p className="font-script text-2xl text-saffron">selamat makan · приятного аппетита</p>
+      <p className="font-script text-2xl text-saffron">{t("footer.script")}</p>
     </motion.div>
   );
 }

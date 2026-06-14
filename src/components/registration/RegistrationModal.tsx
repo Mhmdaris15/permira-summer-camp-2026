@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { RegistrationForm } from "./RegistrationForm";
 
 export function RegistrationModal({
@@ -10,6 +11,7 @@ export function RegistrationModal({
   open: boolean;
   onClose: () => void;
 }) {
+  const { t } = useTranslation();
   const dialogRef = useRef<HTMLDivElement>(null);
 
   // ESC + body scroll lock + initial focus
@@ -48,7 +50,7 @@ export function RegistrationModal({
         >
           {/* Backdrop */}
           <motion.button
-            aria-label="Close registration"
+            aria-label={t("common.close")}
             onClick={onClose}
             className="absolute inset-0 bg-clove-900/70 backdrop-blur-sm"
             initial={{ opacity: 0 }}
@@ -74,18 +76,18 @@ export function RegistrationModal({
               <div className="flex items-start justify-between gap-6">
                 <div>
                   <span className="text-xs font-medium uppercase tracking-[0.3em] text-terracotta-500">
-                    The Invitation
+                    {t("join.eyebrow")}
                   </span>
                   <h2
                     id="registration-title"
                     className="mt-2 font-display text-2xl font-light leading-tight text-clove-900 md:text-3xl"
                   >
-                    Reserve your seat at the table.
+                    {t("registration.title")}
                   </h2>
                 </div>
                 <button
                   type="button"
-                  aria-label="Close"
+                  aria-label={t("common.close")}
                   onClick={onClose}
                   className="shrink-0 rounded-full p-2 text-clove-700 transition hover:bg-cream-200 hover:text-clove-900"
                 >

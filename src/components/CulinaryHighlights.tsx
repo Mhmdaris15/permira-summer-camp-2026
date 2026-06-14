@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { dishes, type Dish } from "../data/dishes";
 import { cn } from "../lib/cn";
 
 export function CulinaryHighlights() {
+  const { t } = useTranslation();
   const [activeId, setActiveId] = useState(dishes[0].id);
   const active = dishes.find((d) => d.id === activeId) ?? dishes[0];
 
@@ -24,21 +26,17 @@ export function CulinaryHighlights() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <span className="reveal text-xs font-medium uppercase tracking-[0.3em] text-saffron">
-            Indonesian Culinary Inspirations
+            {t("culinary.eyebrow")}
           </span>
           <h2 className="reveal mt-4 font-display text-balance text-4xl font-light leading-tight tracking-tight md:text-6xl">
-            Examples of Indonesian <br />
-            <span className="italic text-saffron">culinary heritage.</span>
+            {t("culinary.heading1")} <br />
+            <span className="italic text-saffron">{t("culinary.heading2")}</span>
           </h2>
           <p className="reveal mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-cream-100/70 md:text-lg">
-            In the Culinary Masterclass &amp; Cooking Sessions, mixed teams of
-            Indonesian, Russian, and ASEAN students cook Indonesian dishes
-            together — learning the ingredients, techniques, and stories behind
-            each one. The examples below illustrate that heritage.
+            {t("culinary.intro")}
           </p>
           <p className="reveal mx-auto mt-4 max-w-xl text-pretty text-xs italic leading-relaxed text-cream-100/50">
-            Actual dishes may vary depending on programme arrangements and
-            availability.
+            {t("culinary.disclaimer")}
           </p>
         </div>
 
@@ -84,7 +82,7 @@ export function CulinaryHighlights() {
               <div className="absolute inset-0 bg-gradient-to-t from-clove-900/90 via-clove-900/50 to-clove-900/25" />
               <div className="relative p-5">
                 <div className="font-mono text-[10px] uppercase tracking-widest text-cream-100/70">
-                  {d.region}
+                  {t(`culinary.dishes.${d.id}.region`)}
                 </div>
                 <div className="mt-12 font-display text-xl text-cream-50 md:mt-16">{d.name}</div>
                 <div className="mt-1 text-sm italic text-cream-100/70">
@@ -100,6 +98,10 @@ export function CulinaryHighlights() {
 }
 
 function DishFeature({ dish }: { dish: Dish }) {
+  const { t } = useTranslation();
+  const dk = `culinary.dishes.${dish.id}`;
+  const tagline = t(`${dk}.tagline`);
+  const ingredients = t(`${dk}.ingredients`, { returnObjects: true }) as string[];
   return (
     <div
       key={dish.id}
@@ -124,14 +126,14 @@ function DishFeature({ dish }: { dish: Dish }) {
           <div className="flex items-center gap-2 text-cream-50/80">
             <span className="h-px flex-1 bg-cream-50/30" />
             <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
-              Featured · No. 0{dishes.findIndex((d) => d.id === dish.id) + 1}
+              {t("culinary.featured")} · No. 0{dishes.findIndex((d) => d.id === dish.id) + 1}
             </span>
             <span className="h-px w-8 bg-cream-50/30" />
           </div>
 
           <div>
             <div className="font-script text-3xl text-cream-50 md:text-4xl">
-              {dish.tagline.split(",")[0]},
+              {tagline.split(",")[0]},
             </div>
             <div className="mt-1 font-display text-5xl font-light leading-none text-cream-50 md:text-7xl">
               {dish.name.split(" ").map((word, i) => (
@@ -147,22 +149,22 @@ function DishFeature({ dish }: { dish: Dish }) {
       {/* Narrative block */}
       <div className="flex flex-col justify-center px-4 py-8 md:px-8">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-saffron">
-          {dish.region}
+          {t(`${dk}.region`)}
         </span>
         <h3 className="mt-3 font-display text-3xl font-light leading-tight text-cream-50 md:text-4xl">
-          {dish.tagline}
+          {tagline}
         </h3>
         <p className="mt-5 text-pretty text-base leading-relaxed text-cream-100/80">
-          {dish.story}
+          {t(`${dk}.story`)}
         </p>
 
         <div className="mt-8 grid grid-cols-2 gap-6 border-t border-cream-100/10 pt-6">
           <div>
             <div className="text-[10px] font-medium uppercase tracking-widest text-cream-100/50">
-              Heart of the dish
+              {t("culinary.heart")}
             </div>
             <div className="mt-3 flex flex-wrap gap-1.5">
-              {dish.ingredients.map((ing) => (
+              {ingredients.map((ing) => (
                 <span
                   key={ing}
                   className="rounded-full border border-cream-100/15 bg-cream-100/5 px-2.5 py-1 text-xs text-cream-100/80"
@@ -174,10 +176,10 @@ function DishFeature({ dish }: { dish: Dish }) {
           </div>
           <div>
             <div className="text-[10px] font-medium uppercase tracking-widest text-cream-100/50">
-              Tradition pairs it with
+              {t("culinary.pairs")}
             </div>
             <div className="mt-3 text-sm leading-relaxed text-cream-100/80">
-              {dish.pairing}
+              {t(`${dk}.pairing`)}
             </div>
           </div>
         </div>

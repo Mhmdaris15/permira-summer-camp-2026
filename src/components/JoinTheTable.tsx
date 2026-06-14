@@ -1,8 +1,7 @@
-// TODO(user-decision): see App.tsx — the form fields and submit destination
-// are intentionally unimplemented. The CTA below either anchors to a future
-// /register route or to an external Google Form, depending on what you choose.
+import { useTranslation } from "react-i18next";
 
 export function JoinTheTable() {
+  const { t } = useTranslation();
   return (
     <section
       id="join"
@@ -28,15 +27,14 @@ export function JoinTheTable() {
 
       <div className="mx-auto max-w-4xl px-6 text-center">
         <span className="reveal text-xs font-medium uppercase tracking-[0.3em] text-saffron">
-          The Invitation
+          {t("join.eyebrow")}
         </span>
         <h2 className="reveal mt-4 font-display text-balance text-4xl font-light leading-[1.05] tracking-tight md:text-7xl">
-          A seat is being held <br />
-          <span className="font-script text-saffron text-6xl md:text-8xl">just for you.</span>
+          {t("join.heading1")} <br />
+          <span className="font-script text-saffron text-6xl md:text-8xl">{t("join.heading2")}</span>
         </h2>
         <p className="reveal mx-auto mt-8 max-w-xl text-pretty text-base leading-relaxed text-cream-100/75 md:text-lg">
-          Reservations open in early 2026. Leave us a way to reach you and
-          we'll write the moment doors open — with a recipe to read while you wait.
+          {t("join.subtitle")}
         </p>
 
         <div className="reveal mt-10 flex flex-col items-center gap-5 sm:flex-row sm:justify-center">
@@ -44,7 +42,7 @@ export function JoinTheTable() {
             href="#register"
             className="group inline-flex items-center gap-2 rounded-full bg-saffron px-8 py-4 text-sm font-medium text-clove-900 shadow-[0_15px_40px_-10px_rgba(217,154,59,0.5)] transition-all hover:bg-cream-50 hover:shadow-[0_18px_50px_-10px_rgba(253,248,241,0.6)]"
           >
-            Reserve my seat
+            {t("join.cta")}
             <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -53,14 +51,14 @@ export function JoinTheTable() {
             href="mailto:info@permiraspb.org"
             className="text-sm font-medium text-cream-100/70 underline-offset-4 transition-colors hover:text-cream-50 hover:underline"
           >
-            or write to info@permiraspb.org
+            {t("join.or")} info@permiraspb.org
           </a>
         </div>
 
         <div className="reveal mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-6 border-t border-cream-100/10 pt-10 text-left">
-          <Detail label="Dates" value="July 17–19, 2026" />
-          <Detail label="Location" value="Saint Petersburg" />
-          <Detail label="For" value="Students · 18–35" />
+          <Detail label={t("join.datesLabel")} value={t("join.datesValue")} />
+          <Detail label={t("join.locLabel")} value={t("join.locValue")} />
+          <Detail label={t("join.forLabel")} value={t("join.forValue")} />
         </div>
       </div>
     </section>

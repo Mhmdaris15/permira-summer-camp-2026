@@ -8,6 +8,7 @@
  */
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 // Eager URL glob — returns { path: url }. Sorted numerically by the (n) suffix.
 const archiveModules = import.meta.glob<string>(
@@ -37,6 +38,7 @@ const LAYOUT = [
 ];
 
 export function Memories() {
+  const { t } = useTranslation();
   const [active, setActive] = useState<number | null>(null);
 
   const close = useCallback(() => setActive(null), []);
@@ -71,15 +73,14 @@ export function Memories() {
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
           <div>
             <span className="reveal text-xs font-medium uppercase tracking-[0.3em] text-terracotta-500">
-              Memories
+              {t("memories.eyebrow")}
             </span>
             <h2 className="reveal mt-4 max-w-2xl font-display text-balance text-4xl font-light leading-tight tracking-tight text-clove-900 md:text-6xl">
-              Moments that <span className="italic text-terracotta-500">linger</span> longer than the meal.
+              {t("memories.heading1")} <span className="italic text-terracotta-500">{t("memories.headingItalic")}</span> {t("memories.heading2")}
             </h2>
           </div>
           <p className="reveal max-w-md text-pretty text-base leading-relaxed text-clove-700/80">
-            A glimpse of past PERMIRA gatherings — laughter over shared work,
-            the small rituals that turn strangers into friends.
+            {t("memories.intro")}
           </p>
         </div>
 

@@ -1,4 +1,12 @@
+import { useTranslation } from "react-i18next";
 import { collaborators } from "../data/organizations";
+
+const collabKey: Record<string, string> = {
+  Indonesia: "exchange.indonesia",
+  Russia: "exchange.russia",
+  ASEAN: "exchange.asean",
+  "Saint Petersburg": "exchange.stpetersburg",
+};
 
 const exchanges = [
   {
@@ -22,6 +30,7 @@ const exchanges = [
 ];
 
 export function CulturalExchange() {
+  const { t } = useTranslation();
   return (
     <section
       id="exchange"
@@ -30,16 +39,14 @@ export function CulturalExchange() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <span className="reveal text-xs font-medium uppercase tracking-[0.3em] text-terracotta-500">
-            The Eco-Culinary Bridge
+            {t("exchange.eyebrow")}
           </span>
           <h2 className="reveal mt-4 font-display text-balance text-4xl font-light leading-tight tracking-tight text-clove-900 md:text-6xl">
-            From ASEAN to Russia, <br />
-            <span className="italic text-terracotta-500">a bridge built at the table.</span>
+            {t("exchange.heading1")} <br />
+            <span className="italic text-terracotta-500">{t("exchange.heading2")}</span>
           </h2>
           <p className="reveal mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-clove-700/80 md:text-lg">
-            PERMIRA Summer Camp 2026 brings together students from Indonesia,
-            Russia, and across ASEAN, hosted in Saint Petersburg — a youth
-            diplomacy programme where cuisine, culture, and care for nature meet.
+            {t("exchange.intro")}
           </p>
 
           {/* Four-way collaboration marks */}
@@ -58,7 +65,7 @@ export function CulturalExchange() {
                     }
                   />
                   <span className="text-[11px] font-medium uppercase tracking-wider text-clove-700/70">
-                    {c.label}
+                    {t(collabKey[c.label] ?? c.label)}
                   </span>
                 </div>
                 {i < collaborators.length - 1 && (
@@ -80,13 +87,13 @@ export function CulturalExchange() {
                 <div className="absolute inset-0 bg-gradient-to-br from-terracotta-500/8 to-saffron/5" />
                 <div className="relative">
                   <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] text-terracotta-600">
-                    <span className="text-base">🇮🇩</span> Indonesia
+                    <span className="text-base">🇮🇩</span> {t("exchange.indonesia")}
                   </div>
                   <h3 className="mt-4 font-display text-3xl font-light text-clove-900 md:text-4xl">
                     {ex.indo.title}
                   </h3>
                   <p className="mt-3 text-pretty text-sm leading-relaxed text-clove-700/85 md:text-base">
-                    {ex.indo.note}
+                    {t(`exchange.cards.${ex.id}.indoNote`)}
                   </p>
                 </div>
               </div>
@@ -96,7 +103,7 @@ export function CulturalExchange() {
                 <div className="hidden h-full w-px bg-gradient-to-b from-transparent via-clove-900/15 to-transparent md:block" />
                 <div className="flex flex-col items-center gap-2 md:absolute">
                   <span className="font-script text-2xl text-saffron">
-                    {ex.theme}
+                    {t(`exchange.cards.${ex.id}.theme`)}
                   </span>
                   <svg
                     viewBox="0 0 60 24"
@@ -118,13 +125,13 @@ export function CulturalExchange() {
                 <div className="absolute inset-0 bg-gradient-to-bl from-clove-700/8 to-cream-300/10" />
                 <div className="relative">
                   <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] text-clove-700 md:justify-end">
-                    Russia <span className="text-base">🇷🇺</span>
+                    {t("exchange.russia")} <span className="text-base">🇷🇺</span>
                   </div>
                   <h3 className="mt-4 font-display text-3xl font-light text-clove-900 md:text-4xl">
                     {ex.russ.title}
                   </h3>
                   <p className="mt-3 text-pretty text-sm leading-relaxed text-clove-700/85 md:text-base">
-                    {ex.russ.note}
+                    {t(`exchange.cards.${ex.id}.russNote`)}
                   </p>
                 </div>
               </div>

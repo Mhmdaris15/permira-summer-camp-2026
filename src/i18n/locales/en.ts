@@ -1,0 +1,271 @@
+export const en = {
+  lang: { ru: "Russian", en: "English", id: "Indonesian", switch: "Language" },
+
+  nav: {
+    journey: "Programme",
+    cuisine: "Cuisine",
+    exchange: "Collaboration",
+    stewardship: "Stewardship",
+    memories: "Memories",
+    join: "Register",
+  },
+
+  hero: {
+    eyebrow: "Indonesia × Russia × ASEAN · St. Petersburg · Jul 17–19, 2026",
+    titleLead: "Taste of",
+    titleNusantara: "Nusantara",
+    titleLine2: "where flavor",
+    titleLine3: "meets forest",
+    subtitle:
+      "A three-day youth diplomacy camp in Saint Petersburg where students from Indonesia, Russia, and ASEAN cook together, share cultures, and care for the land that hosts them — an eco-culinary bridge from ASEAN to Russia.",
+    ctaPrimary: "Reserve your seat",
+    ctaSecondary: "See the programme",
+    stat1: "3",
+    stat1label: "Days · cook, explore, give back",
+    stat2: "35",
+    stat2label: "Students · Indonesia · Russia · ASEAN",
+    stat3: "0",
+    stat3label: "Waste left behind",
+    scroll: "Scroll the story",
+  },
+
+  journey: {
+    eyebrow: "The Programme",
+    heading1: "Three days. Three acts.",
+    heading2: "One unfolding story.",
+    intro:
+      "The camp is a journey from first hello to last embrace. Each day deepens the next. Session titles follow the official programme; detailed timings are finalised closer to the event.",
+    momentsLabel: "The day, in moments",
+    days: {
+      d1: {
+        label: "Day One",
+        verb: "Arrive & Open",
+        headline: "Welcome, set up, and an official opening.",
+        body: "Participants arrive, build camp together, and gather for the official opening ceremony — national anthems, welcome remarks, and a traditional tumpeng — followed by a first shared meal and bonding circle.",
+        a1t: "Arrival & Briefing", a1d: "Check-in, group assignments, and safety orientation.",
+        a2t: "Official Opening Ceremony", a2d: "Anthems of Indonesia & Russia, welcome remarks, and tumpeng.",
+        a3t: "Bonding Circle", a3d: "Small-group introductions and getting to know one another.",
+      },
+      d2: {
+        label: "Day Two",
+        verb: "Cook & Connect",
+        headline: "Cook together, play together.",
+        body: "The heart of the camp: two Culinary Masterclass & Cooking Sessions where mixed Indonesian, Russian, and ASEAN teams prepare Indonesian dishes, a fun session of traditional games, and an evening Cultural Night around the campfire.",
+        a1t: "Culinary Masterclass I", a1d: "Hands-on cooking session in small mixed teams.",
+        a2t: "Fun Session", a2d: "Traditional games and team challenges.",
+        a3t: "Cultural Night & Campfire", a3d: "Traditional performances and a shared evening by the fire.",
+      },
+      d3: {
+        label: "Day Three",
+        verb: "Reflect & Farewell",
+        headline: "Reflect, celebrate, and head home.",
+        body: "A morning reflection, a collective camp break-down, and an awarding session recognising teamwork and spirit — closing a weekend of friendship between Indonesian, Russian, and ASEAN students.",
+        a1t: "Camp Break-Down", a1d: "Pack up and tidy the site together, leaving no trace.",
+        a2t: "Awarding & Appreciation", a2d: "Recognising best collaboration, team spirit, and participation.",
+        a3t: "Closing Ceremony", a3d: "Official close, farewell photos, and journey home.",
+      },
+    },
+  },
+
+  culinary: {
+    eyebrow: "Indonesian Culinary Inspirations",
+    heading1: "Examples of Indonesian",
+    heading2: "culinary heritage.",
+    intro:
+      "In the Culinary Masterclass & Cooking Sessions, mixed teams of Indonesian, Russian, and ASEAN students cook Indonesian dishes together — learning the ingredients, techniques, and stories behind each one. The examples below illustrate that heritage.",
+    disclaimer: "Actual dishes may vary depending on programme arrangements and availability.",
+    featured: "Featured",
+    heart: "Heart of the dish",
+    pairs: "Traditionally paired with",
+    dishes: {
+      satay: {
+        region: "Madura · East Java",
+        tagline: "Smoke, peanut, and the patience of a charcoal grill.",
+        story: "Skewers of marinated chicken kissed by glowing coconut-husk embers, glossed in a sweet-savoury peanut sauce. In Madura, sate is a street ritual — eaten standing, shared without ceremony.",
+        ingredients: ["Kecap manis", "Roasted peanut", "Lime leaf", "Bird's eye chili", "Lemongrass"],
+        pairing: "Lontong (compressed rice cake) and pickled cucumber.",
+      },
+      soto: {
+        region: "Java · Nusantara-wide",
+        tagline: "A golden broth that knows every kitchen by heart.",
+        story: "Turmeric-stained chicken broth, simmered with galangal, kaffir lime, and lemongrass. Every region writes its own version — Soto is Indonesia's family album in a bowl.",
+        ingredients: ["Turmeric", "Galangal", "Kaffir lime", "Vermicelli", "Boiled egg", "Fried shallot"],
+        pairing: "Sambal, lime wedge, steamed jasmine rice.",
+      },
+      "ayam-lengkuas": {
+        region: "West Sumatra · Padang",
+        tagline: "Where galangal becomes a crown of fragrant gold.",
+        story: "Slow-braised chicken smothered in a fluffy crust of fried galangal — crisp, herbal, deeply aromatic. A Padang specialty that turns a humble root into the centrepiece of the table.",
+        ingredients: ["Galangal", "Turmeric leaf", "Coconut milk", "Candlenut", "Lemongrass"],
+        pairing: "White rice, cassava leaves, sambal hijau.",
+      },
+    },
+  },
+
+  exchange: {
+    eyebrow: "The Eco-Culinary Bridge",
+    heading1: "From ASEAN to Russia,",
+    heading2: "a bridge built at the table.",
+    intro:
+      "PERMIRA Summer Camp 2026 brings together students from Indonesia, Russia, and across ASEAN, hosted in Saint Petersburg — a youth diplomacy programme where cuisine, culture, and care for nature meet.",
+    indonesia: "Indonesia",
+    russia: "Russia",
+    asean: "ASEAN",
+    stpetersburg: "Saint Petersburg",
+    cards: {
+      "tea-coffee": {
+        theme: "On waiting together",
+        indoTitle: "Kopi Tubruk", indoNote: "Coarse coffee, hot water, no filter — patience required.",
+        russTitle: "Чай с самоваром", russNote: "Tea simmered in a samovar, sweetened with jam and time.",
+      },
+      "soup-soto": {
+        theme: "On warmth that travels",
+        indoTitle: "Soto Ayam", indoNote: "Turmeric chicken broth — Indonesia's everyday comfort.",
+        russTitle: "Борщ", russNote: "Beet and cabbage soup — Russia's everyday comfort.",
+      },
+      festive: {
+        theme: "On honouring arrival",
+        indoTitle: "Tumpeng", indoNote: "A cone of yellow rice for every milestone.",
+        russTitle: "Каравай", russNote: "Round bread for the welcoming of guests.",
+      },
+    },
+  },
+
+  stewardship: {
+    eyebrow: "Lightly, by habit",
+    heading1: "A camp that",
+    heading2: "lives lightly.",
+    intro:
+      "Sustainability here is a habit, not a lecture. Following the programme's commitments, participants bring their own utensils, sort waste, and keep single-use plastic to a minimum.",
+    c1t: "Bring your own",
+    c1b: "Each participant brings reusable cutlery and a drink container — small habits that add up across three days.",
+    c2t: "Sort & reduce",
+    c2b: "Waste is sorted into organic, non-organic, and hazardous (B3); efficient portions keep food waste low.",
+    c3t: "Respect the wild",
+    c3b: "We explore Saint Petersburg's lakes and forests as guests — leaving every place better than we found it.",
+    closing: "Friendship you can taste · a planet worth keeping",
+  },
+
+  mapVideo: {
+    eyebrow: "From above",
+    heading1: "See the camp",
+    heading2: "from the sky.",
+    intro: "A flythrough of the grounds — the forest paths, the lakeside, and every corner of the camp where flavor meets nature.",
+    play: "Play the flythrough",
+    loadNote: "Loads only when you press play",
+    crossPre: "Prefer to explore it yourself?",
+    crossLink: "Open the interactive camp map →",
+  },
+
+  memories: {
+    eyebrow: "Memories",
+    heading1: "Moments that",
+    headingItalic: "linger",
+    heading2: "longer than the meal.",
+    intro:
+      "A glimpse of past PERMIRA gatherings — laughter over shared work, the small rituals that turn strangers into friends.",
+  },
+
+  join: {
+    eyebrow: "The Invitation",
+    heading1: "A seat is being held",
+    heading2: "just for you.",
+    subtitle:
+      "Registration opens in early 2026. Leave us a way to reach you and we'll write the moment doors open.",
+    cta: "Reserve my seat",
+    or: "or write to",
+    datesLabel: "Dates", datesValue: "July 17–19, 2026",
+    locLabel: "Location", locValue: "Saint Petersburg",
+    forLabel: "For", forValue: "Students · 18–35",
+  },
+
+  partners: {
+    title: "Friends of the Camp",
+    organiser: "Organized by",
+    collaborator: "In Collaboration With",
+    supporter: "Supported by",
+    collabAcross: "A collaboration across",
+    vk: "VK ↗",
+  },
+
+  footer: {
+    tagline:
+      "III Indonesian–Russian Students Summer Camp 2026, hosted in Saint Petersburg — a youth diplomacy programme connecting students from Indonesia, Russia, and ASEAN through culture, cuisine, and environmental stewardship.",
+    copyright: "© 2026 PERMIRA St. Petersburg. All rights reserved.",
+    script: "selamat makan · приятного аппетита",
+  },
+
+  registration: {
+    title: "Reserve your seat at the table.",
+    sectionAbout: "About you", sectionAboutSub: "Just the basics so we know who's coming.",
+    sectionContact: "How to reach you", sectionContactSub: "We'll only write you about the camp.",
+    sectionDocs: "Documents", sectionDocsSub: "We need these on file before we can review your application.",
+    sectionMore: "Tell us a little more", sectionMoreSub: "The parts where your voice matters most.",
+    fullName: "Full name", fullNamePh: "e.g. Anya Petrova",
+    nationality: "Nationality", nationalityPh: "Choose one",
+    indonesia: "Indonesia", russia: "Russia", asean: "ASEAN (other)",
+    university: "University", universityPh: "Where you study",
+    age: "Age", agePh: "18",
+    gender: "Gender", female: "Female", male: "Male", nonbinary: "Non-binary", prefer: "Prefer not to say",
+    email: "Email", emailPh: "you@example.com",
+    phone: "Phone", phonePh: "+7 921 000 00 00",
+    messenger: "Telegram or WhatsApp", messengerPh: "@your_handle or +country code",
+    passport: "Passport scan", passportHint: "A clear scan of your passport's photo page.",
+    consent: "Signed consent form", consentHint: "Download the form from our site, sign it, and re-upload.",
+    fileHint: "Click to upload · PDF, JPG, PNG, WebP up to 10 MB",
+    remove: "Remove",
+    dietary: "Dietary restrictions", dietaryHint: "Allergies, halal, vegetarian, etc. Optional, but helps us plan.", dietaryPh: "e.g. peanut allergy, halal",
+    prior: "Prior experience with cultural or international programmes", priorHint: "Optional. Conferences, exchanges, language camps — anything counts.", priorPh: "Share briefly if you have.",
+    motivation: "Why do you want to join PERMIRA Summer Camp 2026?", motivationHint: "A short essay. We read every one — be honest, not perfect.", motivationPh: "What draws you to the camp?",
+    agree: "By submitting you agree we may contact you about the camp.", required: "required",
+    submit: "Reserve my seat", submitting: "Sending…", cancel: "Cancel",
+    failed: "Submission failed.",
+    successTitle: "Your seat is held.",
+    successBody: "Thank you. We'll write you in early 2026 with the next steps.",
+    successBack: "Back to the story", ref: "Reference",
+  },
+
+  validation: {
+    nameReq: "Please tell us your name.", nameShort: "That name looks a little short.", nameLong: "Keep it under 80 characters.",
+    natReq: "Please select a nationality.",
+    uniReq: "Where do you study?", uniLong: "Keep it under 120 characters.",
+    ageReq: "Please share your age.", ageRange: "Age must be between 18 and 35.",
+    genderReq: "Please choose an option.",
+    emailReq: "We'll need an email to write you back.", emailBad: "That email doesn't look quite right.",
+    phoneReq: "A phone number, please.", phoneBad: "Use digits, spaces, +, - or ().",
+    messengerReq: "Add your Telegram or WhatsApp handle.",
+    dietaryLong: "Keep it under 240 characters.",
+    priorLong: "Keep it under 600 characters.",
+    motivationReq: "Tell us why you'd like to join — even a sentence.", motivationShort: "Give us at least 40 characters of why.", motivationLong: "Keep it under 800 characters.",
+    passportReq: "Passport scan is required.", passportBig: "Passport scan is over 10 MB.", passportType: "Passport scan must be a PDF, JPG, PNG, or WebP.",
+    consentReq: "Signed consent form is required.", consentBig: "Signed consent form is over 10 MB.", consentType: "Signed consent form must be a PDF, JPG, PNG, or WebP.",
+  },
+
+  chat: {
+    title: "The PERMIRA Host",
+    status: "Online · Typically replies instantly",
+    placeholder: "Ask anything about the camp…",
+    greeting:
+      "Welcome — I'm the host of PERMIRA Summer Camp 2026. Ask me about the programme, what to bring, registration, or anything else about the camp.",
+    error: "I couldn't reach the server just now. Please try again, or write to info@permiraspb.org.",
+    s1: "When is the camp?",
+    s2: "What happens on Day 2?",
+    s3: "How do I register?",
+    s4: "Can ASEAN students join?",
+    reset: "Start a fresh conversation",
+    close: "Close chat",
+    open: "Open chat with the host",
+  },
+
+  common: {
+    home: "Home",
+    download: "Download PNG",
+    proposal: "Proposal",
+    campsiteLayout: "Campsite Layout",
+    controls: "Controls",
+    controlsBody: "Click any area · drag to rotate · scroll to zoom",
+    close: "Close",
+  },
+};
+
+export type Translation = typeof en;

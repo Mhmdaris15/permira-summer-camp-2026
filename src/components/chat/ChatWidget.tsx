@@ -1,16 +1,13 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { useChat, type ChatMessage } from "./useChat";
 import { cn } from "../../lib/cn";
 
-const SUGGESTIONS = [
-  "When is the camp?",
-  "What's on Day 2?",
-  "How do I register?",
-  "What should I bring?",
-];
+const SUGGESTION_KEYS = ["chat.s1", "chat.s2", "chat.s3", "chat.s4"];
 
 export function ChatWidget() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const { messages, pending, send, reset } = useChat();
   const [draft, setDraft] = useState("");
@@ -56,7 +53,7 @@ export function ChatWidget() {
       <motion.button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        aria-label={open ? "Close chat" : "Open chat with the host"}
+        aria-label={open ? t("chat.close") : t("chat.open")}
         aria-expanded={open}
         className={cn(
           "fixed bottom-6 right-6 z-[90] flex h-14 w-14 items-center justify-center rounded-full text-cream-50 shadow-[0_15px_40px_-10px_rgba(196,80,42,0.55)] transition-colors md:bottom-8 md:right-8",
@@ -105,7 +102,7 @@ export function ChatWidget() {
         {open && (
           <motion.div
             role="dialog"
-            aria-label="Chat with the PERMIRA host"
+            aria-label={t("chat.title")}
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.97 }}
@@ -144,7 +141,7 @@ export function ChatWidget() {
                 type="text"
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
-                placeholder="Ask anything about the camp…"
+                placeholder={t("chat.placeholder")}
                 disabled={pending}
                 maxLength={1000}
                 className="flex-1 rounded-full bg-cream-100 px-4 py-2.5 text-sm text-clove-900 placeholder:text-clove-700/45 outline-none transition focus:bg-cream-50 focus:ring-2 focus:ring-terracotta-500/25 disabled:opacity-60"
@@ -152,7 +149,7 @@ export function ChatWidget() {
               <button
                 type="submit"
                 disabled={!draft.trim() || pending}
-                aria-label="Send message"
+                aria-label={t("chat.placeholder")}
                 className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-terracotta-500 text-cream-50 transition hover:bg-terracotta-600 disabled:cursor-not-allowed disabled:bg-clove-900/20"
               >
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -168,6 +165,7 @@ export function ChatWidget() {
 }
 
 function Header({ onReset, onClose }: { onReset: () => void; onClose: () => void }) {
+  const { t } = useTranslation();
   return (
     <div className="relative flex items-center gap-3 border-b border-clove-900/8 bg-clove-900 px-4 py-3 text-cream-50">
       <span className="grid h-9 w-9 place-items-center rounded-full bg-saffron text-clove-900">
@@ -176,16 +174,16 @@ function Header({ onReset, onClose }: { onReset: () => void; onClose: () => void
         </svg>
       </span>
       <div className="flex-1">
-        <div className="font-display text-sm font-medium">The PERMIRA Host</div>
+        <div className="font-display text-sm font-medium">{t("chat.title")}</div>
         <div className="flex items-center gap-1.5 text-[11px] text-cream-100/70">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-leaf" />
-          Online · Typically replies instantly
+          {t("chat.status")}
         </div>
       </div>
       <button
         type="button"
         onClick={onReset}
-        title="Start a fresh conversation"
+        title={t("chat.reset")}
         className="rounded-full p-1.5 text-cream-100/80 transition hover:bg-cream-100/10 hover:text-cream-50"
       >
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -196,7 +194,7 @@ function Header({ onReset, onClose }: { onReset: () => void; onClose: () => void
       <button
         type="button"
         onClick={onClose}
-        aria-label="Close chat"
+        aria-label={t("chat.close")}
         className="rounded-full p-1.5 text-cream-100/80 transition hover:bg-cream-100/10 hover:text-cream-50"
       >
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -208,7 +206,10 @@ function Header({ onReset, onClose }: { onReset: () => void; onClose: () => void
 }
 
 function Bubble({ msg }: { msg: ChatMessage }) {
+  const { t } = useTranslation();
   const isUser = msg.role === "user";
+  // The seeded greeting is rendered through i18n so it follows the language.
+  const content = msg.id === "greeting" ? t("chat.greeting") : msg.content;
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
@@ -224,7 +225,7 @@ function Bubble({ msg }: { msg: ChatMessage }) {
             : "rounded-bl-md bg-cream-50 text-clove-900 shadow-sm ring-1 ring-clove-900/5",
         )}
       >
-        {msg.content}
+        {content}
       </div>
     </motion.div>
   );
@@ -252,18 +253,22 @@ function TypingDots() {
 }
 
 function Suggestions({ onPick }: { onPick: (text: string) => void }) {
+  const { t } = useTranslation();
   return (
     <div className="mt-2 flex flex-wrap gap-2">
-      {SUGGESTIONS.map((s) => (
-        <button
-          key={s}
-          type="button"
-          onClick={() => onPick(s)}
-          className="rounded-full border border-clove-900/12 bg-cream-50 px-3 py-1.5 text-xs text-clove-700 transition hover:border-terracotta-500/40 hover:text-terracotta-500"
-        >
-          {s}
-        </button>
-      ))}
+      {SUGGESTION_KEYS.map((key) => {
+        const text = t(key);
+        return (
+          <button
+            key={key}
+            type="button"
+            onClick={() => onPick(text)}
+            className="rounded-full border border-clove-900/12 bg-cream-50 px-3 py-1.5 text-xs text-clove-700 transition hover:border-terracotta-500/40 hover:text-terracotta-500"
+          >
+            {text}
+          </button>
+        );
+      })}
     </div>
   );
 }

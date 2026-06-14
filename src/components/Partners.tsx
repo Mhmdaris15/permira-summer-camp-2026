@@ -6,10 +6,10 @@
  * Official emblems render in full colour (no grayscale) out of respect for
  * government/partner brand marks.
  */
+import { useTranslation } from "react-i18next";
 import {
   partners,
   flags,
-  PARTNER_TIER_LABELS,
   type Partner,
   type PartnerTier,
 } from "../data/organizations";
@@ -17,11 +17,12 @@ import {
 const TIER_ORDER: PartnerTier[] = ["organiser", "collaborator", "supporter"];
 
 export function Partners() {
+  const { t } = useTranslation();
   return (
     <section className="relative bg-cream-100 py-16 md:py-20">
       <div className="mx-auto max-w-5xl px-6 text-center">
         <span className="reveal text-xs font-medium uppercase tracking-[0.3em] text-terracotta-500">
-          Friends of the Camp
+          {t("partners.title")}
         </span>
 
         <div className="reveal mt-10 flex flex-col gap-10">
@@ -31,7 +32,7 @@ export function Partners() {
             return (
               <div key={tier} className="flex flex-col items-center gap-4">
                 <span className="text-[10px] font-medium uppercase tracking-[0.28em] text-clove-700/55">
-                  {PARTNER_TIER_LABELS[tier]}
+                  {t(`partners.${tier}`)}
                 </span>
                 <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14">
                   {group.map((p) => (
@@ -46,7 +47,7 @@ export function Partners() {
         {/* Collaboration flags */}
         <div className="reveal mt-14 flex flex-col items-center gap-4">
           <span className="text-[11px] uppercase tracking-[0.25em] text-clove-700/55">
-            A collaboration across
+            {t("partners.collabAcross")}
           </span>
           <div className="flex items-center gap-6 md:gap-10">
             {flags.map((f, i) => (
@@ -58,7 +59,13 @@ export function Partners() {
                     loading="lazy"
                     className="h-6 w-auto rounded-sm shadow-sm ring-1 ring-black/10"
                   />
-                  <span className="text-sm font-medium text-clove-800">{f.label}</span>
+                  <span className="text-sm font-medium text-clove-800">
+                    {t(
+                      f.label === "Indonesia" ? "exchange.indonesia"
+                      : f.label === "Russia" ? "exchange.russia"
+                      : "exchange.stpetersburg",
+                    )}
+                  </span>
                 </div>
                 {i < flags.length - 1 && <span className="text-terracotta-500/50">·</span>}
               </div>

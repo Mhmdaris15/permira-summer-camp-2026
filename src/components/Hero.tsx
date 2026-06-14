@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { dishes } from "../data/dishes";
 import { eventLogo, flags } from "../data/organizations";
 
@@ -31,15 +32,17 @@ function idx(p: string) {
   return m ? Number(m[1]) : 0;
 }
 
-// Curated collage cards — mix of camp moments + a hero dish.
+// Curated collage cards — mix of camp moments + a hero dish. Captions are
+// decorative-free (language-neutral matted prints) to stay fully translatable.
 const collage = [
-  { src: archives[7] ?? archives[0], depth: 26, className: "left-0 top-2 w-[58%] rotate-[-6deg]", float: 6.5, delay: 0.15, caption: "Day 2 · the wok" },
-  { src: dishes[0].image,            depth: 16, className: "right-2 top-0 w-[46%] rotate-[5deg]",  float: 5.0, delay: 0.3,  caption: "Sate Madura" },
-  { src: archives[2] ?? archives[1], depth: 38, className: "right-0 bottom-6 w-[52%] rotate-[4deg]", float: 7.5, delay: 0.45, caption: "two flags, one table" },
-  { src: archives[12] ?? archives[3], depth: 22, className: "left-6 bottom-0 w-[42%] rotate-[-4deg]", float: 6.0, delay: 0.6,  caption: "the long table" },
+  { src: archives[7] ?? archives[0], depth: 26, className: "left-0 top-2 w-[58%] rotate-[-6deg]", float: 6.5, delay: 0.15 },
+  { src: dishes[0].image,            depth: 16, className: "right-2 top-0 w-[46%] rotate-[5deg]",  float: 5.0, delay: 0.3 },
+  { src: archives[2] ?? archives[1], depth: 38, className: "right-0 bottom-6 w-[52%] rotate-[4deg]", float: 7.5, delay: 0.45 },
+  { src: archives[12] ?? archives[3], depth: 22, className: "left-6 bottom-0 w-[42%] rotate-[-4deg]", float: 6.0, delay: 0.6 },
 ];
 
 export function Hero() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
 
   function handleMove(e: React.MouseEvent) {
@@ -83,11 +86,11 @@ export function Hero() {
               <img src={flags[0].flag} alt="Indonesia" className="h-5 w-5 rounded-full object-cover ring-2 ring-cream-50" />
               <img src={flags[1].flag} alt="Russia" className="h-5 w-5 rounded-full object-cover ring-2 ring-cream-50" />
             </span>
-            Indonesia × Russia × ASEAN · St. Petersburg · Jul 17–19, 2026
+            {t("hero.eyebrow")}
           </motion.div>
 
           <h1 className="mt-6 font-display text-balance text-5xl font-light leading-[1.0] tracking-[-0.02em] text-clove-900 md:text-7xl lg:text-[5rem]">
-            {["Taste of", "where flavor", "meets forest"].map((line, i) => (
+            {[t("hero.titleLead"), t("hero.titleLine2"), t("hero.titleLine3")].map((line, i) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0, y: 28 }}
@@ -97,9 +100,9 @@ export function Hero() {
               >
                 {i === 0 ? (
                   <>
-                    Taste of{" "}
+                    {line}{" "}
                     <span className="relative inline-block">
-                      <span className="italic font-medium text-terracotta-500">Nusantara</span>
+                      <span className="italic font-medium text-terracotta-500">{t("hero.titleNusantara")}</span>
                       <svg
                         viewBox="0 0 220 14"
                         aria-hidden
@@ -130,10 +133,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-clove-700/85"
           >
-            A three-day youth diplomacy camp in Saint Petersburg where students
-            from Indonesia, Russia, and ASEAN cook together, share cultures, and
-            care for the land that hosts them — an eco-culinary bridge from
-            ASEAN to Russia.
+            {t("hero.subtitle")}
           </motion.p>
 
           <motion.div
@@ -146,7 +146,7 @@ export function Hero() {
               href="#register"
               className="group inline-flex items-center gap-2 rounded-full bg-clove-900 px-7 py-3.5 text-sm font-medium text-cream-50 shadow-[0_12px_30px_-10px_rgba(74,32,20,0.6)] transition-all hover:bg-terracotta-500 hover:shadow-[0_16px_40px_-10px_rgba(196,80,42,0.6)]"
             >
-              Reserve your seat
+              {t("hero.ctaPrimary")}
               <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -155,7 +155,7 @@ export function Hero() {
               href="#journey"
               className="inline-flex items-center gap-2 rounded-full border border-clove-900/15 bg-cream-50/60 px-7 py-3.5 text-sm font-medium text-clove-900 backdrop-blur transition-all hover:border-terracotta-500/40 hover:bg-cream-50"
             >
-              See the journey
+              {t("hero.ctaSecondary")}
             </a>
           </motion.div>
 
@@ -165,9 +165,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.74 }}
             className="mt-12 grid max-w-md grid-cols-3 gap-6 text-clove-700"
           >
-            <Stat value="3" label="Days · cook, explore, give back" />
-            <Stat value="35" label="Students · Indonesia · Russia · ASEAN" />
-            <Stat value="0" label="Waste left behind" />
+            <Stat value={t("hero.stat1")} label={t("hero.stat1label")} />
+            <Stat value={t("hero.stat2")} label={t("hero.stat2label")} />
+            <Stat value={t("hero.stat3")} label={t("hero.stat3label")} />
           </motion.div>
         </div>
 
@@ -191,13 +191,10 @@ export function Hero() {
                 >
                   <img
                     src={card.src}
-                    alt={card.caption}
+                    alt=""
                     loading="eager"
                     className="aspect-[4/3] w-full rounded-xl object-cover"
                   />
-                  <figcaption className="px-1 pt-1.5 pb-0.5 font-script text-base text-clove-700">
-                    {card.caption}
-                  </figcaption>
                 </motion.div>
               </motion.figure>
             </ParallaxCard>
@@ -252,7 +249,7 @@ export function Hero() {
       {/* Scroll cue */}
       <div className="pointer-events-none absolute bottom-32 left-1/2 hidden -translate-x-1/2 lg:block">
         <div className="flex flex-col items-center gap-2 text-clove-700/40">
-          <span className="text-[10px] uppercase tracking-[0.3em]">Scroll the story</span>
+          <span className="text-[10px] uppercase tracking-[0.3em]">{t("hero.scroll")}</span>
           <span className="block h-8 w-px animate-pulse bg-clove-700/30" />
         </div>
       </div>

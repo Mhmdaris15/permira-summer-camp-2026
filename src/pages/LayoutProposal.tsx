@@ -5,6 +5,7 @@
  */
 import { useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Scene } from "../components/ThreeScene/Scene";
 import { Legend } from "../components/ThreeScene/Legend";
 import { SceneStateProvider } from "../components/ThreeScene/sceneState";
@@ -13,6 +14,7 @@ import { SceneOverlays } from "../components/ThreeScene/SceneOverlays";
 import { LoadingOverlay } from "../components/ThreeScene/LoadingOverlay";
 
 export function LayoutProposal() {
+  const { t } = useTranslation();
   const wrapRef = useRef<HTMLDivElement>(null);
 
   // Guard: ONLY fire on a real user click (event.isTrusted). Prevents
@@ -45,17 +47,17 @@ export function LayoutProposal() {
               to="/"
               className="rounded-full border border-white/60 bg-white/55 px-3.5 py-1.5 text-sm font-medium text-clove-700 shadow-sm ring-1 ring-black/[0.03] backdrop-blur-xl transition hover:bg-white/85 hover:text-terracotta-500"
             >
-              ←&nbsp; Home
+              ←&nbsp; {t("common.home")}
             </Link>
             <div className="rounded-full border border-white/55 bg-white/55 px-4 py-1.5 shadow-sm ring-1 ring-black/[0.03] backdrop-blur-xl">
               <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-terracotta-500">
-                Proposal
+                {t("common.proposal")}
               </span>
               <span className="ml-2 text-sm font-medium text-clove-900">
-                Campsite Layout
+                {t("common.campsiteLayout")}
               </span>
               <span className="ml-2 text-[11px] text-clove-700/70">
-                Taste of Nusantara · 2026
+                PERMIRA Summer Camp · 2026
               </span>
             </div>
           </div>
@@ -77,7 +79,7 @@ export function LayoutProposal() {
                 <path d="M12 4v12m0 0l-4-4m4 4l4-4" />
                 <path d="M4 20h16" />
               </svg>
-              Download PNG
+              {t("common.download")}
             </button>
           </div>
         </header>
@@ -96,11 +98,10 @@ export function LayoutProposal() {
           <div className="mb-1 flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-terracotta-500" />
             <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-terracotta-500">
-              Controls
+              {t("common.controls")}
             </span>
           </div>
-          <span className="text-clove-900/85">Click</span> any area · drag to rotate ·{" "}
-          <span className="text-clove-900/85">scroll</span> to zoom
+          {t("common.controlsBody")}
         </div>
 
         {/* Loading curtain — sits above everything until GLBs resolve */}

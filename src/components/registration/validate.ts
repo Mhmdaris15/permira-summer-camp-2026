@@ -4,56 +4,58 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 // Permissive — allows + country code, spaces, dashes, parens
 const PHONE_RE = /^[+\d][\d\s\-()]{6,}$/;
 
+/**
+ * Returns i18n keys (not literal messages) so the Field component can
+ * translate them in the active language. Keys live under `validation.*`.
+ */
 export function validate(data: RegistrationData): FieldErrors {
   const errors: FieldErrors = {};
 
-  if (!data.fullName.trim()) errors.fullName = "Please tell us your name.";
-  else if (data.fullName.trim().length < 2) errors.fullName = "That name looks a little short.";
-  else if (data.fullName.length > LIMITS.fullName) errors.fullName = `Keep it under ${LIMITS.fullName} characters.`;
+  if (!data.fullName.trim()) errors.fullName = "validation.nameReq";
+  else if (data.fullName.trim().length < 2) errors.fullName = "validation.nameShort";
+  else if (data.fullName.length > LIMITS.fullName) errors.fullName = "validation.nameLong";
 
-  if (!data.nationality) errors.nationality = "Please select a nationality.";
+  if (!data.nationality) errors.nationality = "validation.natReq";
 
-  if (!data.university.trim()) errors.university = "Where do you study?";
-  else if (data.university.length > LIMITS.university) errors.university = `Keep it under ${LIMITS.university} characters.`;
+  if (!data.university.trim()) errors.university = "validation.uniReq";
+  else if (data.university.length > LIMITS.university) errors.university = "validation.uniLong";
 
   const ageNum = Number(data.age);
-  if (!data.age) errors.age = "Please share your age.";
+  if (!data.age) errors.age = "validation.ageReq";
   else if (!Number.isInteger(ageNum) || ageNum < 18 || ageNum > 35)
-    errors.age = "Age must be between 18 and 35.";
+    errors.age = "validation.ageRange";
 
-  if (!data.gender) errors.gender = "Please choose an option.";
+  if (!data.gender) errors.gender = "validation.genderReq";
 
-  if (!data.email.trim()) errors.email = "We'll need an email to write you back.";
-  else if (!EMAIL_RE.test(data.email.trim())) errors.email = "That email doesn't look quite right.";
+  if (!data.email.trim()) errors.email = "validation.emailReq";
+  else if (!EMAIL_RE.test(data.email.trim())) errors.email = "validation.emailBad";
 
-  if (!data.phone.trim()) errors.phone = "A phone number, please.";
-  else if (!PHONE_RE.test(data.phone.trim())) errors.phone = "Use digits, spaces, +, - or ().";
+  if (!data.phone.trim()) errors.phone = "validation.phoneReq";
+  else if (!PHONE_RE.test(data.phone.trim())) errors.phone = "validation.phoneBad";
 
-  if (!data.messenger.trim()) errors.messenger = "Add your Telegram or WhatsApp handle.";
+  if (!data.messenger.trim()) errors.messenger = "validation.messengerReq";
 
-  if (data.dietary.length > LIMITS.dietary)
-    errors.dietary = `Keep it under ${LIMITS.dietary} characters.`;
+  if (data.dietary.length > LIMITS.dietary) errors.dietary = "validation.dietaryLong";
 
   if (data.priorExperience.length > LIMITS.priorExperience)
-    errors.priorExperience = `Keep it under ${LIMITS.priorExperience} characters.`;
+    errors.priorExperience = "validation.priorLong";
 
-  if (!data.motivation.trim()) errors.motivation = "Tell us why you'd like to join — even a sentence.";
-  else if (data.motivation.trim().length < 40) errors.motivation = "Give us at least 40 characters of why.";
-  else if (data.motivation.length > LIMITS.motivation)
-    errors.motivation = `Keep it under ${LIMITS.motivation} characters.`;
+  if (!data.motivation.trim()) errors.motivation = "validation.motivationReq";
+  else if (data.motivation.trim().length < 40) errors.motivation = "validation.motivationShort";
+  else if (data.motivation.length > LIMITS.motivation) errors.motivation = "validation.motivationLong";
 
-  errors.passport = validateFile(data.passport, "Passport scan");
-  errors.consent = validateFile(data.consent, "Signed consent form");
-  if (!errors.passport) delete errors.passport;
-  if (!errors.consent) delete errors.consent;
+  const passport = validateFile(data.passport, "passport");
+  if (passport) errors.passport = passport;
+  const consent = validateFile(data.consent, "consent");
+  if (consent) errors.consent = consent;
 
   return errors;
 }
 
-function validateFile(file: File | null, label: string): string | undefined {
-  if (!file) return `${label} is required.`;
-  if (file.size > FILE_LIMITS.maxBytes) return `${label} is over 10 MB.`;
+function validateFile(file: File | null, which: "passport" | "consent"): string | undefined {
+  if (!file) return `validation.${which}Req`;
+  if (file.size > FILE_LIMITS.maxBytes) return `validation.${which}Big`;
   if (!FILE_LIMITS.acceptedMime.includes(file.type as typeof FILE_LIMITS.acceptedMime[number]))
-    return `${label} must be a PDF, JPG, PNG, or WebP.`;
+    return `validation.${which}Type`;
   return undefined;
 }

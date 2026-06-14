@@ -1,5 +1,12 @@
 import { useId, type ReactNode, type InputHTMLAttributes, type TextareaHTMLAttributes, type SelectHTMLAttributes } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "../../lib/cn";
+
+/** Translate a value that may be an i18n key ("validation.x") or plain text. */
+function useTx() {
+  const { t } = useTranslation();
+  return (s?: string) => (s && s.startsWith("validation.") ? t(s) : s);
+}
 
 type BaseProps = {
   label: string;
@@ -34,6 +41,7 @@ function Wrap({
   children,
 }: BaseProps & { id: string; children: ReactNode }) {
   const errorId = `${id}-err`;
+  const tx = useTx();
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
       <label htmlFor={id} className="flex items-center justify-between gap-3 text-sm font-medium text-clove-900">
@@ -55,7 +63,7 @@ function Wrap({
       {children}
       {showError && error ? (
         <p id={errorId} role="alert" className="text-xs text-terracotta-500">
-          {error}
+          {tx(error)}
         </p>
       ) : hint ? (
         <p className="text-xs text-clove-700/55">{hint}</p>
@@ -225,6 +233,7 @@ export function FileField({
 }: FileFieldProps) {
   const auto = useId();
   const id = `file-${auto}`;
+  const { t } = useTranslation();
   return (
     <Wrap
       id={id}
@@ -266,7 +275,7 @@ export function FileField({
               </span>
             </>
           ) : (
-            <span className="text-clove-700/55">Click to upload · PDF, JPG, PNG, WebP up to 10 MB</span>
+            <span className="text-clove-700/55">{t("registration.fileHint")}</span>
           )}
         </span>
         {value && (
@@ -277,9 +286,9 @@ export function FileField({
               onChange(null);
             }}
             className="text-xs text-clove-700/60 hover:text-terracotta-500"
-            aria-label="Remove file"
+            aria-label={t("registration.remove")}
           >
-            Remove
+            {t("registration.remove")}
           </button>
         )}
         <input
@@ -316,6 +325,7 @@ export function RadioGroup({
   options,
   onChange,
 }: RadioGroupProps) {
+  const tx = useTx();
   return (
     <fieldset className={cn("flex flex-col gap-2", className)}>
       <legend className="text-sm font-medium text-clove-900">
@@ -343,13 +353,13 @@ export function RadioGroup({
                 onChange={() => onChange(opt.value)}
                 className="sr-only"
               />
-              {opt.label}
+              {opt.label}{/* labels passed already-translated */}
             </label>
           );
         })}
       </div>
       {showError && error && (
-        <p role="alert" className="text-xs text-terracotta-500">{error}</p>
+        <p role="alert" className="text-xs text-terracotta-500">{tx(error)}</p>
       )}
     </fieldset>
   );

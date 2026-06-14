@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "../lib/cn";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import PermiraLogo from "../assets/organization/permira-logo-big.png";
 
-const links = [
-  { href: "#journey", label: "Journey" },
-  { href: "#cuisine", label: "Cuisine" },
-  { href: "#exchange", label: "Exchange" },
-  { href: "#memories", label: "Memories" },
-];
+const linkKeys = [
+  { href: "#journey", key: "nav.journey" },
+  { href: "#cuisine", key: "nav.cuisine" },
+  { href: "#exchange", key: "nav.exchange" },
+  { href: "#memories", key: "nav.memories" },
+] as const;
 
 export function NavHeader() {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -38,28 +41,31 @@ PERMIRA Summer Camp<span className="text-terracotta-500"> · </span>2026
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
+          {linkKeys.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className="group relative text-sm font-medium text-clove-700 transition-colors hover:text-terracotta-500"
             >
-              {link.label}
+              {t(link.key)}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-terracotta-500 transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
+          <LanguageSwitcher />
           <a
             href="#register"
             className="rounded-full bg-clove-900 px-5 py-2.5 text-sm font-medium text-cream-50 shadow-sm transition-all hover:bg-terracotta-500 hover:shadow-md"
           >
-            Join the table
+            {t("nav.join")}
           </a>
         </nav>
 
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
-          className="md:hidden rounded-full p-2 text-clove-900 hover:bg-cream-200/60"
+          className="rounded-full p-2 text-clove-900 hover:bg-cream-200/60"
         >
           <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
             {open ? (
@@ -69,19 +75,20 @@ PERMIRA Summer Camp<span className="text-terracotta-500"> · </span>2026
             )}
           </svg>
         </button>
+        </div>
       </div>
 
       {open && (
         <div className="border-t border-cream-200/70 bg-cream-50/95 backdrop-blur-md md:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4">
-            {links.map((link) => (
+            {linkKeys.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-3 py-2.5 text-sm font-medium text-clove-700 hover:bg-cream-100 hover:text-terracotta-500"
               >
-                {link.label}
+                {t(link.key)}
               </a>
             ))}
             <a
@@ -89,7 +96,7 @@ PERMIRA Summer Camp<span className="text-terracotta-500"> · </span>2026
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-clove-900 px-5 py-2.5 text-center text-sm font-medium text-cream-50"
             >
-              Join the table
+              {t("nav.join")}
             </a>
           </nav>
         </div>

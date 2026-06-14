@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { eventLogo, socials } from "../data/organizations";
 
 export function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="border-t border-cream-200 bg-cream-100 py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 md:flex-row md:items-start">
@@ -16,10 +18,7 @@ export function Footer() {
             </span>
           </div>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-clove-700/75">
-            III Indonesian–Russian Students Summer Camp 2026, hosted in Saint
-            Petersburg — a youth diplomacy programme connecting students from
-            Indonesia, Russia, and ASEAN through culture, cuisine, and
-            environmental stewardship.
+            {t("footer.tagline")}
           </p>
 
           {/* Social links */}
@@ -47,18 +46,18 @@ export function Footer() {
         </div>
 
         <div className="flex flex-wrap gap-x-10 gap-y-4 text-sm">
-          <a href="#journey" className="text-clove-700 hover:text-terracotta-500">Programme</a>
-          <a href="#cuisine" className="text-clove-700 hover:text-terracotta-500">Cuisine</a>
-          <a href="#exchange" className="text-clove-700 hover:text-terracotta-500">Collaboration</a>
-          <a href="#stewardship" className="text-clove-700 hover:text-terracotta-500">Stewardship</a>
-          <a href="#join" className="text-clove-700 hover:text-terracotta-500">Register</a>
+          <a href="#journey" className="text-clove-700 hover:text-terracotta-500">{t("nav.journey")}</a>
+          <a href="#cuisine" className="text-clove-700 hover:text-terracotta-500">{t("nav.cuisine")}</a>
+          <a href="#exchange" className="text-clove-700 hover:text-terracotta-500">{t("nav.exchange")}</a>
+          <a href="#stewardship" className="text-clove-700 hover:text-terracotta-500">{t("nav.stewardship")}</a>
+          <a href="#join" className="text-clove-700 hover:text-terracotta-500">{t("nav.join")}</a>
         </div>
       </div>
 
       <div className="mx-auto mt-10 max-w-7xl border-t border-clove-900/10 px-6 pt-6">
         <div className="flex flex-col items-start justify-between gap-3 text-xs text-clove-700/60 md:flex-row">
-          <span>© 2026 PERMIRA St. Petersburg. All rights reserved.</span>
-          <span className="font-script text-base text-saffron">selamat makan · приятного аппетита</span>
+          <span>{t("footer.copyright")}</span>
+          <span className="font-script text-base text-saffron">{t("footer.script")}</span>
         </div>
       </div>
     </footer>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { journeyDays, type JourneyDay } from "../data/journey";
 import { cn } from "../lib/cn";
 
@@ -8,20 +9,20 @@ const accentMap = {
 } as const;
 
 export function ExperienceJourney() {
+  const { t } = useTranslation();
   return (
     <section id="journey" className="relative bg-cream-50 py-24 md:py-32">
       {/* Section heading */}
       <div className="mx-auto max-w-4xl px-6 text-center">
         <span className="reveal text-xs font-medium uppercase tracking-[0.3em] text-terracotta-500">
-          The Experience
+          {t("journey.eyebrow")}
         </span>
         <h2 className="reveal mt-4 font-display text-balance text-4xl font-light leading-tight tracking-tight text-clove-900 md:text-6xl">
-          Three days. Three acts. <br />
-          <span className="italic text-terracotta-500">One unfolding story.</span>
+          {t("journey.heading1")} <br />
+          <span className="italic text-terracotta-500">{t("journey.heading2")}</span>
         </h2>
         <p className="reveal mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-clove-700/80 md:text-lg">
-          The camp is not a programme — it is a journey from first hello to
-          last embrace. Each day deepens the next.
+          {t("journey.intro")}
         </p>
       </div>
 
@@ -43,7 +44,9 @@ export function ExperienceJourney() {
 }
 
 function DayPanel({ day, flipped }: { day: JourneyDay; flipped: boolean }) {
+  const { t } = useTranslation();
   const accent = accentMap[day.accent];
+  const dk = `journey.days.d${day.index}`; // d1 / d2 / d3
 
   return (
     <li className="relative">
@@ -68,7 +71,7 @@ function DayPanel({ day, flipped }: { day: JourneyDay; flipped: boolean }) {
           )}
         >
           <span className={cn("font-mono text-sm tracking-widest", accent.text)}>
-            {day.label.toUpperCase()} · {day.date}
+            {t(`${dk}.label`).toUpperCase()} · {day.date}
           </span>
           <div className="mt-3 flex items-baseline gap-4">
             <span
@@ -80,14 +83,14 @@ function DayPanel({ day, flipped }: { day: JourneyDay; flipped: boolean }) {
               0{day.index}
             </span>
             <span className="font-display text-3xl italic text-clove-900 md:text-5xl">
-              {day.verb}.
+              {t(`${dk}.verb`)}.
             </span>
           </div>
           <h3 className="mt-6 max-w-md font-display text-2xl font-light leading-snug text-clove-900 md:text-3xl">
-            {day.headline}
+            {t(`${dk}.headline`)}
           </h3>
           <p className="mt-4 max-w-md text-pretty text-base leading-relaxed text-clove-700/80">
-            {day.body}
+            {t(`${dk}.body`)}
           </p>
         </div>
 
@@ -97,12 +100,12 @@ function DayPanel({ day, flipped }: { day: JourneyDay; flipped: boolean }) {
             <div className={cn("absolute -right-12 -top-12 h-48 w-48 rounded-full blur-3xl", accent.bg)} />
             <div className="relative">
               <span className="text-xs font-medium uppercase tracking-[0.25em] text-clove-700/60">
-                The day, in moments
+                {t("journey.momentsLabel")}
               </span>
               <ul className="mt-6 space-y-5">
-                {day.activities.map((act) => (
+                {day.activities.map((act, ai) => (
                   <li
-                    key={act.title}
+                    key={act.time}
                     className="group/item flex items-start gap-4 border-b border-clove-900/5 pb-5 last:border-0 last:pb-0"
                   >
                     <span
@@ -116,10 +119,10 @@ function DayPanel({ day, flipped }: { day: JourneyDay; flipped: boolean }) {
                     </span>
                     <div>
                       <div className="font-display text-lg text-clove-900">
-                        {act.title}
+                        {t(`${dk}.a${ai + 1}t`)}
                       </div>
                       <div className="mt-1 text-sm leading-relaxed text-clove-700/80">
-                        {act.detail}
+                        {t(`${dk}.a${ai + 1}d`)}
                       </div>
                     </div>
                   </li>

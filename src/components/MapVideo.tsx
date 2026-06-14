@@ -18,6 +18,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // --- Configure the source here -------------------------------------------
 const PROVIDER: "drive" | "youtube" = "drive";
@@ -34,6 +35,7 @@ function embedSrc(): string {
 }
 
 export function MapVideo() {
+  const { t } = useTranslation();
   const [playing, setPlaying] = useState(false);
 
   return (
@@ -50,14 +52,13 @@ export function MapVideo() {
 
       <div className="mx-auto max-w-5xl px-6 text-center">
         <span className="reveal text-xs font-medium uppercase tracking-[0.3em] text-fern">
-          From above
+          {t("mapVideo.eyebrow")}
         </span>
         <h2 className="reveal mt-4 font-display text-balance text-4xl font-light leading-tight tracking-tight text-cream-50 md:text-5xl">
-          See the camp <span className="italic text-saffron">from the sky.</span>
+          {t("mapVideo.heading1")} <span className="italic text-saffron">{t("mapVideo.heading2")}</span>
         </h2>
         <p className="reveal mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-cream-100/75">
-          A flythrough of the grounds — the forest paths, the riverside, and
-          every corner of the camp where flavor meets nature.
+          {t("mapVideo.intro")}
         </p>
 
         {/* Player frame */}
@@ -104,10 +105,10 @@ export function MapVideo() {
                   </svg>
                 </span>
                 <span className="relative text-sm font-medium uppercase tracking-[0.2em] text-cream-50/90">
-                  Play the flythrough
+                  {t("mapVideo.play")}
                 </span>
                 <span className="relative text-[11px] text-cream-50/55">
-                  Loads only when you press play
+                  {t("mapVideo.loadNote")}
                 </span>
               </button>
             )}
@@ -116,9 +117,9 @@ export function MapVideo() {
 
         {/* Cross-link to the interactive 3D map */}
         <p className="reveal mt-6 text-sm text-cream-100/70">
-          Prefer to explore it yourself?{" "}
+          {t("mapVideo.crossPre")}{" "}
           <Link to="/maps" className="font-medium text-saffron underline-offset-4 hover:underline">
-            Open the interactive camp map →
+            {t("mapVideo.crossLink")}
           </Link>
         </p>
       </div>

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { apiUrl } from "../../lib/apiBase";
 
 export type ChatRole = "user" | "assistant";
@@ -25,6 +26,7 @@ function loadInitial(): ChatMessage[] {
 }
 
 export function useChat() {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState<ChatMessage[]>(loadInitial);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -86,8 +88,7 @@ export function useChat() {
           {
             id: cryptoId(),
             role: "assistant",
-            content:
-              "I couldn't reach the server just now. Please try again, or write to info@permiraspb.org.",
+            content: t("chat.error"),
           },
         ]);
       } finally {
@@ -95,7 +96,7 @@ export function useChat() {
         abortRef.current = null;
       }
     },
-    [messages, pending],
+    [messages, pending, t],
   );
 
   const reset = useCallback(() => {

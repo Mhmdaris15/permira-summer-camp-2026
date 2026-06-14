@@ -1,0 +1,271 @@
+import type { Translation } from "./en";
+
+export const id: Translation = {
+  lang: { ru: "Rusia", en: "Inggris", id: "Indonesia", switch: "Bahasa" },
+
+  nav: {
+    journey: "Program",
+    cuisine: "Kuliner",
+    exchange: "Kolaborasi",
+    stewardship: "Keberlanjutan",
+    memories: "Kenangan",
+    join: "Daftar",
+  },
+
+  hero: {
+    eyebrow: "Indonesia × Rusia × ASEAN · Saint Petersburg · 17–19 Juli 2026",
+    titleLead: "Taste of",
+    titleNusantara: "Nusantara",
+    titleLine2: "tempat cita rasa",
+    titleLine3: "bertemu rimba",
+    subtitle:
+      "Kemah diplomasi pemuda selama tiga hari di Saint Petersburg, tempat mahasiswa dari Indonesia, Rusia, dan ASEAN memasak bersama, bertukar budaya, dan menjaga alam yang menaungi mereka — jembatan eco-culinary dari ASEAN ke Rusia.",
+    ctaPrimary: "Amankan kursimu",
+    ctaSecondary: "Lihat program",
+    stat1: "3",
+    stat1label: "Hari · memasak, menjelajah, berbagi",
+    stat2: "35",
+    stat2label: "Mahasiswa · Indonesia · Rusia · ASEAN",
+    stat3: "0",
+    stat3label: "Sampah yang ditinggalkan",
+    scroll: "Gulir kisahnya",
+  },
+
+  journey: {
+    eyebrow: "Program",
+    heading1: "Tiga hari. Tiga babak.",
+    heading2: "Satu kisah yang terajut.",
+    intro:
+      "Kemah ini adalah perjalanan dari sapaan pertama hingga pelukan perpisahan. Setiap hari memperdalam hari berikutnya. Nama sesi mengikuti program resmi; jadwal rinci difinalisasi menjelang acara.",
+    momentsLabel: "Hari dalam momen",
+    days: {
+      d1: {
+        label: "Hari Pertama",
+        verb: "Tiba & Buka",
+        headline: "Penyambutan, persiapan, dan pembukaan resmi.",
+        body: "Peserta tiba, membangun kemah bersama, dan berkumpul untuk upacara pembukaan resmi — lagu kebangsaan, sambutan, dan tumpeng — dilanjutkan santap bersama pertama dan lingkaran keakraban.",
+        a1t: "Kedatangan & Briefing", a1d: "Registrasi, pembagian kelompok, dan arahan keselamatan.",
+        a2t: "Upacara Pembukaan Resmi", a2d: "Lagu kebangsaan Indonesia & Rusia, sambutan, dan tumpeng.",
+        a3t: "Lingkaran Keakraban", a3d: "Perkenalan dalam kelompok kecil.",
+      },
+      d2: {
+        label: "Hari Kedua",
+        verb: "Masak & Akrab",
+        headline: "Memasak bersama, bermain bersama.",
+        body: "Inti kemah: dua sesi Culinary Masterclass & Cooking Session di mana tim campuran Indonesia, Rusia, dan ASEAN memasak hidangan Indonesia, sesi permainan tradisional, dan Cultural Night di sekitar api unggun.",
+        a1t: "Culinary Masterclass I", a1d: "Sesi memasak langsung dalam tim kecil campuran.",
+        a2t: "Fun Session", a2d: "Permainan tradisional dan tantangan tim.",
+        a3t: "Cultural Night & Api Unggun", a3d: "Pentas tradisi dan malam kebersamaan di tepi api.",
+      },
+      d3: {
+        label: "Hari Ketiga",
+        verb: "Refleksi & Pamit",
+        headline: "Refleksi, perayaan, dan pulang.",
+        body: "Refleksi pagi, pembongkaran kemah bersama, dan sesi penghargaan untuk kerja sama dan semangat tim — menutup akhir pekan persahabatan antara mahasiswa Indonesia, Rusia, dan ASEAN.",
+        a1t: "Pembongkaran Kemah", a1d: "Berkemas dan merapikan lokasi bersama, tanpa meninggalkan jejak.",
+        a2t: "Penghargaan & Apresiasi", a2d: "Kolaborasi terbaik, semangat tim, dan keaktifan.",
+        a3t: "Upacara Penutupan", a3d: "Penutupan resmi, foto perpisahan, dan perjalanan pulang.",
+      },
+    },
+  },
+
+  culinary: {
+    eyebrow: "Inspirasi Kuliner Indonesia",
+    heading1: "Contoh warisan",
+    heading2: "kuliner Indonesia.",
+    intro:
+      "Dalam Culinary Masterclass & Cooking Session, tim campuran mahasiswa Indonesia, Rusia, dan ASEAN memasak hidangan Indonesia bersama — mempelajari bahan, teknik, dan kisah di balik tiap sajian. Contoh berikut menggambarkan warisan itu.",
+    disclaimer: "Hidangan sebenarnya dapat berubah tergantung pengaturan program dan ketersediaan.",
+    featured: "Sorotan",
+    heart: "Inti hidangan",
+    pairs: "Biasa disajikan dengan",
+    dishes: {
+      satay: {
+        region: "Madura · Jawa Timur",
+        tagline: "Asap, kacang, dan kesabaran bara arang.",
+        story: "Tusukan ayam berbumbu yang dipanggang di atas bara sabut kelapa, dilumuri saus kacang manis-gurih. Di Madura, sate adalah ritual jalanan — disantap sambil berdiri, dibagi tanpa upacara.",
+        ingredients: ["Kecap manis", "Kacang sangrai", "Daun jeruk", "Cabai rawit", "Serai"],
+        pairing: "Lontong dan acar timun.",
+      },
+      soto: {
+        region: "Jawa · seluruh Nusantara",
+        tagline: "Kuah keemasan yang dikenal setiap dapur.",
+        story: "Kuah ayam berbumbu kunyit, direbus dengan lengkuas, daun jeruk, dan serai. Tiap daerah punya versinya sendiri — Soto adalah album keluarga Indonesia dalam semangkuk.",
+        ingredients: ["Kunyit", "Lengkuas", "Daun jeruk", "Bihun", "Telur rebus", "Bawang goreng"],
+        pairing: "Sambal, irisan jeruk nipis, nasi hangat.",
+      },
+      "ayam-lengkuas": {
+        region: "Sumatra Barat · Padang",
+        tagline: "Saat lengkuas menjadi mahkota emas yang harum.",
+        story: "Ayam ungkep berbalut serbuk lengkuas goreng yang renyah, herbal, dan harum. Spesialitas Padang yang menjadikan akar sederhana sebagai pusat meja.",
+        ingredients: ["Lengkuas", "Daun kunyit", "Santan", "Kemiri", "Serai"],
+        pairing: "Nasi putih, daun singkong, sambal hijau.",
+      },
+    },
+  },
+
+  exchange: {
+    eyebrow: "Jembatan Eco-Culinary",
+    heading1: "Dari ASEAN ke Rusia,",
+    heading2: "jembatan yang dibangun di meja makan.",
+    intro:
+      "PERMIRA Summer Camp 2026 mempertemukan mahasiswa dari Indonesia, Rusia, dan seluruh ASEAN di Saint Petersburg — program diplomasi pemuda tempat kuliner, budaya, dan kepedulian pada alam berpadu.",
+    indonesia: "Indonesia",
+    russia: "Rusia",
+    asean: "ASEAN",
+    stpetersburg: "Saint Petersburg",
+    cards: {
+      "tea-coffee": {
+        theme: "Tentang menanti bersama",
+        indoTitle: "Kopi Tubruk", indoNote: "Kopi kasar, air panas, tanpa saringan — perlu kesabaran.",
+        russTitle: "Чай с самоваром", russNote: "Teh dari samovar, dimaniskan dengan selai dan waktu.",
+      },
+      "soup-soto": {
+        theme: "Tentang kehangatan yang merantau",
+        indoTitle: "Soto Ayam", indoNote: "Kuah ayam berkunyit — kenyamanan sehari-hari Indonesia.",
+        russTitle: "Борщ", russNote: "Sup bit dan kubis — kenyamanan sehari-hari Rusia.",
+      },
+      festive: {
+        theme: "Tentang memuliakan tamu",
+        indoTitle: "Tumpeng", indoNote: "Kerucut nasi kuning untuk setiap perayaan.",
+        russTitle: "Каравай", russNote: "Roti bundar untuk menyambut tamu.",
+      },
+    },
+  },
+
+  stewardship: {
+    eyebrow: "Ringan, sebagai kebiasaan",
+    heading1: "Kemah yang",
+    heading2: "hidup ringan.",
+    intro:
+      "Keberlanjutan di sini adalah kebiasaan, bukan ceramah. Mengikuti komitmen program, peserta membawa peralatan makan sendiri, memilah sampah, dan menekan plastik sekali pakai.",
+    c1t: "Bawa milikmu",
+    c1b: "Setiap peserta membawa peralatan makan dan botol minum pakai-ulang — kebiasaan kecil yang berarti selama tiga hari.",
+    c2t: "Pilah & kurangi",
+    c2b: "Sampah dipilah menjadi organik, non-organik, dan B3 (berbahaya); porsi efisien menekan sisa makanan.",
+    c3t: "Hormati alam",
+    c3b: "Kami menjelajahi danau dan hutan Saint Petersburg sebagai tamu — meninggalkan tiap tempat lebih baik dari semula.",
+    closing: "Persahabatan yang bisa dicicipi · bumi yang layak dijaga",
+  },
+
+  mapVideo: {
+    eyebrow: "Dari atas",
+    heading1: "Lihat kemah",
+    heading2: "dari ketinggian.",
+    intro: "Penerbangan keliling lokasi — jalur hutan, tepi danau, dan tiap sudut kemah tempat cita rasa bertemu alam.",
+    play: "Putar video keliling",
+    loadNote: "Hanya dimuat saat kamu menekan putar",
+    crossPre: "Ingin menjelajah sendiri?",
+    crossLink: "Buka peta kemah interaktif →",
+  },
+
+  memories: {
+    eyebrow: "Kenangan",
+    heading1: "Momen yang",
+    headingItalic: "bertahan",
+    heading2: "lebih lama dari santapnya.",
+    intro:
+      "Sekilas pertemuan PERMIRA sebelumnya — tawa di sela kerja bersama, ritual kecil yang mengubah orang asing menjadi teman.",
+  },
+
+  join: {
+    eyebrow: "Undangan",
+    heading1: "Sebuah kursi disediakan",
+    heading2: "khusus untukmu.",
+    subtitle:
+      "Pendaftaran dibuka awal 2026. Tinggalkan kontakmu dan kami akan mengabari begitu pintu terbuka.",
+    cta: "Amankan kursiku",
+    or: "atau tulis ke",
+    datesLabel: "Tanggal", datesValue: "17–19 Juli 2026",
+    locLabel: "Lokasi", locValue: "Saint Petersburg",
+    forLabel: "Untuk", forValue: "Mahasiswa · 18–35",
+  },
+
+  partners: {
+    title: "Sahabat Kemah",
+    organiser: "Diselenggarakan oleh",
+    collaborator: "Bekerja sama dengan",
+    supporter: "Didukung oleh",
+    collabAcross: "Kolaborasi lintas",
+    vk: "VK ↗",
+  },
+
+  footer: {
+    tagline:
+      "III Indonesian–Russian Students Summer Camp 2026 di Saint Petersburg — program diplomasi pemuda yang menghubungkan mahasiswa Indonesia, Rusia, dan ASEAN melalui budaya, kuliner, dan kepedulian lingkungan.",
+    copyright: "© 2026 PERMIRA Saint Petersburg. Hak cipta dilindungi.",
+    script: "selamat makan · приятного аппетита",
+  },
+
+  registration: {
+    title: "Amankan kursimu di meja.",
+    sectionAbout: "Tentang kamu", sectionAboutSub: "Data dasar agar kami tahu siapa yang datang.",
+    sectionContact: "Cara menghubungimu", sectionContactSub: "Kami hanya akan menulis soal kemah.",
+    sectionDocs: "Dokumen", sectionDocsSub: "Diperlukan sebelum kami meninjau pendaftaranmu.",
+    sectionMore: "Ceritakan sedikit lagi", sectionMoreSub: "Bagian tempat suaramu paling berarti.",
+    fullName: "Nama lengkap", fullNamePh: "mis. Anya Petrova",
+    nationality: "Kewarganegaraan", nationalityPh: "Pilih satu",
+    indonesia: "Indonesia", russia: "Rusia", asean: "ASEAN (lainnya)",
+    university: "Universitas", universityPh: "Tempat kamu kuliah",
+    age: "Usia", agePh: "18",
+    gender: "Jenis kelamin", female: "Perempuan", male: "Laki-laki", nonbinary: "Non-biner", prefer: "Tidak ingin menyebut",
+    email: "Email", emailPh: "kamu@contoh.com",
+    phone: "Telepon", phonePh: "+7 921 000 00 00",
+    messenger: "Telegram atau WhatsApp", messengerPh: "@nama_kamu atau + kode negara",
+    passport: "Pindaian paspor", passportHint: "Pindaian jelas halaman foto paspormu.",
+    consent: "Formulir persetujuan bertanda tangan", consentHint: "Unduh formulir dari situs kami, tanda tangani, lalu unggah ulang.",
+    fileHint: "Klik untuk mengunggah · PDF, JPG, PNG, WebP hingga 10 MB",
+    remove: "Hapus",
+    dietary: "Pantangan makanan", dietaryHint: "Alergi, halal, vegetarian, dll. Opsional, tapi membantu kami merencanakan.", dietaryPh: "mis. alergi kacang, halal",
+    prior: "Pengalaman program budaya atau internasional sebelumnya", priorHint: "Opsional. Konferensi, pertukaran, kemah bahasa — semua dihitung.", priorPh: "Ceritakan singkat jika ada.",
+    motivation: "Mengapa kamu ingin ikut PERMIRA Summer Camp 2026?", motivationHint: "Esai singkat. Kami membaca semuanya — jujur saja.", motivationPh: "Apa yang menarikmu ke kemah ini?",
+    agree: "Dengan mengirim, kamu setuju kami boleh menghubungimu soal kemah.", required: "wajib",
+    submit: "Amankan kursiku", submitting: "Mengirim…", cancel: "Batal",
+    failed: "Gagal mengirim.",
+    successTitle: "Kursimu sudah diamankan.",
+    successBody: "Terima kasih. Kami akan menghubungimu awal 2026 untuk langkah berikutnya.",
+    successBack: "Kembali ke kisah", ref: "Referensi",
+  },
+
+  validation: {
+    nameReq: "Mohon sebutkan namamu.", nameShort: "Nama itu terasa terlalu pendek.", nameLong: "Maksimal 80 karakter.",
+    natReq: "Pilih kewarganegaraan.",
+    uniReq: "Di mana kamu kuliah?", uniLong: "Maksimal 120 karakter.",
+    ageReq: "Sebutkan usiamu.", ageRange: "Usia harus antara 18 dan 35.",
+    genderReq: "Pilih salah satu.",
+    emailReq: "Kami butuh email untuk membalasmu.", emailBad: "Email itu sepertinya kurang tepat.",
+    phoneReq: "Mohon isi nomor telepon.", phoneBad: "Gunakan angka, spasi, +, - atau ().",
+    messengerReq: "Tambahkan kontak Telegram atau WhatsApp.",
+    dietaryLong: "Maksimal 240 karakter.",
+    priorLong: "Maksimal 600 karakter.",
+    motivationReq: "Ceritakan alasanmu ingin ikut — satu kalimat pun cukup.", motivationShort: "Minimal 40 karakter.", motivationLong: "Maksimal 800 karakter.",
+    passportReq: "Pindaian paspor wajib diisi.", passportBig: "Pindaian paspor lebih dari 10 MB.", passportType: "Pindaian paspor harus PDF, JPG, PNG, atau WebP.",
+    consentReq: "Formulir persetujuan wajib diisi.", consentBig: "Berkas persetujuan lebih dari 10 MB.", consentType: "Persetujuan harus PDF, JPG, PNG, atau WebP.",
+  },
+
+  chat: {
+    title: "Tuan Rumah PERMIRA",
+    status: "Daring · Biasanya membalas seketika",
+    placeholder: "Tanyakan apa saja tentang kemah…",
+    greeting:
+      "Selamat datang — saya tuan rumah PERMIRA Summer Camp 2026. Tanyakan tentang program, apa yang perlu dibawa, pendaftaran, atau hal lain seputar kemah.",
+    error: "Saya belum bisa menjangkau server. Coba lagi, atau tulis ke info@permiraspb.org.",
+    s1: "Kapan kemahnya berlangsung?",
+    s2: "Apa yang terjadi di Hari ke-2?",
+    s3: "Bagaimana cara mendaftar?",
+    s4: "Bisakah mahasiswa ASEAN ikut?",
+    reset: "Mulai percakapan baru",
+    close: "Tutup obrolan",
+    open: "Buka obrolan dengan tuan rumah",
+  },
+
+  common: {
+    home: "Beranda",
+    download: "Unduh PNG",
+    proposal: "Proposal",
+    campsiteLayout: "Denah Kemah",
+    controls: "Kontrol",
+    controlsBody: "Klik area mana saja · seret untuk memutar · gulir untuk zoom",
+    close: "Tutup",
+  },
+};
