@@ -24,15 +24,21 @@ export function CulinaryHighlights() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <span className="reveal text-xs font-medium uppercase tracking-[0.3em] text-saffron">
-            The Table
+            Indonesian Culinary Inspirations
           </span>
           <h2 className="reveal mt-4 font-display text-balance text-4xl font-light leading-tight tracking-tight md:text-6xl">
-            Three dishes, <br />
-            <span className="italic text-saffron">three stories worth telling.</span>
+            Examples of Indonesian <br />
+            <span className="italic text-saffron">culinary heritage.</span>
           </h2>
           <p className="reveal mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-cream-100/70 md:text-lg">
-            Each dish is a doorway. Choose one and listen to what it has carried
-            across centuries, kitchens, and oceans.
+            In the Culinary Masterclass &amp; Cooking Sessions, mixed teams of
+            Indonesian, Russian, and ASEAN students cook Indonesian dishes
+            together — learning the ingredients, techniques, and stories behind
+            each one. The examples below illustrate that heritage.
+          </p>
+          <p className="reveal mx-auto mt-4 max-w-xl text-pretty text-xs italic leading-relaxed text-cream-100/50">
+            Actual dishes may vary depending on programme arrangements and
+            availability.
           </p>
         </div>
 

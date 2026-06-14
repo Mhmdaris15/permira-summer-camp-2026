@@ -16,54 +16,53 @@ export type JourneyDay = {
 };
 
 /**
- * TODO(content): Refine activity copy with the actual camp programme.
- * These are first-draft narratives — tone and structure are locked in,
- * but the specific activities/timings are placeholders the user should
- * shape with their own programme. See note in App.tsx.
+ * Programme summary — drawn from the official proposal (Rangkaian Acara,
+ * §8). Session titles match the proposal. Times are MSK. The full minute-by-
+ * minute schedule is finalised by the organising committee closer to the event.
  */
 export const journeyDays: JourneyDay[] = [
   {
     index: 1,
     label: "Day One",
-    verb: "Connect",
+    verb: "Arrive & Open",
     date: "July 17, 2026",
-    headline: "Strangers meet at the same table.",
+    headline: "Welcome, set up, and an official opening.",
     body:
-      "We open with names, stories, and the quiet ceremony of a shared meal. No script — just curiosity and the warmth of welcome.",
+      "Participants arrive, build camp together, and gather for the official opening ceremony — national anthems, welcome remarks, and a traditional tumpeng — followed by a first shared meal and bonding circle.",
     activities: [
-      { time: "10:00", title: "Pasar Pagi", detail: "Morning market walk-through with Indonesian hosts." },
-      { time: "13:00", title: "First Bowl", detail: "A communal soto lunch — the icebreaker is the broth." },
-      { time: "19:00", title: "Bonfire Stories", detail: "Each guest brings one memory of food from home." },
+      { time: "16:00", title: "Arrival & Briefing", detail: "Check-in, group assignments, and safety orientation." },
+      { time: "19:00", title: "Official Opening Ceremony", detail: "Anthems of Indonesia & Russia, welcome remarks, and tumpeng." },
+      { time: "21:30", title: "Bonding Circle", detail: "Small-group introductions and getting to know one another." },
     ],
     accent: "turmeric",
   },
   {
     index: 2,
     label: "Day Two",
-    verb: "Create",
+    verb: "Cook & Connect",
     date: "July 18, 2026",
-    headline: "Hands learn what words can't say.",
+    headline: "Cook together, play together.",
     body:
-      "Cooking together. Russian and Indonesian students pair up to make Satay, Soto, and Ayam Lengkuas — every recipe an invitation to listen with your hands.",
+      "The heart of the camp: two Culinary Masterclass & Cooking Sessions where mixed Indonesian, Russian, and ASEAN teams prepare Indonesian dishes, a fun session of traditional games, and an evening Cultural Night around the campfire.",
     activities: [
-      { time: "09:30", title: "Spice Atelier", detail: "Identify the eight spices that define Nusantara cuisine." },
-      { time: "12:00", title: "Pair & Cook", detail: "Mixed teams prepare three dishes, one at a station." },
-      { time: "17:00", title: "Plate · Trade · Taste", detail: "Each team plates for another — present what you made." },
+      { time: "10:00", title: "Culinary Masterclass I", detail: "Hands-on cooking session in small mixed teams." },
+      { time: "15:00", title: "Fun Session", detail: "Traditional games and team challenges." },
+      { time: "21:00", title: "Cultural Night & Campfire", detail: "Traditional performances and a shared evening by the fire." },
     ],
     accent: "saffron",
   },
   {
     index: 3,
     label: "Day Three",
-    verb: "Celebrate",
+    verb: "Reflect & Farewell",
     date: "July 19, 2026",
-    headline: "A night that tastes of both shores.",
+    headline: "Reflect, celebrate, and head home.",
     body:
-      "A long table, candles, music from both cultures. We close with gratitude and a recipe card from each guest — to carry the camp home.",
+      "A morning reflection, a collective camp break-down, and an awarding session recognising teamwork and spirit — closing a weekend of friendship between Indonesian, Russian, and ASEAN students.",
     activities: [
-      { time: "16:00", title: "The Long Table", detail: "Twelve dishes, two flags, one shared dusk." },
-      { time: "19:00", title: "Voices & Strings", detail: "Sundanese angklung meets Russian balalaika." },
-      { time: "21:30", title: "Recipe Exchange", detail: "Hand-written cards swapped before goodbyes." },
+      { time: "09:00", title: "Camp Break-Down", detail: "Pack up and tidy the site together, leaving no trace." },
+      { time: "10:30", title: "Awarding & Appreciation", detail: "Recognising best collaboration, team spirit, and participation." },
+      { time: "11:30", title: "Closing Ceremony", detail: "Official close, farewell photos, and journey home." },
     ],
     accent: "terracotta",
   },

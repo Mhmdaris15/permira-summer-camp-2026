@@ -60,7 +60,7 @@ export function JoinTheTable() {
         <div className="reveal mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-6 border-t border-cream-100/10 pt-10 text-left">
           <Detail label="Dates" value="July 17–19, 2026" />
           <Detail label="Location" value="Saint Petersburg" />
-          <Detail label="For" value="Students · 18–30" />
+          <Detail label="For" value="Students · 18–35" />
         </div>
       </div>
     </section>

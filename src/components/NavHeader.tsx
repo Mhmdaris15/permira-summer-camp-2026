@@ -33,7 +33,7 @@ export function NavHeader() {
         <a href="#top" className="group flex items-center gap-2.5">
           <img src={PermiraLogo} alt="Permira logo" className="h-12 w-12" />
           <span className="font-display text-lg font-semibold text-clove-900">
-            Permira SPB<span className="text-terracotta-500"> · </span>Nusantara
+PERMIRA Summer Camp<span className="text-terracotta-500"> · </span>2026
           </span>
         </a>
 

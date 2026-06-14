@@ -112,7 +112,7 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             label="Age"
             required
             type="number"
-            min={16}
+            min={18}
             max={35}
             inputMode="numeric"
             placeholder="18"

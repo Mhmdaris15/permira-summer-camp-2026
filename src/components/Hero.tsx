@@ -83,7 +83,7 @@ export function Hero() {
               <img src={flags[0].flag} alt="Indonesia" className="h-5 w-5 rounded-full object-cover ring-2 ring-cream-50" />
               <img src={flags[1].flag} alt="Russia" className="h-5 w-5 rounded-full object-cover ring-2 ring-cream-50" />
             </span>
-            Indonesia × Russia · St. Petersburg · Jul 17–19, 2026
+            Indonesia × Russia × ASEAN · St. Petersburg · Jul 17–19, 2026
           </motion.div>
 
           <h1 className="mt-6 font-display text-balance text-5xl font-light leading-[1.0] tracking-[-0.02em] text-clove-900 md:text-7xl lg:text-[5rem]">
@@ -130,10 +130,10 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-clove-700/85"
           >
-            Three days in the parks and rivers of Saint Petersburg where
-            Indonesian and Russian students cook together, share stories around
-            the fire, and discover that good food and a cared-for world come
-            from the same place.
+            A three-day youth diplomacy camp in Saint Petersburg where students
+            from Indonesia, Russia, and ASEAN cook together, share cultures, and
+            care for the land that hosts them — an eco-culinary bridge from
+            ASEAN to Russia.
           </motion.p>
 
           <motion.div
@@ -166,7 +166,7 @@ export function Hero() {
             className="mt-12 grid max-w-md grid-cols-3 gap-6 text-clove-700"
           >
             <Stat value="3" label="Days · cook, explore, give back" />
-            <Stat value="2" label="Cultures · one shared table" />
+            <Stat value="35" label="Students · Indonesia · Russia · ASEAN" />
             <Stat value="0" label="Waste left behind" />
           </motion.div>
         </div>

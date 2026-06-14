@@ -14,7 +14,7 @@ import {
   type PartnerTier,
 } from "../data/organizations";
 
-const TIER_ORDER: PartnerTier[] = ["organiser", "partner", "supporter"];
+const TIER_ORDER: PartnerTier[] = ["organiser", "collaborator", "supporter"];
 
 export function Partners() {
   return (

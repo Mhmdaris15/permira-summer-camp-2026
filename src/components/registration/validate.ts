@@ -18,8 +18,8 @@ export function validate(data: RegistrationData): FieldErrors {
 
   const ageNum = Number(data.age);
   if (!data.age) errors.age = "Please share your age.";
-  else if (!Number.isInteger(ageNum) || ageNum < 16 || ageNum > 35)
-    errors.age = "Age must be between 16 and 35.";
+  else if (!Number.isInteger(ageNum) || ageNum < 18 || ageNum > 35)
+    errors.age = "Age must be between 18 and 35.";
 
   if (!data.gender) errors.gender = "Please choose an option.";
 

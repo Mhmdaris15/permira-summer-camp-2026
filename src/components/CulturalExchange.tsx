@@ -1,3 +1,5 @@
+import { collaborators } from "../data/organizations";
+
 const exchanges = [
   {
     id: "tea-coffee",
@@ -28,16 +30,43 @@ export function CulturalExchange() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <span className="reveal text-xs font-medium uppercase tracking-[0.3em] text-terracotta-500">
-            The Bridge
+            The Eco-Culinary Bridge
           </span>
           <h2 className="reveal mt-4 font-display text-balance text-4xl font-light leading-tight tracking-tight text-clove-900 md:text-6xl">
-            What two cultures have <br />
-            <span className="italic text-terracotta-500">always shared.</span>
+            From ASEAN to Russia, <br />
+            <span className="italic text-terracotta-500">a bridge built at the table.</span>
           </h2>
           <p className="reveal mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-clove-700/80 md:text-lg">
-            Every kitchen has its own answer to the same question: how do we
-            welcome someone we don't yet know? Look closely — the answers rhyme.
+            PERMIRA Summer Camp 2026 brings together students from Indonesia,
+            Russia, and across ASEAN, hosted in Saint Petersburg — a youth
+            diplomacy programme where cuisine, culture, and care for nature meet.
           </p>
+
+          {/* Four-way collaboration marks */}
+          <div className="reveal mt-10 flex flex-wrap items-center justify-center gap-6 md:gap-10">
+            {collaborators.map((c, i) => (
+              <div key={c.label} className="flex items-center gap-6 md:gap-10">
+                <div className="flex flex-col items-center gap-2">
+                  <img
+                    src={c.logo}
+                    alt={c.label}
+                    loading="lazy"
+                    className={
+                      c.kind === "flag"
+                        ? "h-8 w-auto rounded-sm shadow-sm ring-1 ring-black/10"
+                        : "h-9 w-auto"
+                    }
+                  />
+                  <span className="text-[11px] font-medium uppercase tracking-wider text-clove-700/70">
+                    {c.label}
+                  </span>
+                </div>
+                {i < collaborators.length - 1 && (
+                  <span className="text-terracotta-500/40">·</span>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-16 space-y-6 md:space-y-8">

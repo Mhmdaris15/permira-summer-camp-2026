@@ -63,25 +63,23 @@ export const ZONE_INFO: Record<string, ZoneInfoEntry> = {
     summary: "The heart of every evening",
     description:
       "A stone-ringed fire under string lights. This is where Indonesian and Russian students share their first conversations — songs, recipes, and the small ceremonies of arrival.",
-    activities: ["Welcome circle", "Songs & stories", "Stargazing", "Marshmallow toasting"],
-    capacity: "30 around the fire",
+    activities: ["Cultural Night performances", "Group reflection", "Songs together"],
+    capacity: "All participants",
     schedule: [
-      { day: "Day 1", time: "19:00", what: "Bonfire opening" },
-      { day: "Day 2", time: "21:00", what: "Voices & strings" },
-      { day: "Day 3", time: "22:00", what: "Farewell circle" },
+      { day: "Day 2", time: "21:00", what: "Cultural Night & campfire" },
     ],
   },
 
   "cooking": {
     icon: "🍲",
-    summary: "Hands-on Nusantara kitchen",
+    summary: "Culinary Masterclass & Cooking Session",
     description:
-      "Open-air kitchen and long shared table. Eight stations let pairs cook signature dishes side by side — Sate Madura, Soto Ayam, and Ayam Lengkuas — guided by chefs.",
-    activities: ["Spice atelier", "Paired cooking stations", "Plate · trade · taste", "The Long Table dinner"],
-    capacity: "32 at the table",
+      "Open-air kitchen where mixed teams of Indonesian, Russian, and ASEAN students cook Indonesian dishes together — learning the ingredients, techniques, and stories behind them. Example dishes include Sate Madura, Ayam Lengkuas, and Soto Ayam (actual dishes may vary).",
+    activities: ["Culinary Masterclass I", "Culinary Masterclass II", "Cooking challenge & presentation"],
+    capacity: "Teams of 5–6",
     schedule: [
-      { day: "Day 2", time: "12:00 – 17:00", what: "Cooking workshop" },
-      { day: "Day 3", time: "16:00 – 20:00", what: "Long Table dinner" },
+      { day: "Day 2", time: "10:00", what: "Culinary Masterclass I" },
+      { day: "Day 2", time: "17:00", what: "Culinary Masterclass II" },
     ],
   },
 
@@ -89,12 +87,11 @@ export const ZONE_INFO: Record<string, ZoneInfoEntry> = {
     icon: "🎯",
     summary: "Play, laugh, lower the language barrier",
     description:
-      "An open lawn for ice-breakers, mixed-team challenges, and traditional games from both cultures. Wordless fun does what introductions can't.",
-    activities: ["Mixed-team games", "Traditional sports demo", "Improv & charades", "Evening volleyball"],
-    capacity: "Up to 50",
+      "An open lawn for the Fun Session — mixed-team traditional games such as Lompat Karet (rubber-band jump) and Game Sendal (sandal toss). Wordless fun does what introductions can't.",
+    activities: ["Fun Session", "Traditional team games", "Mixed-group challenges"],
+    capacity: "All participants",
     schedule: [
-      { day: "Day 1", time: "15:00 – 17:00", what: "Ice-breakers" },
-      { day: "Day 2", time: "10:00 – 11:30", what: "Cross-cultural games" },
+      { day: "Day 2", time: "15:00", what: "Fun Session" },
     ],
   },
 
@@ -111,8 +108,8 @@ export const ZONE_INFO: Record<string, ZoneInfoEntry> = {
     icon: "🏕️",
     summary: "Your home for three nights",
     description:
-      "Eight participant tents arranged in two rows, paired by language exchange. Lockers and shared washrooms are a short walk away.",
-    activities: ["Sleeping quarters", "Personal storage", "Quiet hours from 23:00"],
-    capacity: "16 participants (paired)",
+      "Group tents where participants sleep, arranged by team. Shared washrooms and storage are a short walk away.",
+    activities: ["Sleeping quarters", "Personal storage", "Directed free time"],
+    capacity: "35 participants",
   },
 };
