@@ -32,7 +32,7 @@ import { Zone } from "./Zone";
 import { Tent } from "./Tent";
 import { Campfire } from "./Campfire";
 import { CommitteePost } from "./CommitteePost";
-import { AssemblyMarker } from "./AssemblyMarker";
+import { Pier } from "./Pier";
 import { StringLights } from "./StringLights";
 
 // Wayfinding
@@ -143,7 +143,7 @@ export function Scene() {
 
         <Campfire />
         <CommitteePost />
-        <AssemblyMarker />
+        <Pier />
         <StringLights />
       </group>
 
@@ -154,8 +154,8 @@ export function Scene() {
         ))}
         <NorthIndicator />
         <EntranceSign />
-        <EntryArrow position={[-19, 2]} rotationY={0} label="Entrance" />
-        <EntryArrow position={[ 19, 4]} rotationY={0} label="Exit" />
+        {/* Arrival — points inland from the pier on the west shore */}
+        <EntryArrow position={[-20, -3]} rotationY={0} label="Entrance" />
       </group>
 
       <ContactShadows

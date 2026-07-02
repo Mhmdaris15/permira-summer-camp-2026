@@ -6,7 +6,7 @@
 import { COLORS, ZONES } from "./layout";
 
 export function CommitteePost() {
-  const zone = ZONES.find((z) => z.id === "committee-post");
+  const zone = ZONES.find((z) => z.id === "organizer");
   if (!zone) return null;
   const [x, z] = zone.position;
   return (

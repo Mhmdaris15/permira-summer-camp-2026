@@ -24,55 +24,33 @@ export type ZoneInfoEntry = {
 };
 
 export const ZONE_INFO: Record<string, ZoneInfoEntry> = {
-  "committee-post": {
-    icon: "🏛️",
-    summary: "Command HQ for the organisers",
+  pier: {
+    icon: "⚓",
+    summary: "Where the island begins",
     description:
-      "The committee post is the operational heart of the camp. Registration check-in, lost & found, and on-call medical support all run from here. Look for the flag.",
-    activities: ["Check-in / registration desk", "Daily briefings stand-by", "Lost & found", "On-call medics"],
+      "The camp is reachable only by boat, so the pier is its front door. First footsteps, first hellos, and the daily rhythm of coming and going all cross these boards.",
+    activities: ["Boat arrival & departure", "Luggage drop", "Daily check-in point"],
+    capacity: "All arrivals",
+    schedule: [
+      { day: "Day 1", time: "on arrival", what: "Boats dock & welcome" },
+    ],
+  },
+
+  organizer: {
+    icon: "🏛️",
+    summary: "Command HQ for the team",
+    description:
+      "The operational heart of the camp. Registration check-in, the daily briefing board, lost & found, and on-call medical support all run from here. Look for the flags.",
+    activities: ["Check-in & registration", "Daily briefings", "Lost & found", "On-call medics"],
     capacity: "Staff of 8",
     schedule: [
       { day: "All days", time: "07:00 – 23:00", what: "Staffed continuously" },
     ],
   },
 
-  "committee-tents": {
-    icon: "⛺",
-    summary: "Where the organising team rests and prepares",
-    description:
-      "Four staff tents arranged in a quiet row to the north of the camp. Off-limits to participants except by invitation; coordination meetings happen here.",
-    activities: ["Staff sleeping quarters", "Late-night planning", "Equipment storage"],
-    capacity: "12 staff",
-  },
-
-  "briefing": {
-    icon: "📣",
-    summary: "Morning gatherings and daily storytelling",
-    description:
-      "An open-air pavilion of woven mats and low benches. Each day opens here with a fifteen-minute briefing in two languages, and closes here with reflection.",
-    activities: ["Daily briefings", "Cultural storytelling", "Open-mic reflections", "Language exchange"],
-    capacity: "Up to 60",
-    schedule: [
-      { day: "Day 1–3", time: "08:00 – 08:30", what: "Morning briefing" },
-      { day: "Day 1–3", time: "21:30 – 22:00", what: "Closing reflection" },
-    ],
-  },
-
-  "campfire": {
-    icon: "🔥",
-    summary: "The heart of every evening",
-    description:
-      "A stone-ringed fire under string lights. This is where Indonesian and Russian students share their first conversations — songs, recipes, and the small ceremonies of arrival.",
-    activities: ["Cultural Night performances", "Group reflection", "Songs together"],
-    capacity: "All participants",
-    schedule: [
-      { day: "Day 2", time: "21:00", what: "Cultural Night & campfire" },
-    ],
-  },
-
-  "cooking": {
+  kitchen: {
     icon: "🍲",
-    summary: "Culinary Masterclass & Cooking Session",
+    summary: "Where the flavours are made",
     description:
       "Open-air kitchen where mixed teams of Indonesian, Russian, and ASEAN students cook Indonesian dishes together — learning the ingredients, techniques, and stories behind them. Example dishes include Sate Madura, Ayam Lengkuas, and Soto Ayam (actual dishes may vary).",
     activities: ["Culinary Masterclass I", "Culinary Masterclass II", "Cooking challenge & presentation"],
@@ -83,33 +61,48 @@ export const ZONE_INFO: Record<string, ZoneInfoEntry> = {
     ],
   },
 
-  "games": {
-    icon: "🎯",
-    summary: "Play, laugh, lower the language barrier",
+  dining: {
+    icon: "🍽️",
+    summary: "The table everyone shares",
     description:
-      "An open lawn for the Fun Session — mixed-team traditional games such as Lompat Karet (rubber-band jump) and Game Sendal (sandal toss). Wordless fun does what introductions can't.",
-    activities: ["Fun Session", "Traditional team games", "Mixed-group challenges"],
-    capacity: "All participants",
+      "Long shared tables in the open air. Meals are where the day's mixed teams come together and the real conversations start — the pavilion doubles as the daily briefing and storytelling space.",
+    activities: ["Shared meals", "Tasting & presentation", "Daily briefings", "Evening tea"],
+    capacity: "Up to 60",
     schedule: [
-      { day: "Day 2", time: "15:00", what: "Fun Session" },
+      { day: "Day 1–3", time: "08:00 – 08:30", what: "Morning briefing" },
     ],
   },
 
-  "assembly": {
-    icon: "🚨",
-    summary: "Muster point for safety and headcounts",
+  common: {
+    icon: "🔥",
+    summary: "The heart of every evening",
     description:
-      "Marked with a large white H. In an emergency, everyone gathers here for the headcount. Also the daily start point for off-site excursions.",
-    activities: ["Emergency assembly", "Excursion mustering", "Safety briefing"],
+      "An open gathering circle with a stone-ringed fire under string lights. This is where Indonesian and Russian students share their first conversations — songs, Cultural Night, and the small ceremonies of three days together.",
+    activities: ["Cultural Night performances", "Campfire & songs", "Group reflection"],
     capacity: "All participants",
+    schedule: [
+      { day: "Day 2", time: "21:00", what: "Cultural Night & campfire" },
+    ],
   },
 
-  "participant-tents": {
+  tents: {
     icon: "🏕️",
-    summary: "Your home for three nights",
+    summary: "Home for three nights",
     description:
-      "Group tents where participants sleep, arranged by team. Shared washrooms and storage are a short walk away.",
+      "Group tents where participants sleep, arranged by team, a short walk from the shore. Shared washrooms and storage are close by.",
     activities: ["Sleeping quarters", "Personal storage", "Directed free time"],
     capacity: "35 participants",
+  },
+
+  beach: {
+    icon: "🏖️",
+    summary: "Open sand, open play",
+    description:
+      "The shoreline is the camp's playground. Traditional mixed-team games — sandal toss (Game Sendal) and rubber-band jump (Lompat Karet) — do what introductions can't.",
+    activities: ["Fun Session", "Traditional team games", "Sunset gatherings"],
+    capacity: "All participants",
+    schedule: [
+      { day: "Day 2", time: "15:00", what: "Fun Session on the beach" },
+    ],
   },
 };

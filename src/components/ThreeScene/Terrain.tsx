@@ -17,10 +17,23 @@ export function Terrain() {
 
   return (
     <group>
+      {/* Lake — a broad water plane the island sits on. Kept just below the
+          shore so the land reads as a spit ringed by water. */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.06, 0]}>
+        <planeGeometry args={[160, 160]} />
+        <meshStandardMaterial color={COLORS.water} roughness={0.35} metalness={0.1} />
+      </mesh>
+
       {/* Earth slab */}
       <mesh receiveShadow position={[0, -0.5, 0]}>
         <boxGeometry args={[TERRAIN.width + 6, 1, TERRAIN.depth + 6]} />
         <meshStandardMaterial color={COLORS.earth} roughness={1} flatShading />
+      </mesh>
+
+      {/* Beach — a sandy rim around the lawn where land meets water */}
+      <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.004, 0]}>
+        <planeGeometry args={[TERRAIN.width + 4, TERRAIN.depth + 4]} />
+        <meshStandardMaterial color={COLORS.sand} roughness={1} flatShading />
       </mesh>
 
       {/* Hills — low cones at the perimeter for gentle elevation */}

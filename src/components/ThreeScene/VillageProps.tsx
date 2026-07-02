@@ -16,25 +16,14 @@ const FENCE_Y = 0;
 
 /** Hand-placed fence runs (X, Z, rotationY in radians). */
 const FENCES: Array<[number, number, number]> = [
-  // Entrance corridor — south side
-  [-21,  3.6, 0],
-  [-19,  3.6, 0],
-  [-17,  3.6, 0],
-  [-15,  3.6, 0],
-  // Entrance corridor — north side
-  [-21,  0.4, 0],
-  [-19,  0.4, 0],
-  [-17,  0.4, 0],
-  // Exit corridor — south side
-  [ 14,  5.6, 0],
-  [ 16,  5.6, 0],
-  [ 18,  5.6, 0],
-  [ 20,  5.6, 0],
-  // Exit corridor — north side
-  [ 14,  2.4, 0],
-  [ 16,  2.4, 0],
-  [ 18,  2.4, 0],
-  [ 20,  2.4, 0],
+  // Along the pier → kitchen spine (north edge)
+  [-11, -5.2, 0],
+  [ -9, -5.2, 0],
+  [ -7, -5.2, 0],
+  // Screening the Organisers' Post approach
+  [  7, -7.2, 0],
+  [  9, -7.2, 0],
+  [ 11, -7.2, 0],
 ];
 
 export function VillageProps() {
@@ -57,18 +46,18 @@ export function VillageProps() {
         );
       })}
 
-      {/* Wagon at cooking area edge */}
+      {/* Supply wagon at the Open Kitchen edge */}
       <KitProp
         url={KIT_ASSETS.wagon}
-        position={[18.5, 0, -4.5]}
+        position={[1.5, 0, -6]}
         rotationY={-Math.PI / 6}
         scale={1.4}
       />
 
       {/* Crates flanking the wagon */}
-      <KitProp url={KIT_ASSETS.crate} position={[18, 0, -3]}    rotationY={ 0.3} scale={1.1} />
-      <KitProp url={KIT_ASSETS.crate} position={[19.6, 0, -6]}  rotationY={-0.4} scale={1.0} />
-      <KitProp url={KIT_ASSETS.crate} position={[17.4, 0.6, -2.7]} rotationY={0.1} scale={0.9} />
+      <KitProp url={KIT_ASSETS.crate} position={[0, 0, -6.5]}    rotationY={ 0.3} scale={1.1} />
+      <KitProp url={KIT_ASSETS.crate} position={[2.6, 0, -4.8]}  rotationY={-0.4} scale={1.0} />
+      <KitProp url={KIT_ASSETS.crate} position={[-0.6, 0.6, -6.3]} rotationY={0.1} scale={0.9} />
     </group>
   );
 }

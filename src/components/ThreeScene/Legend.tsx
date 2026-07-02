@@ -5,24 +5,22 @@
 import { COLORS } from "./layout";
 
 type Item = { color: string; label: string };
-const TENTS: Item[] = [
-  { color: COLORS.participantTent, label: "Participant tents" },
-  { color: COLORS.committeeTent,   label: "Committee tents" },
+const ARRIVAL: Item[] = [
+  { color: COLORS.pier, label: "Pier (arrive by boat)" },
+  { color: COLORS.sand, label: "Beach" },
 ];
-const ACTIVITY: Item[] = [
-  { color: COLORS.briefing,  label: "Briefing & gathering" },
-  { color: COLORS.cooking,   label: "Cooking & dining" },
-  { color: COLORS.games,     label: "Games / fun" },
-  { color: COLORS.fireBase,  label: "Campfire" },
+const CAMP: Item[] = [
+  { color: COLORS.cooking,        label: "Open kitchen" },
+  { color: COLORS.briefing,       label: "Dining pavilion" },
+  { color: COLORS.gather,         label: "Common ground" },
+  { color: COLORS.participantTent, label: "Tent village" },
 ];
 const FACILITIES: Item[] = [
-  { color: COLORS.assembly,      label: "Assembly point" },
-  { color: COLORS.committeePost, label: "Committee post" },
+  { color: COLORS.committeePost, label: "Organisers' post" },
 ];
 const WAYFINDING: Item[] = [
-  { color: COLORS.path,     label: "Pathway" },
-  { color: COLORS.arrowIn,  label: "Entrance" },
-  { color: COLORS.arrowOut, label: "Exit" },
+  { color: COLORS.path,    label: "Pathway" },
+  { color: COLORS.arrowIn, label: "Arrival" },
 ];
 
 export function Legend() {
@@ -34,8 +32,8 @@ export function Legend() {
           Site Legend
         </span>
       </div>
-      <Group title="Accommodation" items={TENTS} />
-      <Group title="Activity zones" items={ACTIVITY} />
+      <Group title="Shore" items={ARRIVAL} />
+      <Group title="Camp zones" items={CAMP} />
       <Group title="Facilities" items={FACILITIES} />
       <Group title="Wayfinding" items={WAYFINDING} last />
     </div>
