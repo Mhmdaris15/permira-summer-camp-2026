@@ -37,6 +37,10 @@ services:
       start_period: 15s
       retries: 3
     networks:
+      # `coolify` (external) is where coolify-proxy/Traefik lives — the API
+      # must be on it for Traefik to reach the FQDN route. `permira-net` is
+      # the private bridge for web<->api traffic.
+      - coolify
       - permira-net
     labels:
       - coolify.managed=true
@@ -60,6 +64,9 @@ services:
       start_period: 5s
       retries: 3
     networks:
+      # Must share the `coolify` network with Traefik, or the FQDN route
+      # resolves but the backend connection times out → 504 Gateway Timeout.
+      - coolify
       - permira-net
     labels:
       - coolify.managed=true
@@ -73,5 +80,10 @@ volumes:
     name: permira-uploads
 
 networks:
+  # Created and owned by Coolify; Traefik (coolify-proxy) is attached here.
+  # MUST be external so this compose joins the existing network rather than
+  # creating an isolated one Traefik can't see.
+  coolify:
+    external: true
   permira-net:
     driver: bridge

@@ -5,7 +5,7 @@ import { ExperienceJourney } from "../components/ExperienceJourney";
 import { CulinaryHighlights } from "../components/CulinaryHighlights";
 import { CulturalExchange } from "../components/CulturalExchange";
 import { Stewardship } from "../components/Stewardship";
-import { MapVideo } from "../components/MapVideo";
+import { CampMap } from "../components/CampMap";
 import { Memories } from "../components/Memories";
 import { JoinTheTable } from "../components/JoinTheTable";
 import { Partners } from "../components/Partners";
@@ -22,7 +22,7 @@ export function LandingPage() {
         <CulinaryHighlights />
         <CulturalExchange />
         <Stewardship />
-        <MapVideo />
+        <CampMap />
         <Memories />
         <JoinTheTable />
         <Partners />
