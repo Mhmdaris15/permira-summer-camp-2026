@@ -31,6 +31,9 @@ services:
       RESEND_API_KEY: ${RESEND_API_KEY}
       EMAIL_FROM: ${EMAIL_FROM:-PERMIRA Summer Camp 2026 <info@permiraspb.org>}
       EMAIL_DRY_RUN: ${EMAIL_DRY_RUN:-}
+      # Persistent storage paths — MUST match the volume mounts below.
+      DATA_DIR: /app/server/data
+      UPLOADS_DIR: /app/server/uploads
     volumes:
       - permira-data:/app/server/data
       - permira-uploads:/app/server/uploads

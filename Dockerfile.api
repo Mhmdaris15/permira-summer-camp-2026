@@ -41,11 +41,20 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=8787
 
+# Runtime-writable paths — MUST match the volume mounts in docker-compose.
+# The app reads these (see server/paths.ts); everything durable lives here.
+ENV DATA_DIR=/app/server/data
+ENV UPLOADS_DIR=/app/server/uploads
+
 COPY --from=prod-deps --chown=node:node /app/node_modules ./node_modules
 COPY --from=build     --chown=node:node /app/server/dist  ./server/dist
+# Read-only seed defaults (e.g. knowledge.json) used to populate a fresh
+# volume on first boot. Lives next to the compiled code (server/paths.ts:SEED_DIR).
+COPY --from=build     --chown=node:node /app/server/seed  ./server/dist/seed
 COPY --chown=node:node package.json ./
 
-# Persistent dirs (mounted as volumes in compose).
+# Create the mount points so they exist and are owned by `node` before the
+# named volumes are attached over them (keeps the volumes writable by USER node).
 RUN mkdir -p /app/server/data /app/server/uploads \
  && chown -R node:node /app/server
 

@@ -1,11 +1,12 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { RecordId, Surreal } from "surrealdb";
 import { createNodeEngines } from "@surrealdb/node";
+import { dataPath } from "./paths.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SNAPSHOT_PATH = path.join(__dirname, "data", "participants.json");
+// SurrealDB runs in-memory (mem://); this JSON snapshot in the persistent
+// data volume is the durable store the DB is hydrated from on every boot.
+const SNAPSHOT_PATH = dataPath("participants.json");
 
 /**
  * Schema for the participant table. SurrealQL is the source of truth —

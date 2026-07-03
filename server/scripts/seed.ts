@@ -1,8 +1,8 @@
 import "dotenv/config";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { logger } from "../logger.js";
+import { dataPath } from "../paths.js";
 
 /**
  * One-shot seed for the knowledge base. Idempotent — re-running with the
@@ -12,8 +12,7 @@ import { logger } from "../logger.js";
  * Run via: npm run seed
  */
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const KB_PATH = path.join(__dirname, "..", "data", "knowledge.json");
+const KB_PATH = dataPath("knowledge.json");
 
 const SEED = {
   sections: [

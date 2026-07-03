@@ -1,13 +1,13 @@
 import { promises as fs, createReadStream } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { randomUUID } from "node:crypto";
 import multer from "multer";
 import type { StoredFile } from "../types.js";
+import { UPLOADS_DIR } from "../paths.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const UPLOAD_DIR = path.join(__dirname, "..", "uploads");
-const META_DIR = path.join(__dirname, "..", "uploads", ".meta");
+// Uploaded files + their metadata live in the persistent uploads volume.
+const UPLOAD_DIR = UPLOADS_DIR;
+const META_DIR = path.join(UPLOADS_DIR, ".meta");
 
 await fs.mkdir(UPLOAD_DIR, { recursive: true });
 await fs.mkdir(META_DIR, { recursive: true });

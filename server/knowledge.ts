@@ -1,28 +1,37 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import type { KnowledgeBase } from "./types.js";
+import { dataPath, seedPath } from "./paths.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DATA_PATH = path.join(__dirname, "data", "knowledge.json");
+const DATA_PATH = dataPath("knowledge.json");
+const SEED_PATH = seedPath("knowledge.json");
 
 let cache: KnowledgeBase | null = null;
 let writeQueue: Promise<void> = Promise.resolve();
 
 export async function loadKnowledge(): Promise<KnowledgeBase> {
   if (cache) return cache;
-  const raw = await fs.readFile(DATA_PATH, "utf8");
-  cache = JSON.parse(raw) as KnowledgeBase;
-  return cache;
+  try {
+    const raw = await fs.readFile(DATA_PATH, "utf8");
+    cache = JSON.parse(raw) as KnowledgeBase;
+    return cache;
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code !== "ENOENT") throw err;
+    // Fresh persistent volume — seed from the default bundled in the image,
+    // then persist it so admin edits stick from here on.
+    const seed = JSON.parse(await fs.readFile(SEED_PATH, "utf8")) as KnowledgeBase;
+    return saveKnowledge(seed);
+  }
 }
 
 export async function saveKnowledge(next: KnowledgeBase): Promise<KnowledgeBase> {
   const stamped: KnowledgeBase = { ...next, updatedAt: new Date().toISOString() };
   cache = stamped;
   // Serialize writes so concurrent PUTs don't trample each other.
-  writeQueue = writeQueue.then(() =>
-    fs.writeFile(DATA_PATH, JSON.stringify(stamped, null, 2), "utf8"),
-  );
+  writeQueue = writeQueue.then(async () => {
+    await fs.mkdir(path.dirname(DATA_PATH), { recursive: true });
+    await fs.writeFile(DATA_PATH, JSON.stringify(stamped, null, 2), "utf8");
+  });
   await writeQueue;
   return stamped;
 }

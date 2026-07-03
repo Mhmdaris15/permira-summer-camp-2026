@@ -20,10 +20,10 @@ server/dist
 .env.*
 !.env.example
 
-# Local DB state — must NOT bake into the image. Persistent volumes only.
-server/data/participants.json
+# Local runtime state — must NOT bake into the image. Persistent volumes only.
+# (Defaults for a fresh volume live in server/seed/, which IS shipped.)
+server/data
 server/uploads
-server/data/surreal
 
 # Test/probe artifacts
 probe-*.mjs

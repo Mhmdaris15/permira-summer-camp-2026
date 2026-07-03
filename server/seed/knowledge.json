@@ -1,0 +1,76 @@
+{
+  "sections": [
+    {
+      "id": "overview",
+      "title": "Event Overview",
+      "body": "PERMIRA Summer Camp 2026 (PERMIRA Camp 3.0 — III Indonesian–Russian Students Summer Camp) is a three-day youth diplomacy and cultural-exchange programme organised by PERMIRA St. Petersburg, the Indonesian Students' Association in Russia. It is held as part of the celebration of 76 years of Indonesia–Russia diplomatic relations and the Saint Petersburg Year of Culture. Theme: \"Taste of Nusantara: The Eco-Culinary Bridge from ASEAN to Russia\". Dates: 17–19 July 2026. Location: a camp site in Saint Petersburg / Leningrad Oblast (exact venue announced closer to the event)."
+    },
+    {
+      "id": "purpose",
+      "title": "Purpose",
+      "body": "The camp strengthens youth diplomacy between Indonesia and Russia, with ASEAN participation, focused on cultural, language, and historical exchange among students. It uses cuisine as an inclusive medium for cross-cultural collaboration, alongside an environmental-stewardship ethic (waste sorting, reduced single-use plastic, efficient food portions). It is a friendship and cultural programme — not an environmental conference."
+    },
+    {
+      "id": "participants",
+      "title": "Participants",
+      "body": "Capacity is 35 students: 15 from Indonesia, 10 from Russia, and 10 from ASEAN countries. Participants are active university students in Saint Petersburg, aged 18–35, with basic conversational English. Indonesian participants must also be registered in the PERMIRA St. Petersburg database and have completed Indonesian citizen self-reporting (lapor diri)."
+    },
+    {
+      "id": "schedule",
+      "title": "Programme",
+      "body": "Day 1 (17 July) — Arrive & Open: arrival and registration, travel to the site, camp set-up, official opening ceremony (national anthems, welcome remarks, tumpeng), welcome dinner, and a group bonding circle.\nDay 2 (18 July) — Cook & Connect: morning activity and reflection, Culinary Masterclass & Cooking Session I, fun session with traditional games, Culinary Masterclass & Cooking Session II, dinner, and a Cultural Night with a campfire.\nDay 3 (19 July) — Reflect & Farewell: morning reflection and group photo, camp break-down, awarding and appreciation session, and the closing ceremony.\nThe detailed minute-by-minute schedule is finalised by the organising committee closer to the event."
+    },
+    {
+      "id": "cuisine",
+      "title": "Cuisine",
+      "body": "Cooking is the central shared activity. In the Culinary Masterclass & Cooking Sessions, mixed teams of Indonesian, Russian, and ASEAN students cook Indonesian dishes together and learn the ingredients, techniques, and cultural stories behind them. Example dishes that illustrate Indonesian culinary heritage include Sate Madura, Ayam Lengkuas, and Soto Ayam. Actual dishes may vary depending on programme arrangements and availability."
+    },
+    {
+      "id": "sustainability",
+      "title": "Environmental Stewardship",
+      "body": "As a commitment to sustainability, participants are asked to: bring their own reusable cutlery and drink containers; take efficient food portions to reduce food waste; sort waste into three categories (organic, non-organic, and hazardous/B3 such as glass, ink, medicine, or batteries); and minimise paper and single-use plastic — including using QR codes instead of paper during games and registration."
+    },
+    {
+      "id": "registration",
+      "title": "Registration",
+      "body": "Reserve a place through the website's registration form. Requirements: a valid passport; age 18–35; status as an active university student in Saint Petersburg (verified by Student ID); basic conversational English; and genuine interest in culture and cuisine with willingness to participate fully, including cooking and team activities. Indonesian applicants must be registered in the PERMIRA St. Petersburg database and have completed lapor diri (peduliwni.kemlu.go.id). Selected participants are notified by email."
+    },
+    {
+      "id": "languages",
+      "title": "Languages",
+      "body": "The programme is conducted in Indonesian and Russian. Basic conversational English is required of all participants to support cross-cultural interaction."
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-cost",
+      "question": "How much does it cost?",
+      "answer": "Programme participation, meals, and accommodation during the camp are provided for selected participants. Details are confirmed during selection."
+    },
+    {
+      "id": "faq-who",
+      "question": "Who can join?",
+      "answer": "Active university students in Saint Petersburg aged 18–35 from Indonesia, Russia, or ASEAN countries, with basic conversational English and a valid passport."
+    },
+    {
+      "id": "faq-asean",
+      "question": "Can ASEAN students join?",
+      "answer": "Yes. Of the 35 places, 10 are reserved for students from ASEAN countries, alongside 15 Indonesian and 10 Russian participants."
+    },
+    {
+      "id": "faq-language",
+      "question": "What language is the camp in?",
+      "answer": "The camp runs in Indonesian and Russian. Basic conversational English is required so everyone can interact across cultures."
+    },
+    {
+      "id": "faq-deadline",
+      "question": "What is the registration deadline?",
+      "answer": "The exact deadline will be announced on this page and through PERMIRA St. Petersburg's channels (VK and Telegram)."
+    }
+  ],
+  "contact": {
+    "email": "info@permiraspb.org",
+    "telegram": "@permiraspb"
+  },
+  "updatedAt": "2026-06-14T00:00:00.000Z"
+}

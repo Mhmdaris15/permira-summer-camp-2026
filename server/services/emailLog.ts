@@ -7,12 +7,11 @@
  */
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import type { EmailLogEntry, EmailLogStatus } from "../types.js";
+import { dataPath } from "../paths.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-// services/ -> ../data/email-log.json  (sits next to participants.json)
-const DATA_PATH = path.join(__dirname, "..", "data", "email-log.json");
+// Sits in the persistent data volume next to participants.json.
+const DATA_PATH = dataPath("email-log.json");
 
 type Store = { entries: EmailLogEntry[] };
 
@@ -33,11 +32,14 @@ async function load(): Promise<Store> {
 }
 
 function persist(store: Store): Promise<void> {
-  writeQueue = writeQueue.then(() =>
-    fs.writeFile(DATA_PATH, JSON.stringify(store, null, 2), "utf8").catch(() => {
+  writeQueue = writeQueue.then(async () => {
+    try {
+      await fs.mkdir(path.dirname(DATA_PATH), { recursive: true });
+      await fs.writeFile(DATA_PATH, JSON.stringify(store, null, 2), "utf8");
+    } catch {
       /* best-effort: never let a log write break a send */
-    }),
-  );
+    }
+  });
   return writeQueue;
 }
 

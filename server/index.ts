@@ -12,6 +12,7 @@ import { filesRouter } from "./routes/files.js";
 import { emailRouter } from "./routes/email.js";
 import { requireAdmin } from "./auth.js";
 import { getDb } from "./db.js";
+import { ensureRuntimeDirs } from "./paths.js";
 import { logger } from "./logger.js";
 
 const PORT = Number(process.env.PORT ?? 8787);
@@ -107,6 +108,8 @@ app.use((err: unknown, req: Request, res: Response, _next: NextFunction) => {
 
 // --- Boot ---
 async function bootDb(retries = 5): Promise<void> {
+  // Ensure the persistent data/uploads dirs exist before the DB hydrates.
+  await ensureRuntimeDirs();
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
       await getDb();
