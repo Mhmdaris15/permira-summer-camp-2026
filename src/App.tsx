@@ -16,6 +16,12 @@ const Admin = lazy(() => import("./pages/Admin").then((m) => ({ default: m.Admin
 const AdminParticipants = lazy(() =>
   import("./pages/AdminParticipants").then((m) => ({ default: m.AdminParticipants })),
 );
+const AdminEmail = lazy(() =>
+  import("./pages/AdminEmail").then((m) => ({ default: m.AdminEmail })),
+);
+const AdminEmailHistory = lazy(() =>
+  import("./pages/AdminEmailHistory").then((m) => ({ default: m.AdminEmailHistory })),
+);
 
 function AppShell() {
   const [open, setOpen] = useState(false);
@@ -44,6 +50,8 @@ function AppShell() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/participants" element={<AdminParticipants />} />
+          <Route path="/admin/email" element={<AdminEmail />} />
+          <Route path="/admin/email/history" element={<AdminEmailHistory />} />
           <Route path="/maps" element={<LayoutProposal />} />
         </Routes>
       </Suspense>

@@ -92,6 +92,69 @@ export type StoredFile = {
   path: string;
 };
 
+// --- Email ---
+
+/** Reusable templates. `custom` is a free-form announcement. */
+export type EmailTemplateId =
+  | "registrationReceived"
+  | "pending"
+  | "accepted"
+  | "rejected"
+  | "custom";
+
+/** Who to send to: one participant, everyone, or everyone in a status. */
+export type EmailAudience = "individual" | "all" | ParticipantStatus;
+
+export type SendEmailRequest = {
+  audience: EmailAudience;
+  templateId: EmailTemplateId;
+  /** Required when audience === "individual". A `participant:xxxx` id. */
+  participantId?: string;
+  /** Overrides the template's default subject. Required for `custom`. */
+  subject?: string;
+  /** Body text for `custom`; an optional extra note for the others. */
+  message?: string;
+  /** Optional heading override (mainly for `custom`). */
+  heading?: string;
+};
+
+export type EmailLogStatus = "sent" | "failed" | "dry-run";
+
+export type EmailLogEntry = {
+  id: string;
+  to: string;
+  toName: string;
+  subject: string;
+  templateId: EmailTemplateId;
+  audience: EmailAudience;
+  status: EmailLogStatus;
+  providerId?: string;
+  error?: string;
+  participantId?: string;
+  /** Groups all recipients of a single send together. */
+  batchId: string;
+  sentAt: string;
+  /** Who triggered the send (currently the admin session). */
+  sentBy?: string;
+};
+
+export type SendEmailResult = {
+  batchId: string;
+  total: number;
+  sent: number;
+  failed: number;
+  dryRun: number;
+  entries: EmailLogEntry[];
+};
+
+export type EmailTemplateMeta = {
+  id: EmailTemplateId;
+  label: string;
+  description: string;
+  /** Whether the admin must supply subject + message (i.e. `custom`). */
+  requiresContent: boolean;
+};
+
 export type AuthClaims = {
   sub: "admin";
   iat: number;

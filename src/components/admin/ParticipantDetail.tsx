@@ -9,9 +9,19 @@ import {
   type ParticipantStatus,
 } from "../../lib/participantsApi";
 import { StatusPill } from "./StatusPill";
+import { sendEmail, type EmailTemplateId } from "../../lib/emailApi";
 import { cn } from "../../lib/cn";
 
 const STATUSES: ParticipantStatus[] = ["pending", "accepted", "rejected", "waitlist"];
+
+// Which template a status maps to when "notify" is on. Waitlist has no
+// dedicated template, so it isn't auto-emailed (use Compose for that).
+const STATUS_EMAIL: Record<ParticipantStatus, EmailTemplateId | null> = {
+  pending: "pending",
+  accepted: "accepted",
+  rejected: "rejected",
+  waitlist: null,
+};
 
 export function ParticipantDetail({
   open,
@@ -31,6 +41,8 @@ export function ParticipantDetail({
   const [error, setError] = useState<string | null>(null);
   const [docs, setDocs] = useState<{ passport?: string; consent?: string }>({});
   const [docError, setDocError] = useState<string | null>(null);
+  const [notify, setNotify] = useState(true);
+  const [emailNote, setEmailNote] = useState<string | null>(null);
 
   useEffect(() => {
     setDraft({});
@@ -104,10 +116,32 @@ export function ParticipantDetail({
     if (!participant) return;
     setSaving(true);
     setError(null);
+    setEmailNote(null);
     try {
       const updated = await patchParticipant(participant.id, { status });
       onUpdated(updated);
       setDraft((prev) => ({ ...prev, status: undefined }));
+
+      // Optionally notify the participant with the matching template.
+      const templateId = STATUS_EMAIL[status];
+      if (notify && templateId) {
+        try {
+          const res = await sendEmail({
+            audience: "individual",
+            participantId: participant.id,
+            templateId,
+          });
+          if (res.failed > 0) setEmailNote(`Status updated, but the email failed to send.`);
+          else if (res.dryRun > 0) setEmailNote(`Status updated · ${status} email simulated (dry-run).`);
+          else setEmailNote(`Status updated · ${status} email sent to ${participant.email}.`);
+        } catch (mailErr) {
+          setEmailNote(
+            `Status updated, but the email failed: ${
+              mailErr instanceof Error ? mailErr.message : "unknown error"
+            }`,
+          );
+        }
+      }
     } catch (err) {
       if (err instanceof Error && err.name === "AuthError") onAuthLost();
       else setError(err instanceof Error ? err.message : "Update failed.");
@@ -168,27 +202,41 @@ export function ParticipantDetail({
 
             <div data-lenis-prevent className="flex-1 overflow-y-auto px-6 py-6 md:px-8">
               {/* Quick status actions */}
-              <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-clove-900/8 bg-cream-100/50 p-3">
-                <span className="ml-2 text-xs font-medium uppercase tracking-wider text-clove-700/70">
-                  Set status
-                </span>
-                {STATUSES.map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => quickStatus(s)}
-                    disabled={saving || participant.status === s}
-                    className={cn(
-                      "rounded-full px-3.5 py-1.5 text-xs font-medium transition",
-                      participant.status === s
-                        ? "bg-clove-900 text-cream-50"
-                        : "bg-cream-50 text-clove-700 hover:bg-clove-900 hover:text-cream-50",
-                      saving && "opacity-60",
-                    )}
-                  >
-                    {s}
-                  </button>
-                ))}
+              <div className="rounded-2xl border border-clove-900/8 bg-cream-100/50 p-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="ml-2 text-xs font-medium uppercase tracking-wider text-clove-700/70">
+                    Set status
+                  </span>
+                  {STATUSES.map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => quickStatus(s)}
+                      disabled={saving || participant.status === s}
+                      className={cn(
+                        "rounded-full px-3.5 py-1.5 text-xs font-medium transition",
+                        participant.status === s
+                          ? "bg-clove-900 text-cream-50"
+                          : "bg-cream-50 text-clove-700 hover:bg-clove-900 hover:text-cream-50",
+                        saving && "opacity-60",
+                      )}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+                <label className="mt-3 flex items-center gap-2 pl-2 text-xs text-clove-700/80">
+                  <input
+                    type="checkbox"
+                    checked={notify}
+                    onChange={(e) => setNotify(e.target.checked)}
+                    className="h-3.5 w-3.5 accent-terracotta-500"
+                  />
+                  Email the participant about this change (Accepted / Pending / Rejected)
+                </label>
+                {emailNote && (
+                  <div className="mt-2 pl-2 text-xs text-clove-700/70">{emailNote}</div>
+                )}
               </div>
 
               <form onSubmit={handleSave} className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">

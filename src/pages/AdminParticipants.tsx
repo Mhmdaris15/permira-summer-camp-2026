@@ -137,6 +137,12 @@ export function AdminParticipants() {
             >
               ← Knowledge base
             </Link>
+            <Link
+              to="/admin/email"
+              className="rounded-full bg-cream-100 px-4 py-1.5 text-sm font-medium text-clove-700 transition hover:bg-terracotta-500/10 hover:text-terracotta-500"
+            >
+              Send email →
+            </Link>
             <button
               type="button"
               onClick={handleAuthLost}

@@ -27,6 +27,10 @@ services:
       ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-https://summercamp2026.permiraspb.org}
       RATE_LIMIT_GLOBAL: ${RATE_LIMIT_GLOBAL:-300}
       RATE_LIMIT_TIGHT: ${RATE_LIMIT_TIGHT:-10}
+      # Email (Resend) — admin notifications from info@permiraspb.org
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      EMAIL_FROM: ${EMAIL_FROM:-PERMIRA Summer Camp 2026 <info@permiraspb.org>}
+      EMAIL_DRY_RUN: ${EMAIL_DRY_RUN:-}
     volumes:
       - permira-data:/app/server/data
       - permira-uploads:/app/server/uploads
