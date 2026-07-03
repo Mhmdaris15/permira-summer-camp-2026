@@ -292,6 +292,7 @@ export const en = {
       "III Indonesian–Russian Students Summer Camp 2026, hosted in Saint Petersburg — a youth diplomacy programme connecting students from Indonesia, Russia, and ASEAN through culture, cuisine, and environmental stewardship.",
     copyright: "© 2026 PERMIRA St. Petersburg. All rights reserved.",
     script: "selamat makan · приятного аппетита",
+    developedBy: "Developed by",
   },
 
   registration: {
