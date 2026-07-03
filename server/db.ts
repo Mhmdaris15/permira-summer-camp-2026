@@ -28,7 +28,6 @@ DEFINE FIELD IF NOT EXISTS dietary        ON participant TYPE string  DEFAULT ""
 DEFINE FIELD IF NOT EXISTS priorExperience ON participant TYPE string DEFAULT "";
 DEFINE FIELD IF NOT EXISTS motivation     ON participant TYPE string;
 DEFINE FIELD IF NOT EXISTS passportFileId ON participant TYPE option<string>;
-DEFINE FIELD IF NOT EXISTS consentFileId  ON participant TYPE option<string>;
 DEFINE FIELD IF NOT EXISTS status         ON participant TYPE string  DEFAULT "pending"
                                           ASSERT $value INSIDE ["pending", "accepted", "rejected", "waitlist"];
 DEFINE FIELD IF NOT EXISTS notes          ON participant TYPE string  DEFAULT "";

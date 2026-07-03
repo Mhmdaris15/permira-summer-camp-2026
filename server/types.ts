@@ -53,7 +53,6 @@ export type Participant = {
   priorExperience: string;
   motivation: string;
   passportFileId: string | null;
-  consentFileId: string | null;
   status: ParticipantStatus;
   notes: string;
   submittedAt: string;

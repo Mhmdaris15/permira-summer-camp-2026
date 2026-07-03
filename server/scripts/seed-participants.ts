@@ -14,7 +14,7 @@ import { logger } from "../logger.js";
  *
  * Idempotent: skips any sample whose email already exists, so it's safe to
  * re-run. Documents are left null (the detail modal shows "Not provided") —
- * real passports/consent come through the public registration form.
+ * real passport scans come through the public registration form.
  *
  * Run with:  npm run seed:participants
  * Then restart the API so the running server reloads the snapshot.
@@ -29,7 +29,7 @@ type Sample = ParticipantInput & {
 
 // Empty strings (not null): the schema field is option<string>, which rejects
 // SurrealDB NULL. The admin UI treats a falsy file id as "Not provided".
-const base = { passportFileId: "", consentFileId: "", priorExperience: "" };
+const base = { passportFileId: "", priorExperience: "" };
 
 const SAMPLES: Sample[] = [
   {

@@ -50,7 +50,6 @@ export async function createParticipant(input: ParticipantInput): Promise<Partic
        priorExperience: $priorExperience,
        motivation: $motivation,
        passportFileId: $passportFileId,
-       consentFileId: $consentFileId,
        status: "pending",
        notes: "",
        submittedAt: <datetime> $now,
@@ -137,9 +136,8 @@ export async function deleteParticipant(id: string): Promise<boolean> {
   const db = await getDb();
   await db.query(`DELETE type::record("${id}")`);
 
-  // Clean up associated files — best-effort, doesn't block the response.
+  // Clean up the associated file — best-effort, doesn't block the response.
   if (existing.passportFileId) void deleteFile(existing.passportFileId);
-  if (existing.consentFileId) void deleteFile(existing.consentFileId);
 
   await snapshot();
   return true;

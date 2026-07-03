@@ -293,6 +293,8 @@ export const id: Translation = {
     dietary: "Pantangan makanan", dietaryHint: "Alergi, halal, vegetarian, dll. Opsional, tapi membantu kami merencanakan.", dietaryPh: "mis. alergi kacang, halal",
     prior: "Pengalaman program budaya atau internasional sebelumnya", priorHint: "Opsional. Konferensi, pertukaran, kemah bahasa — semua dihitung.", priorPh: "Ceritakan singkat jika ada.",
     motivation: "Mengapa kamu ingin ikut PERMIRA Summer Camp 2026?", motivationHint: "Esai singkat. Kami membaca semuanya — jujur saja.", motivationPh: "Apa yang menarikmu ke kemah ini?",
+    essayNoticeTitle: "Esai adalah bagian terpenting",
+    essayNoticeBody: "Ini sangat menentukan dalam seleksi dan kami membaca setiap esai dengan serius. Tulislah sendiri, dengan kata-katamu — jangan gunakan AI. Jawaban yang tulus dan jujur jauh lebih berkesan daripada yang dipoles.",
     agree: "Dengan mengirim, kamu setuju kami boleh menghubungimu soal kemah.", required: "wajib",
     submit: "Amankan kursiku", submitting: "Mengirim…", cancel: "Batal",
     failed: "Gagal mengirim.",

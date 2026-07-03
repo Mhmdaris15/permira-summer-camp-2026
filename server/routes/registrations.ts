@@ -17,14 +17,11 @@ const STATUSES: ParticipantStatus[] = ["pending", "accepted", "rejected", "waitl
 
 /**
  * Public endpoint: a prospective participant submits their registration
- * with passport + consent file uploads as `multipart/form-data`.
+ * with a passport scan upload as `multipart/form-data`.
  */
 registrationsRouter.post(
   "/",
-  upload.fields([
-    { name: "passport", maxCount: 1 },
-    { name: "consent", maxCount: 1 },
-  ]),
+  upload.fields([{ name: "passport", maxCount: 1 }]),
   async (req, res) => {
     try {
       const body = req.body as Record<string, string>;
@@ -35,14 +32,10 @@ registrationsRouter.post(
         return;
       }
 
-      const files = req.files as
-        | { passport?: Express.Multer.File[]; consent?: Express.Multer.File[] }
-        | undefined;
+      const files = req.files as { passport?: Express.Multer.File[] } | undefined;
       const passport = files?.passport?.[0];
-      const consent = files?.consent?.[0];
 
       if (!passport) throw new Error("Passport file is required.");
-      if (!consent) throw new Error("Signed consent file is required.");
 
       const input: ParticipantInput = {
         fullName: requireString(body.fullName, "fullName", { min: 2, max: 80 }),
@@ -59,17 +52,14 @@ registrationsRouter.post(
         priorExperience: optionalString(body.priorExperience, 600),
         motivation: requireString(body.motivation, "motivation", { min: 40, max: 800 }),
         passportFileId: (await recordFile(passport)).id,
-        consentFileId: (await recordFile(consent)).id,
       };
 
       const created = await createParticipant(input);
       res.status(201).json({ id: created.id });
     } catch (err) {
-      // If validation/DB failed AFTER files were saved, clean them up.
-      const files = req.files as
-        | { passport?: Express.Multer.File[]; consent?: Express.Multer.File[] }
-        | undefined;
-      for (const f of [...(files?.passport ?? []), ...(files?.consent ?? [])]) {
+      // If validation/DB failed AFTER the file was saved, clean it up.
+      const files = req.files as { passport?: Express.Multer.File[] } | undefined;
+      for (const f of files?.passport ?? []) {
         const id = f.filename.replace(/\.[^.]+$/, "");
         void deleteFile(id);
       }

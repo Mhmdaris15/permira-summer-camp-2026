@@ -14,7 +14,6 @@ export type RegistrationData = {
   priorExperience: string;  // optional
   motivation: string;
   passport: File | null;
-  consent: File | null;
   /** Honeypot — must remain empty. If filled, the request is silently dropped. */
   website: string;
 };
@@ -34,7 +33,6 @@ export const emptyRegistration: RegistrationData = {
   priorExperience: "",
   motivation: "",
   passport: null,
-  consent: null,
   website: "",
 };
 

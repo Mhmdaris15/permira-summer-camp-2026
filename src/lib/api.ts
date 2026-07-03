@@ -6,8 +6,8 @@ export type SubmitResult =
   | { ok: false; error: string };
 
 /**
- * Submits a registration as multipart/form-data to the backend. Files
- * are sent under `passport` and `consent`; everything else is plain text.
+ * Submits a registration as multipart/form-data to the backend. The passport
+ * scan is sent under `passport`; everything else is plain text.
  * Honeypot is checked client-side for instant drop, and again on the server.
  */
 export async function submitRegistration(data: RegistrationData): Promise<SubmitResult> {
@@ -15,14 +15,14 @@ export async function submitRegistration(data: RegistrationData): Promise<Submit
     // Honeypot tripped — pretend success.
     return { ok: true, id: "ok" };
   }
-  if (!data.passport || !data.consent) {
-    return { ok: false, error: "Passport and consent files are required." };
+  if (!data.passport) {
+    return { ok: false, error: "Passport scan is required." };
   }
 
   const fd = new FormData();
   for (const [key, value] of Object.entries(data)) {
     if (value === null || value === undefined) continue;
-    if (key === "passport" || key === "consent") {
+    if (key === "passport") {
       fd.append(key, value as File);
     } else {
       fd.append(key, String(value));

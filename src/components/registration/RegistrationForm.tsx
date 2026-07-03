@@ -191,34 +191,19 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
         title={t("registration.sectionDocs")}
         subtitle={t("registration.sectionDocsSub")}
       >
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          <FileField
-            label={t("registration.passport")}
-            required
-            accept="image/jpeg,image/png,image/webp,application/pdf"
-            value={data.passport}
-            onChange={(f) => {
-              setField("passport", f);
-              markTouched("passport");
-            }}
-            error={errors.passport}
-            showError={showErr("passport")}
-            hint={t("registration.passportHint")}
-          />
-          <FileField
-            label={t("registration.consent")}
-            required
-            accept="image/jpeg,image/png,image/webp,application/pdf"
-            value={data.consent}
-            onChange={(f) => {
-              setField("consent", f);
-              markTouched("consent");
-            }}
-            error={errors.consent}
-            showError={showErr("consent")}
-            hint={t("registration.consentHint")}
-          />
-        </div>
+        <FileField
+          label={t("registration.passport")}
+          required
+          accept="image/jpeg,image/png,image/webp,application/pdf"
+          value={data.passport}
+          onChange={(f) => {
+            setField("passport", f);
+            markTouched("passport");
+          }}
+          error={errors.passport}
+          showError={showErr("passport")}
+          hint={t("registration.passportHint")}
+        />
       </Section>
 
       <Section
@@ -250,6 +235,24 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             count={data.priorExperience.length}
             max={LIMITS.priorExperience}
           />
+          {/* Essay is the heaviest factor in selection — call it out clearly. */}
+          <div className="rounded-2xl border-2 border-terracotta-500/40 bg-terracotta-500/5 p-4">
+            <div className="flex items-start gap-3">
+              <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-terracotta-500 text-cream-50">
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" />
+                </svg>
+              </span>
+              <div>
+                <p className="font-display text-base font-medium text-clove-900">
+                  {t("registration.essayNoticeTitle")}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-clove-700/85">
+                  {t("registration.essayNoticeBody")}
+                </p>
+              </div>
+            </div>
+          </div>
           <TextAreaField
             label={t("registration.motivation")}
             required

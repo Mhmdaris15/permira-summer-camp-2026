@@ -46,13 +46,11 @@ export function validate(data: RegistrationData): FieldErrors {
 
   const passport = validateFile(data.passport, "passport");
   if (passport) errors.passport = passport;
-  const consent = validateFile(data.consent, "consent");
-  if (consent) errors.consent = consent;
 
   return errors;
 }
 
-function validateFile(file: File | null, which: "passport" | "consent"): string | undefined {
+function validateFile(file: File | null, which: "passport"): string | undefined {
   if (!file) return `validation.${which}Req`;
   if (file.size > FILE_LIMITS.maxBytes) return `validation.${which}Big`;
   if (!FILE_LIMITS.acceptedMime.includes(file.type as typeof FILE_LIMITS.acceptedMime[number]))

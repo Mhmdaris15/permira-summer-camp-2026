@@ -39,7 +39,7 @@ export function ParticipantDetail({
   const [draft, setDraft] = useState<ParticipantPatch>({});
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [docs, setDocs] = useState<{ passport?: string; consent?: string }>({});
+  const [docs, setDocs] = useState<{ passport?: string }>({});
   const [docError, setDocError] = useState<string | null>(null);
   const [notify, setNotify] = useState(true);
   const [emailNote, setEmailNote] = useState<string | null>(null);
@@ -51,24 +51,18 @@ export function ParticipantDetail({
     setDocs({});
     if (!participant) return;
 
-    // Eagerly load both documents as authenticated blob URLs.
+    // Eagerly load the passport scan as an authenticated blob URL.
     let cancelled = false;
     void (async () => {
       try {
-        const [passport, consent] = await Promise.all([
-          participant.passportFileId
-            ? fetchFileAsBlobUrl(participant.passportFileId)
-            : Promise.resolve(undefined),
-          participant.consentFileId
-            ? fetchFileAsBlobUrl(participant.consentFileId)
-            : Promise.resolve(undefined),
-        ]);
+        const passport = participant.passportFileId
+          ? await fetchFileAsBlobUrl(participant.passportFileId)
+          : undefined;
         if (cancelled) {
           if (passport) URL.revokeObjectURL(passport);
-          if (consent) URL.revokeObjectURL(consent);
           return;
         }
-        setDocs({ passport, consent });
+        setDocs({ passport });
       } catch (err) {
         if (!cancelled) setDocError(err instanceof Error ? err.message : "Failed to load documents.");
       }
@@ -82,9 +76,8 @@ export function ParticipantDetail({
   useEffect(
     () => () => {
       if (docs.passport) URL.revokeObjectURL(docs.passport);
-      if (docs.consent) URL.revokeObjectURL(docs.consent);
     },
-    [docs.passport, docs.consent],
+    [docs.passport],
   );
 
   if (!participant) return null;
@@ -300,9 +293,8 @@ export function ParticipantDetail({
                 {docError && (
                   <p className="mt-2 text-sm text-terracotta-500">{docError}</p>
                 )}
-                <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div className="mt-4 grid grid-cols-1 gap-4">
                   <DocCard label="Passport" url={docs.passport} fileId={participant.passportFileId} />
-                  <DocCard label="Signed consent" url={docs.consent} fileId={participant.consentFileId} />
                 </div>
               </section>
 

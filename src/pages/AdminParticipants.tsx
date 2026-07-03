@@ -320,7 +320,7 @@ export function AdminParticipants() {
         title="Delete this participant?"
         body={
           pendingDelete
-            ? `${pendingDelete.fullName} will be permanently removed, including their uploaded passport and consent files. This can't be undone.`
+            ? `${pendingDelete.fullName} will be permanently removed, including their uploaded passport scan. This can't be undone.`
             : ""
         }
         confirmLabel="Delete permanently"
