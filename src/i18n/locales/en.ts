@@ -3,6 +3,7 @@ export const en = {
 
   nav: {
     journey: "Programme",
+    opening: "Opening",
     cuisine: "Cuisine",
     exchange: "Collaboration",
     stewardship: "Stewardship",
@@ -40,11 +41,11 @@ export const en = {
       d1: {
         label: "Day One",
         verb: "Arrive & Open",
-        headline: "Welcome, set up, and an official opening.",
-        body: "Participants arrive, build camp together, and gather for the official opening ceremony — national anthems, welcome remarks, and a traditional tumpeng — followed by a first shared meal and bonding circle.",
-        a1t: "Arrival & Briefing", a1d: "Check-in, group assignments, and safety orientation.",
-        a2t: "Official Opening Ceremony", a2d: "Anthems of Indonesia & Russia, welcome remarks, and tumpeng.",
-        a3t: "Bonding Circle", a3d: "Small-group introductions and getting to know one another.",
+        headline: "Meet, cross to the island, and open the camp.",
+        body: "Participants gather at Ozerki metro in the morning and travel together by bus and boat to Kubenskiy Island. After settling in, the official opening ceremony begins — the anthems of Indonesia and Russia, remarks from the Ambassador and regional officials, and the cutting of a traditional tumpeng — followed by an island excursion, a nature master-class, and an evening around the campfire.",
+        a1t: "Meet & Transfer", a1d: "Gather at Ozerki metro (09:00 MSK), then bus and boat to the island — please don't be late.",
+        a2t: "Official Opening Ceremony", a2d: "Anthems, remarks from the Ambassador and officials, and a traditional tumpeng — broadcast live.",
+        a3t: "Campfire Gathering", a3d: "Teams gather around the fire for songs and stories before lights-out.",
       },
       d2: {
         label: "Day Two",
@@ -164,8 +165,9 @@ export const en = {
     intro:
       "Three nights on Kubenskiy Island, where a sandbar reaches into the lake near Saint Petersburg. You arrive by boat; everything else is a short walk along the shore.",
     place: "Kubenskiy Island",
-    placeMeta: "Lake camp · near Saint Petersburg",
+    placeMeta: "Kivipark nature reserve · Leningrad Oblast, near St. Petersburg",
     arriveNote: "Reachable only by boat — the pier is your front door.",
+    gettingThere: "Getting there: gather at Ozerki metro at 09:00 MSK, then travel together by bus to Chulkovo and by boat to the island. Please don't be late.",
     overviewTitle: "The lay of the land",
     overviewBody: "Pick a marker to explore each corner of camp — where you land, cook, gather, and sleep.",
     legendTitle: "Zones",
@@ -231,6 +233,29 @@ export const en = {
     },
   },
 
+  ceremony: {
+    eyebrow: "Opening ceremony",
+    heading: "The camp opens",
+    headingEm: "in two languages.",
+    intro:
+      "On 17 July the official opening is hosted bilingually by Indonesian and Russian presenters — the national anthems, remarks from the Ambassador and regional officials, and the cutting of a traditional tumpeng.",
+    dateTime: "17 July 2026 · 13:30–14:35 MSK",
+    watchLive: "Watch the live broadcast",
+    livestreamNote: "Streamed live at summercamp2026.permiraspb.org",
+    items: {
+      anthems: "National anthems of Indonesia & Russia",
+      ambassador: "Ambassador of the Republic of Indonesia to the Russian Federation and the Republic of Belarus",
+      consul: "Honorary Consul of the Republic of Indonesia in St. Petersburg & Leningrad Oblast",
+      stulov: "Chairman, Committee on Natural Resources of Leningrad Oblast",
+      mikhalchenko: "Chairman, Committee on External Relations of Leningrad Oblast",
+      siluyanov: "Director, Directorate of Specially Protected Natural Areas of Leningrad Oblast",
+      kalyagina: "Deputy Chairman, Leningrad Branch, All-Russian Society for Nature Conservation",
+      hidayatullah: "Chairman, PERMIRA Central Committee",
+      shaleha: "Chairman, PERMIRA St. Petersburg",
+      tumpeng: "Tumpeng cutting & group photo",
+    },
+  },
+
   memories: {
     eyebrow: "Memories",
     heading1: "Moments that",
@@ -249,7 +274,7 @@ export const en = {
     cta: "Reserve my seat",
     or: "or write to",
     datesLabel: "Dates", datesValue: "July 17–19, 2026",
-    locLabel: "Location", locValue: "Saint Petersburg",
+    locLabel: "Location", locValue: "Kubenskiy Island · Leningrad Oblast",
     forLabel: "For", forValue: "Students · 18–35",
   },
 

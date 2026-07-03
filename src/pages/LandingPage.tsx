@@ -2,6 +2,7 @@ import { useScrollReveal } from "../lib/useScrollReveal";
 import { NavHeader } from "../components/NavHeader";
 import { Hero } from "../components/Hero";
 import { ExperienceJourney } from "../components/ExperienceJourney";
+import { OpeningCeremony } from "../components/OpeningCeremony";
 import { CulinaryHighlights } from "../components/CulinaryHighlights";
 import { CulturalExchange } from "../components/CulturalExchange";
 import { Stewardship } from "../components/Stewardship";
@@ -19,6 +20,7 @@ export function LandingPage() {
       <main>
         <Hero />
         <ExperienceJourney />
+        <OpeningCeremony />
         <CulinaryHighlights />
         <CulturalExchange />
         <Stewardship />

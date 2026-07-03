@@ -414,6 +414,14 @@ export function CampMap() {
                     <p className="text-xs leading-relaxed text-cream-100/75">{t("location.arriveNote")}</p>
                   </div>
 
+                  <div className="mt-3 flex items-start gap-2.5 rounded-2xl border border-saffron/20 bg-saffron/5 p-3.5">
+                    <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 shrink-0 text-saffron" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z" />
+                      <circle cx="12" cy="9" r="2.5" />
+                    </svg>
+                    <p className="text-xs leading-relaxed text-cream-100/80">{t("location.gettingThere")}</p>
+                  </div>
+
                   <p className="mt-5 text-sm leading-relaxed text-cream-100/70">
                     {t("location.overviewBody")}
                   </p>

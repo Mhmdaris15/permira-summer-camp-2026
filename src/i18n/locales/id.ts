@@ -5,6 +5,7 @@ export const id: Translation = {
 
   nav: {
     journey: "Program",
+    opening: "Pembukaan",
     cuisine: "Kuliner",
     exchange: "Kolaborasi",
     stewardship: "Keberlanjutan",
@@ -42,11 +43,11 @@ export const id: Translation = {
       d1: {
         label: "Hari Pertama",
         verb: "Tiba & Buka",
-        headline: "Penyambutan, persiapan, dan pembukaan resmi.",
-        body: "Peserta tiba, membangun kemah bersama, dan berkumpul untuk upacara pembukaan resmi — lagu kebangsaan, sambutan, dan tumpeng — dilanjutkan santap bersama pertama dan lingkaran keakraban.",
-        a1t: "Kedatangan & Briefing", a1d: "Registrasi, pembagian kelompok, dan arahan keselamatan.",
-        a2t: "Upacara Pembukaan Resmi", a2d: "Lagu kebangsaan Indonesia & Rusia, sambutan, dan tumpeng.",
-        a3t: "Lingkaran Keakraban", a3d: "Perkenalan dalam kelompok kecil.",
+        headline: "Berkumpul, menyeberang ke pulau, dan membuka kemah.",
+        body: "Pagi hari peserta berkumpul di metro Ozerki dan bersama-sama naik bus lalu perahu menuju Pulau Kubenskiy. Setelah menempati kemah, upacara pembukaan resmi dimulai — lagu kebangsaan Indonesia dan Rusia, sambutan dari Duta Besar dan pejabat daerah, serta pemotongan tumpeng — dilanjutkan tur pulau, kelas dari bahan alam, dan malam di sekitar api unggun.",
+        a1t: "Berkumpul & Transfer", a1d: "Berkumpul di metro Ozerki (09:00 MSK), lalu bus dan perahu ke pulau — mohon jangan terlambat.",
+        a2t: "Upacara Pembukaan Resmi", a2d: "Lagu kebangsaan, sambutan Duta Besar dan pejabat, serta tumpeng — disiarkan langsung.",
+        a3t: "Malam Api Unggun", a3d: "Tim berkumpul di sekitar api untuk nyanyian dan cerita sebelum istirahat.",
       },
       d2: {
         label: "Hari Kedua",
@@ -166,8 +167,9 @@ export const id: Translation = {
     intro:
       "Tiga malam di Pulau Kubenskiy, tempat gosong pasir menjorok ke danau dekat Saint Petersburg. Kamu tiba dengan perahu — sisanya hanya berjalan kaki menyusuri pantai.",
     place: "Pulau Kubenskiy",
-    placeMeta: "Kemah danau · dekat Saint Petersburg",
+    placeMeta: "Cagar alam Kivipark · Oblast Leningrad, dekat St. Petersburg",
     arriveNote: "Hanya bisa dicapai dengan perahu — dermaga adalah pintu depanmu.",
+    gettingThere: "Cara ke sana: berkumpul di metro Ozerki pukul 09:00 MSK, lalu bersama naik bus ke Chulkovo dan perahu ke pulau. Mohon jangan terlambat.",
     overviewTitle: "Tata letak kawasan",
     overviewBody: "Pilih penanda untuk menjelajahi setiap sudut kemah — tempat mendarat, memasak, berkumpul, dan tidur.",
     legendTitle: "Zona",
@@ -233,6 +235,29 @@ export const id: Translation = {
     },
   },
 
+  ceremony: {
+    eyebrow: "Upacara pembukaan",
+    heading: "Kemah dibuka",
+    headingEm: "dalam dua bahasa.",
+    intro:
+      "Pada 17 Juli pembukaan resmi dipandu dua pembawa acara — dari Indonesia dan Rusia: lagu kebangsaan, sambutan dari Duta Besar dan pejabat daerah, serta pemotongan tumpeng tradisional.",
+    dateTime: "17 Juli 2026 · 13:30–14:35 MSK",
+    watchLive: "Tonton siaran langsung",
+    livestreamNote: "Disiarkan langsung di summercamp2026.permiraspb.org",
+    items: {
+      anthems: "Lagu kebangsaan Indonesia & Rusia",
+      ambassador: "Duta Besar Republik Indonesia untuk Federasi Rusia dan Republik Belarus",
+      consul: "Konsul Kehormatan Republik Indonesia di St. Petersburg & Oblast Leningrad",
+      stulov: "Ketua Komite Sumber Daya Alam Oblast Leningrad",
+      mikhalchenko: "Ketua Komite Hubungan Luar Negeri Oblast Leningrad",
+      siluyanov: "Direktur Direktorat Kawasan Alam Dilindungi Khusus Oblast Leningrad",
+      kalyagina: "Wakil Ketua Cabang Leningrad, Perhimpunan Konservasi Alam Seluruh Rusia",
+      hidayatullah: "Ketua Komite Pusat PERMIRA",
+      shaleha: "Ketua PERMIRA St. Petersburg",
+      tumpeng: "Pemotongan tumpeng & foto bersama",
+    },
+  },
+
   memories: {
     eyebrow: "Kenangan",
     heading1: "Momen yang",
@@ -251,7 +276,7 @@ export const id: Translation = {
     cta: "Amankan kursiku",
     or: "atau tulis ke",
     datesLabel: "Tanggal", datesValue: "17–19 Juli 2026",
-    locLabel: "Lokasi", locValue: "Saint Petersburg",
+    locLabel: "Lokasi", locValue: "Pulau Kubenskiy · Oblast Leningrad",
     forLabel: "Untuk", forValue: "Mahasiswa · 18–35",
   },
 

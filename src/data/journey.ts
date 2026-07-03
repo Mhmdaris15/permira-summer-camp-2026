@@ -30,9 +30,9 @@ export const journeyDays: JourneyDay[] = [
     body:
       "Participants arrive, build camp together, and gather for the official opening ceremony — national anthems, welcome remarks, and a traditional tumpeng — followed by a first shared meal and bonding circle.",
     activities: [
-      { time: "16:00", title: "Arrival & Briefing", detail: "Check-in, group assignments, and safety orientation." },
-      { time: "19:00", title: "Official Opening Ceremony", detail: "Anthems of Indonesia & Russia, welcome remarks, and tumpeng." },
-      { time: "21:30", title: "Bonding Circle", detail: "Small-group introductions and getting to know one another." },
+      { time: "09:00", title: "Meet & Transfer", detail: "Gather at Ozerki metro, then travel by bus and boat to the island." },
+      { time: "13:30", title: "Official Opening Ceremony", detail: "Anthems of Indonesia & Russia, remarks from the Ambassador and officials, and a traditional tumpeng." },
+      { time: "21:00", title: "Campfire Gathering", detail: "Teams gather around the fire for songs and stories." },
     ],
     accent: "turmeric",
   },

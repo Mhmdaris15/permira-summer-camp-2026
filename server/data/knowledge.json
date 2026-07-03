@@ -3,7 +3,7 @@
     {
       "id": "overview",
       "title": "Event Overview",
-      "body": "PERMIRA Summer Camp 2026 (PERMIRA Camp 3.0 — III Indonesian–Russian Students Summer Camp) is a three-day youth diplomacy and cultural-exchange programme organised by PERMIRA St. Petersburg, the Indonesian Students' Association in Russia. It is held as part of the celebration of 76 years of Indonesia–Russia diplomatic relations and the Saint Petersburg Year of Culture. Theme: \"Taste of Nusantara: The Eco-Culinary Bridge from ASEAN to Russia\". Dates: 17–19 July 2026. Location: a camp site in Saint Petersburg / Leningrad Oblast (exact venue announced closer to the event)."
+      "body": "PERMIRA Summer Camp 2026 (PERMIRA Camp 3.0 — III Indonesian–Russian Students Summer Camp) is a three-day youth diplomacy and cultural-exchange programme organised by PERMIRA St. Petersburg, the Indonesian Students' Association in Russia. It is held as part of the celebration of 76 years of Indonesia–Russia diplomatic relations and the Saint Petersburg Year of Culture. Theme: \"Taste of Nusantara: The Eco-Culinary Bridge from ASEAN to Russia\". Dates: 17–19 July 2026. Location: Kubenskiy Island in the Kivipark specially-protected nature reserve (ООПТ), Leningrad Oblast, near Saint Petersburg — reached by boat."
     },
     {
       "id": "purpose",
@@ -16,14 +16,29 @@
       "body": "Capacity is 35 students: 15 from Indonesia, 10 from Russia, and 10 from ASEAN countries. Participants are active university students in Saint Petersburg, aged 18–35, with basic conversational English. Indonesian participants must also be registered in the PERMIRA St. Petersburg database and have completed Indonesian citizen self-reporting (lapor diri)."
     },
     {
+      "id": "logistics",
+      "title": "Getting there & meeting point",
+      "body": "On Day 1 (17 July), participants gather at Ozerki metro station in Saint Petersburg at 09:00 MSK, where volunteers will meet the group. Transfer to the camp runs 10:00–13:00 MSK: first by bus to the village of Chulkovo in Leningrad Oblast (10:00–12:30), then by boat across to Kubenskiy Island in the Kivipark specially-protected nature reserve (12:30–13:00). Please arrive on time — the group travels together and latecomers cannot be accommodated. On arrival, each participant is shown to a tent labelled with their name in Russian and Indonesian, followed by a safety briefing in Russian with Indonesian and English translation."
+    },
+    {
       "id": "schedule",
       "title": "Programme",
-      "body": "Day 1 (17 July) — Arrive & Open: arrival and registration, travel to the site, camp set-up, official opening ceremony (national anthems, welcome remarks, tumpeng), welcome dinner, and a group bonding circle.\nDay 2 (18 July) — Cook & Connect: morning activity and reflection, Culinary Masterclass & Cooking Session I, fun session with traditional games, Culinary Masterclass & Cooking Session II, dinner, and a Cultural Night with a campfire.\nDay 3 (19 July) — Reflect & Farewell: morning reflection and group photo, camp break-down, awarding and appreciation session, and the closing ceremony.\nThe detailed minute-by-minute schedule is finalised by the organising committee closer to the event."
+      "body": "Day 1 (17 July) — Arrive & Open: 09:00 gather at Ozerki metro; 10:00–13:00 transfer by bus (to Chulkovo) and boat (to the island); 13:00 tent accommodation and safety briefing; 13:30–14:35 official bilingual opening ceremony (anthems, VIP remarks, and tumpeng cutting — streamed live); 14:35 lunch; 15:30 guided island excursion; 17:00 nature master-class from natural materials; 19:00 free time and the 'Catch the Moment' team game; 20:00 dinner; 21:00–23:00 campfire gathering by team; 23:00 lights out. (All times MSK.)\nDay 2 (18 July) — Cook & Connect: morning activity and reflection, Culinary Masterclass & Cooking Session I, fun session with traditional games, Culinary Masterclass & Cooking Session II, dinner, and a Cultural Night with a campfire.\nDay 3 (19 July) — Reflect & Farewell: morning reflection and group photo, camp break-down, awarding and appreciation session, and the closing ceremony.\nThe detailed Day 2–3 timings are finalised by the organising committee closer to the event."
+    },
+    {
+      "id": "opening",
+      "title": "Opening ceremony",
+      "body": "The official opening runs 13:30–14:35 MSK on 17 July, hosted bilingually by Indonesian and Russian presenters and broadcast live at summercamp2026.permiraspb.org. Programme: the national anthems of Indonesia and Russia; remarks from H.E. José Antonio Morató Tavares (Ambassador of the Republic of Indonesia to the Russian Federation and the Republic of Belarus), Honorary Consul Valery Radchenko, and Leningrad Oblast officials (the Committee on Natural Resources, the Committee on External Relations, the Directorate of Specially Protected Natural Areas, and the Leningrad branch of the All-Russian Society for Nature Conservation), together with the chairs of the PERMIRA Central Committee and PERMIRA St. Petersburg; and the cutting of a traditional tumpeng followed by a group photo."
     },
     {
       "id": "cuisine",
       "title": "Cuisine",
       "body": "Cooking is the central shared activity. In the Culinary Masterclass & Cooking Sessions, mixed teams of Indonesian, Russian, and ASEAN students cook Indonesian dishes together and learn the ingredients, techniques, and cultural stories behind them. Example dishes that illustrate Indonesian culinary heritage include Sate Madura, Ayam Lengkuas, and Soto Ayam. Actual dishes may vary depending on programme arrangements and availability."
+    },
+    {
+      "id": "meals",
+      "title": "Meals",
+      "body": "All meals are provided during the camp. On Day 1, lunch is rice, egg with tomato, and chicken sausages; dinner is grilled chicken with rice and a vegetable mix. Menus may vary. In line with the camp's environmental ethic, participants are asked to bring their own reusable cutlery and drink container and to take efficient portions to reduce food waste."
     },
     {
       "id": "sustainability",
@@ -42,6 +57,21 @@
     }
   ],
   "faqs": [
+    {
+      "id": "faq-meet",
+      "question": "Where and when do we meet?",
+      "answer": "On 17 July, gather at Ozerki metro station in Saint Petersburg at 09:00 MSK. Volunteers will meet you there, then the group transfers together by bus to Chulkovo and by boat to Kubenskiy Island. Please be on time — the group leaves together."
+    },
+    {
+      "id": "faq-where",
+      "question": "Where is the camp?",
+      "answer": "On Kubenskiy Island in the Kivipark specially-protected nature reserve, Leningrad Oblast, near Saint Petersburg. The island is reached by boat from the village of Chulkovo."
+    },
+    {
+      "id": "faq-live",
+      "question": "Can I watch the opening ceremony online?",
+      "answer": "Yes. The opening ceremony on 17 July (13:30–14:35 MSK) is streamed live at summercamp2026.permiraspb.org."
+    },
     {
       "id": "faq-cost",
       "question": "How much does it cost?",
@@ -72,5 +102,5 @@
     "email": "info@permiraspb.org",
     "telegram": "@permiraspb"
   },
-  "updatedAt": "2026-06-14T00:00:00.000Z"
+  "updatedAt": "2026-07-04T00:00:00.000Z"
 }

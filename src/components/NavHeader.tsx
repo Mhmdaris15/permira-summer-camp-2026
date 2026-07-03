@@ -6,6 +6,7 @@ import PermiraLogo from "../assets/organization/permira-logo-big.png";
 
 const linkKeys = [
   { href: "#journey", key: "nav.journey" },
+  { href: "#opening", key: "nav.opening" },
   { href: "#cuisine", key: "nav.cuisine" },
   { href: "#exchange", key: "nav.exchange" },
   { href: "#memories", key: "nav.memories" },
