@@ -15,6 +15,7 @@ import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { IslandGallery } from "./IslandGallery";
 import {
   CAMP_ZONES,
   CAMP_TRAILS,
@@ -448,6 +449,9 @@ export function CampMap() {
             </AnimatePresence>
           </div>
         </div>
+
+        {/* Real photos of the island */}
+        <IslandGallery />
 
         {/* --- Secondary actions --- */}
         <div className="reveal mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">

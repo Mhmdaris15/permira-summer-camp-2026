@@ -245,7 +245,7 @@ Kegiatan ini juga menjadi ruang bagi generasi muda untuk mengangkat kuliner seba
 bagian dari gaya hidup modern sekaligus sarana diplomasi internasional.
 
 ## 5. WAKTU, TEMPAT DAN BAHASA KEGIATAN
-Kegiatan akan diselenggarakan pada 17–19 Juli 2026 di salah satu lokasi camp di
+Kegiatan akan diselenggarakan pada 19–21 Juli 2026 di salah satu lokasi camp di
 wilayah Kota Saint Petersburg dan Oblast Leningrad, dengan  kapasitas 35 peserta.
 Permainan akan dilaksanakan di lokasi yang dipilih berdasarkan urutan prioritas sebagai berikut:
 ## 1. Ladozhskoye Ozero Beach,

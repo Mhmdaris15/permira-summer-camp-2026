@@ -10,6 +10,7 @@ import eventLogo from "../assets/organization/summercamp2026-logo.png";
 import permiraLogo from "../assets/organization/permira-logo-small.png";
 import kbriLogo from "../assets/organization/kbri-moskow.png";
 import ecologyLogo from "../assets/organization/ecology-committe-spb.svg";
+import natureSocietyLogo from "../assets/organization/logo-organisasi-masyarakat-lingkungan-hidup.jpg";
 import externalRelationsLogo from "../assets/organization/Committee for External Relations of Saint-Petersburg Logo.png";
 import aseanLogo from "../assets/organization/asean-logo.svg";
 import flagIndonesia from "../assets/organization/Flag_of_Indonesia.png";
@@ -74,6 +75,11 @@ export const partners: Partner[] = [
   {
     name: "Committee for External Relations of Saint Petersburg",
     logo: externalRelationsLogo,
+    tier: "collaborator",
+  },
+  {
+    name: "All-Russian Society for Nature Conservation — Leningrad Branch",
+    logo: natureSocietyLogo,
     tier: "collaborator",
   },
   {

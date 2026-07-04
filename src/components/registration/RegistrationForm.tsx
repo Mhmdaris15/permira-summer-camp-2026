@@ -138,8 +138,6 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             options={[
               { value: "Female", label: t("registration.female") },
               { value: "Male", label: t("registration.male") },
-              { value: "Non-binary", label: t("registration.nonbinary") },
-              { value: "Prefer not to say", label: t("registration.prefer") },
             ]}
             error={errors.gender}
             showError={showErr("gender")}

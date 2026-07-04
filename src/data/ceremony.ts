@@ -1,5 +1,5 @@
 /**
- * Opening ceremony programme (Day 1, 17 July 2026 · 13:30–14:35 MSK).
+ * Opening ceremony programme (Day 1, 19 July 2026 · 13:30–14:35 MSK).
  *
  * Structure only — names are proper nouns kept verbatim; roles and the
  * ceremony chrome are translated in the locales under `ceremony.*`.

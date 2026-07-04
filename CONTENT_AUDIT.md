@@ -16,7 +16,7 @@ committee before public launch.
 | ---- | ----- |
 | Official name | PERMIRA Summer Camp 3.0 — III Indonesian–Russian Students Summer Camp 2026 |
 | Theme | "Taste of Nusantara: The Eco-Culinary Bridge from ASEAN to Russia" |
-| Dates | 17–19 July 2026 |
+| Dates | 19–21 July 2026 |
 | Location | Camp site in Saint Petersburg / Leningrad Oblast (venue TBC) |
 | Capacity | 35 students — 15 Indonesia · 10 Russia · 10 ASEAN |
 | Ages | 18–35, active university students in Saint Petersburg |

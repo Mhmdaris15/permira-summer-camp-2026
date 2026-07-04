@@ -1,5 +1,5 @@
 export type Nationality = "Indonesia" | "Russia";
-export type Gender = "Female" | "Male" | "Non-binary" | "Prefer not to say";
+export type Gender = "Female" | "Male";
 
 export type RegistrationData = {
   fullName: string;

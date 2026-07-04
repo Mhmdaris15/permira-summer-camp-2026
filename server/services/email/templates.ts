@@ -36,7 +36,7 @@ const SERIF = "Georgia, 'Times New Roman', serif";
 const SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
 const CONTACT_EMAIL = "info@permiraspb.org";
-const EVENT_LINE = "17–19 July 2026 · Kubenskiy Island, Saint Petersburg";
+const EVENT_LINE = "19–21 July 2026 · Kubenskiy Island, Saint Petersburg";
 
 // --- HTML helpers ---
 

@@ -25,7 +25,7 @@ export const journeyDays: JourneyDay[] = [
     index: 1,
     label: "Day One",
     verb: "Arrive & Open",
-    date: "July 17, 2026",
+    date: "July 19, 2026",
     headline: "Welcome, set up, and an official opening.",
     body:
       "Participants arrive, build camp together, and gather for the official opening ceremony — national anthems, welcome remarks, and a traditional tumpeng — followed by a first shared meal and bonding circle.",
@@ -40,7 +40,7 @@ export const journeyDays: JourneyDay[] = [
     index: 2,
     label: "Day Two",
     verb: "Cook & Connect",
-    date: "July 18, 2026",
+    date: "July 20, 2026",
     headline: "Cook together, play together.",
     body:
       "The heart of the camp: two Culinary Masterclass & Cooking Sessions where mixed Indonesian, Russian, and ASEAN teams prepare Indonesian dishes, a fun session of traditional games, and an evening Cultural Night around the campfire.",
@@ -55,7 +55,7 @@ export const journeyDays: JourneyDay[] = [
     index: 3,
     label: "Day Three",
     verb: "Reflect & Farewell",
-    date: "July 19, 2026",
+    date: "July 21, 2026",
     headline: "Reflect, celebrate, and head home.",
     body:
       "A morning reflection, a collective camp break-down, and an awarding session recognising teamwork and spirit — closing a weekend of friendship between Indonesian, Russian, and ASEAN students.",
