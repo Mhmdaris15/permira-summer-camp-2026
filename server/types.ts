@@ -44,7 +44,6 @@ export type Participant = {
   fullName: string;
   nationality: "Indonesia" | "Russia";
   university: string;
-  age: number;
   gender: string;
   email: string;
   phone: string;
@@ -53,6 +52,7 @@ export type Participant = {
   priorExperience: string;
   motivation: string;
   passportFileId: string | null;
+  studentCardFileId: string | null;
   status: ParticipantStatus;
   notes: string;
   submittedAt: string;
@@ -70,7 +70,6 @@ export type ParticipantPatch = Partial<
     | "fullName"
     | "nationality"
     | "university"
-    | "age"
     | "gender"
     | "email"
     | "phone"

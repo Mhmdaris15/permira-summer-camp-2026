@@ -29,7 +29,7 @@ type Sample = ParticipantInput & {
 
 // Empty strings (not null): the schema field is option<string>, which rejects
 // SurrealDB NULL. The admin UI treats a falsy file id as "Not provided".
-const base = { passportFileId: "", priorExperience: "" };
+const base = { passportFileId: "", studentCardFileId: "", priorExperience: "" };
 
 const SAMPLES: Sample[] = [
   {
@@ -37,7 +37,6 @@ const SAMPLES: Sample[] = [
     fullName: "Anya Petrova",
     nationality: "Russia",
     university: "Saint Petersburg State University",
-    age: 21,
     gender: "Female",
     email: "anya.petrova@spbu.example",
     phone: "+7 921 555 0101",
@@ -53,7 +52,6 @@ const SAMPLES: Sample[] = [
     fullName: "Budi Santoso",
     nationality: "Indonesia",
     university: "Universitas Indonesia",
-    age: 22,
     gender: "Male",
     email: "budi.santoso@ui.example",
     phone: "+62 812 3456 7890",
@@ -68,7 +66,6 @@ const SAMPLES: Sample[] = [
     fullName: "Dmitri Volkov",
     nationality: "Russia",
     university: "ITMO University",
-    age: 24,
     gender: "Male",
     email: "d.volkov@itmo.example",
     phone: "+7 911 555 0202",
@@ -83,7 +80,6 @@ const SAMPLES: Sample[] = [
     fullName: "Siti Rahmawati",
     nationality: "Indonesia",
     university: "Institut Teknologi Bandung",
-    age: 20,
     gender: "Female",
     email: "siti.r@itb.example",
     phone: "+62 813 2222 1111",
@@ -98,7 +94,6 @@ const SAMPLES: Sample[] = [
     fullName: "Ekaterina Smirnova",
     nationality: "Russia",
     university: "Higher School of Economics",
-    age: 23,
     gender: "Female",
     email: "e.smirnova@hse.example",
     phone: "+7 916 555 0303",
@@ -114,7 +109,6 @@ const SAMPLES: Sample[] = [
     fullName: "Reza Pratama",
     nationality: "Indonesia",
     university: "Universitas Gadjah Mada",
-    age: 25,
     gender: "Male",
     email: "reza.pratama@ugm.example",
     phone: "+62 811 9988 7766",
@@ -129,7 +123,6 @@ const SAMPLES: Sample[] = [
     fullName: "Olga Kuznetsova",
     nationality: "Russia",
     university: "Peter the Great St. Petersburg Polytechnic",
-    age: 19,
     gender: "Female",
     email: "olga.k@spbpu.example",
     phone: "+7 921 555 0404",
@@ -144,7 +137,6 @@ const SAMPLES: Sample[] = [
     fullName: "Wayan Adi",
     nationality: "Indonesia",
     university: "Universitas Udayana",
-    age: 27,
     gender: "Male",
     email: "wayan.adi@unud.example",
     phone: "+62 819 4455 6677",
@@ -159,7 +151,6 @@ const SAMPLES: Sample[] = [
     fullName: "Mikhail Sokolov",
     nationality: "Russia",
     university: "Saint Petersburg State University",
-    age: 28,
     gender: "Male",
     email: "m.sokolov@spbu.example",
     phone: "+7 905 555 0505",
@@ -168,14 +159,13 @@ const SAMPLES: Sample[] = [
     motivation:
       "Amateur cook hoping to add Indonesian techniques to my repertoire and meet people outside my field.",
     status: "rejected",
-    note: "Outside age range confirmation pending; declined this round.",
+    note: "Strong applicant; declined this round on capacity.",
   },
   {
     ...base,
     fullName: "Putri Lestari",
     nationality: "Indonesia",
     university: "Universitas Airlangga",
-    age: 18,
     gender: "Female",
     email: "putri.lestari@unair.example",
     phone: "+62 822 3344 5566",
@@ -190,7 +180,6 @@ const SAMPLES: Sample[] = [
     fullName: "Irina Morozova",
     nationality: "Russia",
     university: "ITMO University",
-    age: 22,
     gender: "Female",
     email: "irina.m@itmo.example",
     phone: "+7 921 555 0606",
@@ -205,7 +194,6 @@ const SAMPLES: Sample[] = [
     fullName: "Joko Nugroho",
     nationality: "Indonesia",
     university: "Institut Pertanian Bogor",
-    age: 24,
     gender: "Male",
     email: "joko.n@ipb.example",
     phone: "+62 856 7788 9900",

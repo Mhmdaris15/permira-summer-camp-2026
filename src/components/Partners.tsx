@@ -63,7 +63,7 @@ export function Partners() {
                     {t(
                       f.label === "Indonesia" ? "exchange.indonesia"
                       : f.label === "Russia" ? "exchange.russia"
-                      : "exchange.stpetersburg",
+                      : "exchange.asean",
                     )}
                   </span>
                 </div>

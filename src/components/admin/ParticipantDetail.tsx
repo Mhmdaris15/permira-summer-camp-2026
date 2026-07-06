@@ -39,7 +39,7 @@ export function ParticipantDetail({
   const [draft, setDraft] = useState<ParticipantPatch>({});
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [docs, setDocs] = useState<{ passport?: string }>({});
+  const [docs, setDocs] = useState<{ passport?: string; studentCard?: string }>({});
   const [docError, setDocError] = useState<string | null>(null);
   const [notify, setNotify] = useState(true);
   const [emailNote, setEmailNote] = useState<string | null>(null);
@@ -51,18 +51,24 @@ export function ParticipantDetail({
     setDocs({});
     if (!participant) return;
 
-    // Eagerly load the passport scan as an authenticated blob URL.
+    // Eagerly load the passport + student-card scans as authenticated blob URLs.
     let cancelled = false;
     void (async () => {
       try {
-        const passport = participant.passportFileId
-          ? await fetchFileAsBlobUrl(participant.passportFileId)
-          : undefined;
+        const [passport, studentCard] = await Promise.all([
+          participant.passportFileId
+            ? fetchFileAsBlobUrl(participant.passportFileId)
+            : Promise.resolve(undefined),
+          participant.studentCardFileId
+            ? fetchFileAsBlobUrl(participant.studentCardFileId)
+            : Promise.resolve(undefined),
+        ]);
         if (cancelled) {
           if (passport) URL.revokeObjectURL(passport);
+          if (studentCard) URL.revokeObjectURL(studentCard);
           return;
         }
-        setDocs({ passport });
+        setDocs({ passport, studentCard });
       } catch (err) {
         if (!cancelled) setDocError(err instanceof Error ? err.message : "Failed to load documents.");
       }
@@ -76,8 +82,9 @@ export function ParticipantDetail({
   useEffect(
     () => () => {
       if (docs.passport) URL.revokeObjectURL(docs.passport);
+      if (docs.studentCard) URL.revokeObjectURL(docs.studentCard);
     },
-    [docs.passport],
+    [docs.passport, docs.studentCard],
   );
 
   if (!participant) return null;
@@ -244,12 +251,6 @@ export function ParticipantDetail({
                   onChange={(v) => field("nationality", v as "Indonesia" | "Russia")}
                 />
                 <Editable label="University" value={merged.university} onChange={(v) => field("university", v)} />
-                <Editable
-                  label="Age"
-                  value={String(merged.age)}
-                  type="number"
-                  onChange={(v) => field("age", Number(v))}
-                />
                 <Editable label="Gender" value={merged.gender} onChange={(v) => field("gender", v)} />
                 <Editable label="Email" type="email" value={merged.email} onChange={(v) => field("email", v)} />
                 <Editable label="Phone" value={merged.phone} onChange={(v) => field("phone", v)} />
@@ -293,8 +294,9 @@ export function ParticipantDetail({
                 {docError && (
                   <p className="mt-2 text-sm text-terracotta-500">{docError}</p>
                 )}
-                <div className="mt-4 grid grid-cols-1 gap-4">
+                <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
                   <DocCard label="Passport" url={docs.passport} fileId={participant.passportFileId} />
+                  <DocCard label="Student card" url={docs.studentCard} fileId={participant.studentCardFileId} />
                 </div>
               </section>
 

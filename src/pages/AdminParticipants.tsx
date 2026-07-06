@@ -104,6 +104,53 @@ export function AdminParticipants() {
     }
   }
 
+  const [exporting, setExporting] = useState(false);
+
+  // Bulk export: pull every participant (ignoring the current view filters) and
+  // download a CSV. Runs client-side from the admin API so no new endpoint.
+  async function exportCsv() {
+    setExporting(true);
+    setError(null);
+    try {
+      const all = await listParticipants({ limit: 500 });
+      const cols: { key: keyof Participant; label: string }[] = [
+        { key: "fullName", label: "Full name" },
+        { key: "nationality", label: "Nationality" },
+        { key: "university", label: "University" },
+        { key: "gender", label: "Gender" },
+        { key: "email", label: "Email" },
+        { key: "phone", label: "Phone" },
+        { key: "messenger", label: "Messenger" },
+        { key: "dietary", label: "Dietary" },
+        { key: "priorExperience", label: "Prior experience" },
+        { key: "motivation", label: "Motivation" },
+        { key: "status", label: "Status" },
+        { key: "notes", label: "Notes" },
+        { key: "submittedAt", label: "Submitted at" },
+      ];
+      const esc = (v: unknown) => {
+        const s = v === null || v === undefined ? "" : String(v);
+        return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+      };
+      const header = cols.map((c) => c.label).join(",");
+      const lines = all.rows.map((r) => cols.map((c) => esc(r[c.key])).join(","));
+      // BOM so Excel reads UTF-8 (Cyrillic/Indonesian names) correctly.
+      const csv = "﻿" + [header, ...lines].join("\r\n");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `permira-participants-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      if (err instanceof AuthError) handleAuthLost();
+      else setError(err instanceof Error ? err.message : "Export failed.");
+    } finally {
+      setExporting(false);
+    }
+  }
+
   const counts = useMemo(() => {
     if (!data) return null;
     const out: Record<ParticipantStatus, number> = {
@@ -208,6 +255,17 @@ export function AdminParticipants() {
             className="rounded-full border border-clove-900/15 bg-cream-50 px-4 py-2 text-sm font-medium text-clove-700 transition hover:border-terracotta-500/40 hover:text-terracotta-500 disabled:opacity-60"
           >
             {loading ? "Refreshing…" : "Refresh"}
+          </button>
+          <button
+            type="button"
+            onClick={() => void exportCsv()}
+            disabled={exporting}
+            className="inline-flex items-center gap-2 rounded-full bg-clove-900 px-4 py-2 text-sm font-medium text-cream-50 transition hover:bg-terracotta-500 disabled:opacity-60"
+          >
+            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+            </svg>
+            {exporting ? "Exporting…" : "Export CSV"}
           </button>
         </div>
 
@@ -320,7 +378,7 @@ export function AdminParticipants() {
         title="Delete this participant?"
         body={
           pendingDelete
-            ? `${pendingDelete.fullName} will be permanently removed, including their uploaded passport scan. This can't be undone.`
+            ? `${pendingDelete.fullName} will be permanently removed, including their uploaded passport and student-card scans. This can't be undone.`
             : ""
         }
         confirmLabel="Delete permanently"

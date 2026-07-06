@@ -10,6 +10,7 @@ export const id: Translation = {
     exchange: "Kolaborasi",
     stewardship: "Keberlanjutan",
     memories: "Kenangan",
+    faq: "FAQ",
     join: "Daftar",
   },
 
@@ -42,30 +43,30 @@ export const id: Translation = {
     days: {
       d1: {
         label: "Hari Pertama",
-        verb: "Tiba & Buka",
-        headline: "Berkumpul, menyeberang ke pulau, dan membuka kemah.",
-        body: "Pagi hari peserta berkumpul di metro Ozerki dan bersama-sama naik bus lalu perahu menuju Pulau Kubenskiy. Setelah menempati kemah, upacara pembukaan resmi dimulai — lagu kebangsaan Indonesia dan Rusia, sambutan dari Duta Besar dan pejabat daerah, serta pemotongan tumpeng — dilanjutkan tur pulau, kelas dari bahan alam, dan malam di sekitar api unggun.",
+        verb: "Tiba & Menetap",
+        headline: "Berkumpul, menyeberang ke pulau, dan menetap.",
+        body: "Pagi hari peserta berkumpul di metro Ozerki dan bersama-sama naik bus lalu perahu menuju Pulau Kubenskiy. Setelah pengarahan keselamatan, tim mendirikan tenda, saling berkenalan, dan menghangatkan suasana dengan permainan tim tradisional — menutup hari pertama dengan sesi berbagi cerita.",
         a1t: "Berkumpul & Transfer", a1d: "Berkumpul di metro Ozerki (09:00 MSK), lalu bus dan perahu ke pulau — mohon jangan terlambat.",
-        a2t: "Upacara Pembukaan Resmi", a2d: "Lagu kebangsaan, sambutan Duta Besar dan pejabat, serta tumpeng — disiarkan langsung.",
-        a3t: "Malam Api Unggun", a3d: "Tim berkumpul di sekitar api untuk nyanyian dan cerita sebelum istirahat.",
+        a2t: "Pendirian Tenda & Keakraban", a2d: "Mendirikan tenda per kelompok, lalu permainan pencair suasana dan keakraban tim.",
+        a3t: "Permainan & Sesi Cerita", a3d: "Permainan tim tradisional, makan malam, dan sesi berbagi cerita di malam hari.",
       },
       d2: {
         label: "Hari Kedua",
         verb: "Masak & Akrab",
         headline: "Memasak bersama, bermain bersama.",
-        body: "Inti kemah: dua sesi Culinary Masterclass & Cooking Session di mana tim campuran Indonesia, Rusia, dan ASEAN memasak hidangan Indonesia, sesi permainan tradisional, dan Cultural Night di sekitar api unggun.",
-        a1t: "Culinary Masterclass I", a1d: "Sesi memasak langsung dalam tim kecil campuran.",
-        a2t: "Fun Session", a2d: "Permainan tradisional dan tantangan tim.",
-        a3t: "Cultural Night & Api Unggun", a3d: "Pentas tradisi dan malam kebersamaan di tepi api.",
+        body: "Inti kemah: Culinary Masterclass & Cooking Session di mana tim campuran Indonesia, Rusia, dan ASEAN memasak hidangan Indonesia, tantangan memasak dengan plating dan presentasi, serta malam permainan seru yang ditutup pemutaran Capture the Moment dan lingkaran penutup.",
+        a1t: "Culinary Masterclass", a1d: "Memasak langsung dalam tim kecil campuran — Sate Madura, Ayam Lengkuas, Soto Ayam.",
+        a2t: "Cooking Challenge & Presentasi", a2d: "Plating, presentasi, dan berbagi hidangan tim.",
+        a3t: "Malam Seru & Lingkaran Penutup", a3d: "Permainan, pemutaran foto & video, dan api unggun larut malam (opsional).",
       },
       d3: {
         label: "Hari Ketiga",
         verb: "Refleksi & Pamit",
         headline: "Refleksi, perayaan, dan pulang.",
-        body: "Refleksi pagi, pembongkaran kemah bersama, dan sesi penghargaan untuk kerja sama dan semangat tim — menutup akhir pekan persahabatan antara mahasiswa Indonesia, Rusia, dan ASEAN.",
+        body: "Sarapan dan pembongkaran kemah bersama, dokumentasi dan perpisahan terakhir, serta sesi penghargaan untuk kerja sama dan semangat tim — menutup akhir pekan persahabatan antara mahasiswa Indonesia, Rusia, dan ASEAN.",
         a1t: "Pembongkaran Kemah", a1d: "Berkemas dan merapikan lokasi bersama, tanpa meninggalkan jejak.",
-        a2t: "Penghargaan & Apresiasi", a2d: "Kolaborasi terbaik, semangat tim, dan keaktifan.",
-        a3t: "Upacara Penutupan", a3d: "Penutupan resmi, foto perpisahan, dan perjalanan pulang.",
+        a2t: "Penghargaan & Apresiasi", a2d: "Masakan terbaik, kolaborasi, semangat tim, dan peserta paling aktif.",
+        a3t: "Sesi Penutupan", a3d: "Penutupan resmi, foto perpisahan, dan perjalanan pulang.",
       },
     },
   },
@@ -115,6 +116,8 @@ export const id: Translation = {
     russia: "Rusia",
     asean: "ASEAN",
     stpetersburg: "Saint Petersburg",
+    aseanMembersTitle: "Terbuka untuk seluruh ASEAN",
+    aseanMembersNote: "Sepuluh kursi dialokasikan untuk mahasiswa dari negara anggota ASEAN — bersama Indonesia dan Rusia.",
     cards: {
       "tea-coffee": {
         theme: "Tentang menanti bersama",
@@ -165,14 +168,15 @@ export const id: Translation = {
     headingLead: "Kemah di atas",
     headingEm: "tanjung pulau liar.",
     intro:
-      "Tiga malam di Pulau Kubenskiy, tempat gosong pasir menjorok ke danau dekat Saint Petersburg. Kamu tiba dengan perahu — sisanya hanya berjalan kaki menyusuri pantai.",
+      "Tiga hari di Pulau Kubenskiy — pulau hutan boreal di cagar alam Kivi Park, Distrik Vyborg, Oblast Leningrad. Dicapai dengan perahu; tanpa listrik dan sinyal, ini fokus murni pada memasak, alam, dan kebersamaan.",
     place: "Pulau Kubenskiy",
-    placeMeta: "Cagar alam Kivipark · Oblast Leningrad, dekat St. Petersburg",
-    arriveNote: "Hanya bisa dicapai dengan perahu — dermaga adalah pintu depanmu.",
-    gettingThere: "Cara ke sana: berkumpul di metro Ozerki pukul 09:00 MSK, lalu bersama naik bus ke Chulkovo dan perahu ke pulau. Mohon jangan terlambat.",
+    placeMeta: "Cagar alam Kivi Park · Distrik Vyborg, Oblast Leningrad",
+    arriveNote: "Hanya bisa dicapai dengan perahu — dan tanpa jaringan: tidak ada listrik atau sinyal di pulau.",
+    gettingThere: "Cara ke sana: berkumpul di metro Ozerki pukul 09:00 MSK, lalu bersama naik bus ke Desa Chulkovo dan perahu cepat ke pulau. Mohon jangan terlambat.",
     galleryTitle: "Sekilas pulau",
-    galleryNote: "Cagar alam Kivipark · foto: Nikolay Stepanenko & Yu. Vtyurina",
-    galleryAlt: "Pulau Kubenskiy, cagar alam Kivipark",
+    galleryNote: "Cagar alam Kivi Park · foto: Nikolay Stepanenko & Yu. Vtyurina",
+    galleryAlt: "Pulau Kubenskiy, cagar alam Kivi Park",
+    galleryOpen: "Buka foto",
     overviewTitle: "Tata letak kawasan",
     overviewBody: "Pilih penanda untuk menjelajahi setiap sudut kemah — tempat mendarat, memasak, berkumpul, dan tidur.",
     legendTitle: "Zona",
@@ -316,6 +320,7 @@ export const id: Translation = {
     phone: "Telepon", phonePh: "+7 921 000 00 00",
     messenger: "Telegram atau WhatsApp", messengerPh: "@nama_kamu atau + kode negara",
     passport: "Pindaian paspor", passportHint: "Pindaian jelas halaman foto paspormu.",
+    studentCard: "Kartu mahasiswa", studentCardHint: "Kartu mahasiswa universitas Rusiamu (Studencheskiy Bilet / Propusk).",
     consent: "Formulir persetujuan bertanda tangan", consentHint: "Unduh formulir dari situs kami, tanda tangani, lalu unggah ulang.",
     fileHint: "Klik untuk mengunggah · PDF, JPG, PNG, WebP hingga 10 MB",
     remove: "Hapus",
@@ -346,6 +351,48 @@ export const id: Translation = {
     motivationReq: "Ceritakan alasanmu ingin ikut — satu kalimat pun cukup.", motivationShort: "Minimal 40 karakter.", motivationLong: "Maksimal 800 karakter.",
     passportReq: "Pindaian paspor wajib diisi.", passportBig: "Pindaian paspor lebih dari 10 MB.", passportType: "Pindaian paspor harus PDF, JPG, PNG, atau WebP.",
     consentReq: "Formulir persetujuan wajib diisi.", consentBig: "Berkas persetujuan lebih dari 10 MB.", consentType: "Persetujuan harus PDF, JPG, PNG, atau WebP.",
+    studentCardReq: "Kartu mahasiswa wajib diunggah.", studentCardBig: "Kartu mahasiswa lebih dari 10 MB.", studentCardType: "Kartu mahasiswa harus PDF, JPG, PNG, atau WebP.",
+  },
+
+  faq: {
+    eyebrow: "Perlu diketahui",
+    heading: "Pertanyaan yang",
+    headingEm: "sering diajukan.",
+    intro: "Semua yang perlu kamu tahu sebelum mendaftar. Masih ragu? Tulis ke info@permiraspb.org.",
+    items: [
+      {
+        q: "Siapa yang boleh ikut?",
+        a: "Mahasiswa aktif universitas di Rusia, berusia 18 tahun ke atas, dari Indonesia, Rusia, atau negara ASEAN — dengan bahasa Inggris percakapan dasar dan minat tulus pada budaya dan memasak.",
+      },
+      {
+        q: "Dokumen apa yang diperlukan?",
+        a: "Paspor yang sah dan kartu mahasiswa universitas Rusiamu (Studencheskiy Bilet / Propusk). Keduanya diunggah di formulir pendaftaran.",
+      },
+      {
+        q: "Apakah ada batas usia?",
+        a: "Minimal 18 tahun. Tidak ada batas usia maksimal — semua mahasiswa aktif dipersilakan mendaftar.",
+      },
+      {
+        q: "Di mana dan kapan kemah diadakan?",
+        a: "19–21 Juli 2026 di Pulau Kubenskiy, cagar alam Kivi Park, Distrik Vyborg, Oblast Leningrad. Semua berkumpul di metro Ozerki (Saint Petersburg) pukul 09:00 MSK, lalu bersama naik bus dan perahu.",
+      },
+      {
+        q: "Berapa biayanya?",
+        a: "Program, makan, dan penginapan selama kemah disediakan untuk peserta terpilih. Rincian dikonfirmasi saat seleksi.",
+      },
+      {
+        q: "Bahasa apa yang digunakan?",
+        a: "Bahasa Indonesia dan Rusia, dengan bahasa Inggris sebagai penghubung. Bahasa Inggris percakapan dasar diperlukan bagi semua peserta.",
+      },
+      {
+        q: "Apa yang harus dibawa?",
+        a: "Pakaian sesuai cuaca dan lapisan hangat, obat pribadi, perlengkapan mandi, botol dan alat makan pakai-ulang, losion anti-nyamuk, senter, dan perlengkapan tidur. Pulau tanpa jaringan — tanpa listrik atau sinyal.",
+      },
+      {
+        q: "Saya pendaftar dari Indonesia — ada tambahan?",
+        a: "Ya — kamu harus terdaftar di pangkalan data PERMIRA St. Petersburg dan telah menyelesaikan lapor diri (peduliwni.kemlu.go.id). Prioritas diberikan kepada mahasiswa Indonesia di kelas persiapan bahasa Rusia.",
+      },
+    ],
   },
 
   chat: {

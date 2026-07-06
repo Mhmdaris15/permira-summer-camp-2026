@@ -11,18 +11,16 @@ import permiraLogo from "../assets/organization/permira-logo-small.png";
 import kbriLogo from "../assets/organization/kbri-moskow.png";
 import ecologyLogo from "../assets/organization/ecology-committe-spb.svg";
 import natureSocietyLogo from "../assets/organization/logo-organisasi-masyarakat-lingkungan-hidup.jpg";
-import externalRelationsLogo from "../assets/organization/Committee for External Relations of Saint-Petersburg Logo.png";
 import aseanLogo from "../assets/organization/asean-logo.svg";
 import flagIndonesia from "../assets/organization/Flag_of_Indonesia.png";
 import flagRussia from "../assets/organization/Flag_of_Russia.png";
-import flagStPetersburg from "../assets/organization/Flag_of_St_Petersburg_(Russia).png";
 import tgLogo from "../assets/organization/telegram-logo.png";
 import vkLogo from "../assets/organization/vk-logo.png";
 
 export { eventLogo, aseanLogo };
 
 // -----------------------------------------------------------------------------
-// Collaboration marks — Indonesia · Russia · ASEAN · Saint Petersburg
+// Collaboration marks — Indonesia · Russia · ASEAN
 // -----------------------------------------------------------------------------
 
 export type Collaborator = {
@@ -35,7 +33,6 @@ export const collaborators: Collaborator[] = [
   { label: "Indonesia", logo: flagIndonesia, kind: "flag" },
   { label: "Russia", logo: flagRussia, kind: "flag" },
   { label: "ASEAN", logo: aseanLogo, kind: "emblem" },
-  { label: "Saint Petersburg", logo: flagStPetersburg, kind: "flag" },
 ];
 
 // -----------------------------------------------------------------------------
@@ -66,15 +63,10 @@ export const partners: Partner[] = [
     tier: "organiser",
   },
   {
-    name: "Committee for Nature Use, Environmental Protection and Ecological Safety — Saint Petersburg & Leningrad Oblast",
+    name: "Committee for Natural Resources of Leningrad Oblast",
     logo: ecologyLogo,
     href: "https://kpr.lenobl.ru/",
     altHref: "https://vk.com/club192811754",
-    tier: "collaborator",
-  },
-  {
-    name: "Committee for External Relations of Saint Petersburg",
-    logo: externalRelationsLogo,
     tier: "collaborator",
   },
   {
@@ -113,5 +105,5 @@ export type FlagItem = { label: string; flag: string };
 export const flags: FlagItem[] = [
   { label: "Indonesia", flag: flagIndonesia },
   { label: "Russia", flag: flagRussia },
-  { label: "Saint Petersburg", flag: flagStPetersburg },
+  { label: "ASEAN", flag: aseanLogo },
 ];

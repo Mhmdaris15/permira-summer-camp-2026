@@ -17,11 +17,14 @@ const STATUSES: ParticipantStatus[] = ["pending", "accepted", "rejected", "waitl
 
 /**
  * Public endpoint: a prospective participant submits their registration
- * with a passport scan upload as `multipart/form-data`.
+ * with a passport scan and student-card upload as `multipart/form-data`.
  */
 registrationsRouter.post(
   "/",
-  upload.fields([{ name: "passport", maxCount: 1 }]),
+  upload.fields([
+    { name: "passport", maxCount: 1 },
+    { name: "studentCard", maxCount: 1 },
+  ]),
   async (req, res) => {
     try {
       const body = req.body as Record<string, string>;
@@ -32,10 +35,14 @@ registrationsRouter.post(
         return;
       }
 
-      const files = req.files as { passport?: Express.Multer.File[] } | undefined;
+      const files = req.files as
+        | { passport?: Express.Multer.File[]; studentCard?: Express.Multer.File[] }
+        | undefined;
       const passport = files?.passport?.[0];
+      const studentCard = files?.studentCard?.[0];
 
       if (!passport) throw new Error("Passport file is required.");
+      if (!studentCard) throw new Error("Student card file is required.");
 
       const input: ParticipantInput = {
         fullName: requireString(body.fullName, "fullName", { min: 2, max: 80 }),
@@ -43,7 +50,6 @@ registrationsRouter.post(
           | "Indonesia"
           | "Russia",
         university: requireString(body.university, "university", { min: 1, max: 120 }),
-        age: requireInt(body.age, "age", 16, 35),
         gender: requireString(body.gender, "gender", { min: 1, max: 30 }),
         email: requireEmail(body.email, "email"),
         phone: requireString(body.phone, "phone", { min: 6, max: 30 }),
@@ -52,14 +58,17 @@ registrationsRouter.post(
         priorExperience: optionalString(body.priorExperience, 600),
         motivation: requireString(body.motivation, "motivation", { min: 40, max: 800 }),
         passportFileId: (await recordFile(passport)).id,
+        studentCardFileId: (await recordFile(studentCard)).id,
       };
 
       const created = await createParticipant(input);
       res.status(201).json({ id: created.id });
     } catch (err) {
-      // If validation/DB failed AFTER the file was saved, clean it up.
-      const files = req.files as { passport?: Express.Multer.File[] } | undefined;
-      for (const f of files?.passport ?? []) {
+      // If validation/DB failed AFTER files were saved, clean them up.
+      const files = req.files as
+        | { passport?: Express.Multer.File[]; studentCard?: Express.Multer.File[] }
+        | undefined;
+      for (const f of [...(files?.passport ?? []), ...(files?.studentCard ?? [])]) {
         const id = f.filename.replace(/\.[^.]+$/, "");
         void deleteFile(id);
       }
@@ -112,7 +121,6 @@ registrationsRouter.patch("/:id", requireAdmin, async (req, res) => {
       throw new Error(`status must be one of: ${STATUSES.join(", ")}`);
     }
     if (patch.email !== undefined) requireEmail(patch.email, "email");
-    if (patch.age !== undefined) requireInt(String(patch.age), "age", 16, 35);
     if (
       patch.nationality !== undefined &&
       !NATIONALITIES.has(patch.nationality)
@@ -155,12 +163,6 @@ function optionalString(v: unknown, max: number) {
   if (typeof v !== "string") throw new Error("Expected string.");
   if (v.length > max) throw new Error(`Field exceeds ${max} characters.`);
   return v.trim();
-}
-function requireInt(v: unknown, name: string, min: number, max: number) {
-  const n = typeof v === "number" ? v : Number(v);
-  if (!Number.isInteger(n)) throw new Error(`${name} must be an integer.`);
-  if (n < min || n > max) throw new Error(`${name} must be between ${min} and ${max}.`);
-  return n;
 }
 function requireEnum(v: unknown, name: string, set: Set<string>) {
   if (typeof v !== "string" || !set.has(v))

@@ -109,20 +109,7 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
             showError={showErr("university")}
             count={data.university.length}
             max={LIMITS.university}
-          />
-          <TextField
-            label={t("registration.age")}
-            required
-            type="number"
-            min={18}
-            max={35}
-            inputMode="numeric"
-            placeholder={t("registration.agePh")}
-            value={data.age}
-            onChange={(e) => setField("age", e.target.value)}
-            onBlur={() => markTouched("age")}
-            error={errors.age}
-            showError={showErr("age")}
+            className="md:col-span-2"
           />
         </div>
         <div className="mt-5">
@@ -189,19 +176,34 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
         title={t("registration.sectionDocs")}
         subtitle={t("registration.sectionDocsSub")}
       >
-        <FileField
-          label={t("registration.passport")}
-          required
-          accept="image/jpeg,image/png,image/webp,application/pdf"
-          value={data.passport}
-          onChange={(f) => {
-            setField("passport", f);
-            markTouched("passport");
-          }}
-          error={errors.passport}
-          showError={showErr("passport")}
-          hint={t("registration.passportHint")}
-        />
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <FileField
+            label={t("registration.passport")}
+            required
+            accept="image/jpeg,image/png,image/webp,application/pdf"
+            value={data.passport}
+            onChange={(f) => {
+              setField("passport", f);
+              markTouched("passport");
+            }}
+            error={errors.passport}
+            showError={showErr("passport")}
+            hint={t("registration.passportHint")}
+          />
+          <FileField
+            label={t("registration.studentCard")}
+            required
+            accept="image/jpeg,image/png,image/webp,application/pdf"
+            value={data.studentCard}
+            onChange={(f) => {
+              setField("studentCard", f);
+              markTouched("studentCard");
+            }}
+            error={errors.studentCard}
+            showError={showErr("studentCard")}
+            hint={t("registration.studentCardHint")}
+          />
+        </div>
       </Section>
 
       <Section

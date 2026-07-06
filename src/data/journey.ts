@@ -31,8 +31,8 @@ export const journeyDays: JourneyDay[] = [
       "Participants arrive, build camp together, and gather for the official opening ceremony — national anthems, welcome remarks, and a traditional tumpeng — followed by a first shared meal and bonding circle.",
     activities: [
       { time: "09:00", title: "Meet & Transfer", detail: "Gather at Ozerki metro, then travel by bus and boat to the island." },
-      { time: "13:30", title: "Official Opening Ceremony", detail: "Anthems of Indonesia & Russia, remarks from the Ambassador and officials, and a traditional tumpeng." },
-      { time: "21:00", title: "Campfire Gathering", detail: "Teams gather around the fire for songs and stories." },
+      { time: "14:00", title: "Tent Setup & Team Bonding", detail: "Pitch tents by group, then ice-breaking games." },
+      { time: "16:30", title: "Fun Games & Storytelling", detail: "Traditional team games, dinner, and an evening sharing session." },
     ],
     accent: "turmeric",
   },
@@ -45,9 +45,9 @@ export const journeyDays: JourneyDay[] = [
     body:
       "The heart of the camp: two Culinary Masterclass & Cooking Sessions where mixed Indonesian, Russian, and ASEAN teams prepare Indonesian dishes, a fun session of traditional games, and an evening Cultural Night around the campfire.",
     activities: [
-      { time: "10:00", title: "Culinary Masterclass I", detail: "Hands-on cooking session in small mixed teams." },
-      { time: "15:00", title: "Fun Session", detail: "Traditional games and team challenges." },
-      { time: "21:00", title: "Cultural Night & Campfire", detail: "Traditional performances and a shared evening by the fire." },
+      { time: "11:00", title: "Culinary Masterclass", detail: "Hands-on cooking session in small mixed teams." },
+      { time: "14:30", title: "Cooking Challenge & Presentation", detail: "Plate, present, and share your team's dish." },
+      { time: "19:00", title: "Fun Night & Closing Circle", detail: "Games, a photo & video screening, and an optional late campfire." },
     ],
     accent: "saffron",
   },
@@ -60,9 +60,9 @@ export const journeyDays: JourneyDay[] = [
     body:
       "A morning reflection, a collective camp break-down, and an awarding session recognising teamwork and spirit — closing a weekend of friendship between Indonesian, Russian, and ASEAN students.",
     activities: [
-      { time: "09:00", title: "Camp Break-Down", detail: "Pack up and tidy the site together, leaving no trace." },
-      { time: "10:30", title: "Awarding & Appreciation", detail: "Recognising best collaboration, team spirit, and participation." },
-      { time: "11:30", title: "Closing Ceremony", detail: "Official close, farewell photos, and journey home." },
+      { time: "10:00", title: "Camp Break-Down", detail: "Pack up and tidy the site together, leaving no trace." },
+      { time: "11:30", title: "Awarding & Appreciation", detail: "Recognising best cooking, collaboration, team spirit, and participation." },
+      { time: "12:30", title: "Closing Session", detail: "Official close, farewell photos, and journey home." },
     ],
     accent: "terracotta",
   },

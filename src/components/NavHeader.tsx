@@ -10,6 +10,7 @@ const linkKeys = [
   { href: "#cuisine", key: "nav.cuisine" },
   { href: "#exchange", key: "nav.exchange" },
   { href: "#memories", key: "nav.memories" },
+  { href: "#faq", key: "nav.faq" },
 ] as const;
 
 export function NavHeader() {

@@ -19,7 +19,6 @@ DEFINE TABLE IF NOT EXISTS participant SCHEMAFULL;
 DEFINE FIELD IF NOT EXISTS fullName       ON participant TYPE string  ASSERT string::len($value) >= 2 AND string::len($value) <= 80;
 DEFINE FIELD IF NOT EXISTS nationality    ON participant TYPE string  ASSERT $value INSIDE ["Indonesia", "Russia"];
 DEFINE FIELD IF NOT EXISTS university     ON participant TYPE string;
-DEFINE FIELD IF NOT EXISTS age            ON participant TYPE int     ASSERT $value >= 16 AND $value <= 35;
 DEFINE FIELD IF NOT EXISTS gender         ON participant TYPE string;
 DEFINE FIELD IF NOT EXISTS email          ON participant TYPE string;
 DEFINE FIELD IF NOT EXISTS phone          ON participant TYPE string;
@@ -28,6 +27,7 @@ DEFINE FIELD IF NOT EXISTS dietary        ON participant TYPE string  DEFAULT ""
 DEFINE FIELD IF NOT EXISTS priorExperience ON participant TYPE string DEFAULT "";
 DEFINE FIELD IF NOT EXISTS motivation     ON participant TYPE string;
 DEFINE FIELD IF NOT EXISTS passportFileId ON participant TYPE option<string>;
+DEFINE FIELD IF NOT EXISTS studentCardFileId ON participant TYPE option<string>;
 DEFINE FIELD IF NOT EXISTS status         ON participant TYPE string  DEFAULT "pending"
                                           ASSERT $value INSIDE ["pending", "accepted", "rejected", "waitlist"];
 DEFINE FIELD IF NOT EXISTS notes          ON participant TYPE string  DEFAULT "";

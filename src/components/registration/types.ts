@@ -5,7 +5,6 @@ export type RegistrationData = {
   fullName: string;
   nationality: Nationality | "";
   university: string;
-  age: string; // kept as string so the input value stays controlled; parsed at submit
   gender: Gender | "";
   email: string;
   phone: string;
@@ -14,6 +13,7 @@ export type RegistrationData = {
   priorExperience: string;  // optional
   motivation: string;
   passport: File | null;
+  studentCard: File | null;
   /** Honeypot — must remain empty. If filled, the request is silently dropped. */
   website: string;
 };
@@ -24,7 +24,6 @@ export const emptyRegistration: RegistrationData = {
   fullName: "",
   nationality: "",
   university: "",
-  age: "",
   gender: "",
   email: "",
   phone: "",
@@ -33,6 +32,7 @@ export const emptyRegistration: RegistrationData = {
   priorExperience: "",
   motivation: "",
   passport: null,
+  studentCard: null,
   website: "",
 };
 

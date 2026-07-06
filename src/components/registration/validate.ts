@@ -20,11 +20,6 @@ export function validate(data: RegistrationData): FieldErrors {
   if (!data.university.trim()) errors.university = "validation.uniReq";
   else if (data.university.length > LIMITS.university) errors.university = "validation.uniLong";
 
-  const ageNum = Number(data.age);
-  if (!data.age) errors.age = "validation.ageReq";
-  else if (!Number.isInteger(ageNum) || ageNum < 18 || ageNum > 35)
-    errors.age = "validation.ageRange";
-
   if (!data.gender) errors.gender = "validation.genderReq";
 
   if (!data.email.trim()) errors.email = "validation.emailReq";
@@ -46,11 +41,13 @@ export function validate(data: RegistrationData): FieldErrors {
 
   const passport = validateFile(data.passport, "passport");
   if (passport) errors.passport = passport;
+  const studentCard = validateFile(data.studentCard, "studentCard");
+  if (studentCard) errors.studentCard = studentCard;
 
   return errors;
 }
 
-function validateFile(file: File | null, which: "passport"): string | undefined {
+function validateFile(file: File | null, which: "passport" | "studentCard"): string | undefined {
   if (!file) return `validation.${which}Req`;
   if (file.size > FILE_LIMITS.maxBytes) return `validation.${which}Big`;
   if (!FILE_LIMITS.acceptedMime.includes(file.type as typeof FILE_LIMITS.acceptedMime[number]))

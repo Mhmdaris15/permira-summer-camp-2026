@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { collaborators } from "../data/organizations";
+import { AseanFlags } from "./AseanFlags";
 
 const collabKey: Record<string, string> = {
   Indonesia: "exchange.indonesia",
@@ -138,6 +139,8 @@ export function CulturalExchange() {
             </article>
           ))}
         </div>
+
+        <AseanFlags />
       </div>
     </section>
   );

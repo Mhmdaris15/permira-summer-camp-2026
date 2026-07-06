@@ -9,6 +9,7 @@ import { Stewardship } from "../components/Stewardship";
 import { CampMap } from "../components/CampMap";
 import { Memories } from "../components/Memories";
 import { JoinTheTable } from "../components/JoinTheTable";
+import { FAQ } from "../components/FAQ";
 import { Partners } from "../components/Partners";
 import { Footer } from "../components/Footer";
 
@@ -27,6 +28,7 @@ export function LandingPage() {
         <CampMap />
         <Memories />
         <JoinTheTable />
+        <FAQ />
         <Partners />
       </main>
       <Footer />
