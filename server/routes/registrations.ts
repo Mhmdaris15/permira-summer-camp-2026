@@ -12,7 +12,19 @@ import type { ParticipantInput, ParticipantPatch, ParticipantStatus } from "../t
 
 export const registrationsRouter: Router = Router();
 
-const NATIONALITIES = new Set(["Indonesia", "Russia"]);
+// Indonesia + Russia + ASEAN member states (Singapore excluded).
+const NATIONALITIES = new Set([
+  "Indonesia",
+  "Russia",
+  "Brunei",
+  "Cambodia",
+  "Laos",
+  "Malaysia",
+  "Myanmar",
+  "Philippines",
+  "Thailand",
+  "Vietnam",
+]);
 const STATUSES: ParticipantStatus[] = ["pending", "accepted", "rejected", "waitlist"];
 
 /**
@@ -46,9 +58,7 @@ registrationsRouter.post(
 
       const input: ParticipantInput = {
         fullName: requireString(body.fullName, "fullName", { min: 2, max: 80 }),
-        nationality: requireEnum(body.nationality, "nationality", NATIONALITIES) as
-          | "Indonesia"
-          | "Russia",
+        nationality: requireEnum(body.nationality, "nationality", NATIONALITIES),
         university: requireString(body.university, "university", { min: 1, max: 120 }),
         gender: requireString(body.gender, "gender", { min: 1, max: 30 }),
         email: requireEmail(body.email, "email"),

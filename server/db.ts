@@ -17,7 +17,7 @@ const SCHEMA = `
 DEFINE TABLE IF NOT EXISTS participant SCHEMAFULL;
 
 DEFINE FIELD IF NOT EXISTS fullName       ON participant TYPE string  ASSERT string::len($value) >= 2 AND string::len($value) <= 80;
-DEFINE FIELD IF NOT EXISTS nationality    ON participant TYPE string  ASSERT $value INSIDE ["Indonesia", "Russia"];
+DEFINE FIELD IF NOT EXISTS nationality    ON participant TYPE string;
 DEFINE FIELD IF NOT EXISTS university     ON participant TYPE string;
 DEFINE FIELD IF NOT EXISTS gender         ON participant TYPE string;
 DEFINE FIELD IF NOT EXISTS email          ON participant TYPE string;

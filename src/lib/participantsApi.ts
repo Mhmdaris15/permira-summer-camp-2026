@@ -6,7 +6,7 @@ export type ParticipantStatus = "pending" | "accepted" | "rejected" | "waitlist"
 export type Participant = {
   id: string;
   fullName: string;
-  nationality: "Indonesia" | "Russia";
+  nationality: string;
   university: string;
   gender: string;
   email: string;

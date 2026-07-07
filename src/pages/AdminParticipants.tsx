@@ -14,6 +14,7 @@ import { StatusPill } from "../components/admin/StatusPill";
 import { ConfirmDialog } from "../components/admin/ConfirmDialog";
 import { ParticipantDetail } from "../components/admin/ParticipantDetail";
 import { cn } from "../lib/cn";
+import { nationalityFlag } from "../components/registration/types";
 import LogoPermira from "../assets/organization/permira-logo-small.png";
 
 const STATUS_OPTIONS: { value: ParticipantStatus | ""; label: string }[] = [
@@ -320,7 +321,7 @@ export function AdminParticipants() {
                     </td>
                     <td className="px-4 py-3">
                       <span className="text-clove-700">
-                        {p.nationality === "Indonesia" ? "🇮🇩" : "🇷🇺"} {p.nationality}
+                        {nationalityFlag(p.nationality)} {p.nationality}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-clove-700">{p.university}</td>

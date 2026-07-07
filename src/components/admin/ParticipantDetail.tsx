@@ -10,6 +10,7 @@ import {
 } from "../../lib/participantsApi";
 import { StatusPill } from "./StatusPill";
 import { sendEmail, type EmailTemplateId } from "../../lib/emailApi";
+import { NATIONALITIES, NATIONALITY_FLAGS, nationalityFlag } from "../registration/types";
 import { cn } from "../../lib/cn";
 
 const STATUSES: ParticipantStatus[] = ["pending", "accepted", "rejected", "waitlist"];
@@ -185,7 +186,7 @@ export function ParticipantDetail({
                 <div className="mt-1 text-xs text-clove-700/60">
                   Submitted {new Date(participant.submittedAt).toLocaleString()} ·
                   {" "}
-                  {participant.nationality === "Indonesia" ? "🇮🇩" : "🇷🇺"} {participant.nationality}
+                  {nationalityFlag(participant.nationality)} {participant.nationality}
                 </div>
               </div>
               <button
@@ -244,11 +245,8 @@ export function ParticipantDetail({
                 <EditableSelect
                   label="Nationality"
                   value={merged.nationality}
-                  options={[
-                    { value: "Indonesia", label: "🇮🇩 Indonesia" },
-                    { value: "Russia", label: "🇷🇺 Russia" },
-                  ]}
-                  onChange={(v) => field("nationality", v as "Indonesia" | "Russia")}
+                  options={NATIONALITIES.map((n) => ({ value: n, label: `${NATIONALITY_FLAGS[n]} ${n}` }))}
+                  onChange={(v) => field("nationality", v)}
                 />
                 <Editable label="University" value={merged.university} onChange={(v) => field("university", v)} />
                 <Editable label="Gender" value={merged.gender} onChange={(v) => field("gender", v)} />

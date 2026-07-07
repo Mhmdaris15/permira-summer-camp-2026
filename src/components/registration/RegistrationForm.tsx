@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { submitRegistration, type SubmitResult } from "../../lib/api";
 import { useRegistrationForm } from "./useRegistrationForm";
-import { LIMITS } from "./types";
+import { LIMITS, NATIONALITIES, NATIONALITY_FLAGS } from "./types";
 import { TextField, TextAreaField, SelectField, RadioGroup, FileField } from "./Field";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -91,10 +91,10 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
               markTouched("nationality");
             }}
             onBlur={() => markTouched("nationality")}
-            options={[
-              { value: "Indonesia", label: `🇮🇩 ${t("registration.indonesia")}` },
-              { value: "Russia", label: `🇷🇺 ${t("registration.russia")}` },
-            ]}
+            options={NATIONALITIES.map((n) => ({
+              value: n,
+              label: `${NATIONALITY_FLAGS[n]} ${n}`,
+            }))}
             error={errors.nationality}
             showError={showErr("nationality")}
           />

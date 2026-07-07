@@ -1,4 +1,36 @@
-export type Nationality = "Indonesia" | "Russia";
+/** Indonesia + Russia + ASEAN member states (Singapore excluded). */
+export const NATIONALITIES = [
+  "Indonesia",
+  "Russia",
+  "Brunei",
+  "Cambodia",
+  "Laos",
+  "Malaysia",
+  "Myanmar",
+  "Philippines",
+  "Thailand",
+  "Vietnam",
+] as const;
+
+export type Nationality = (typeof NATIONALITIES)[number];
+
+/** Flag emoji for any nationality string (falls back to a neutral flag). */
+export function nationalityFlag(n: string): string {
+  return NATIONALITY_FLAGS[n as Nationality] ?? "🏳️";
+}
+
+export const NATIONALITY_FLAGS: Record<Nationality, string> = {
+  Indonesia: "🇮🇩",
+  Russia: "🇷🇺",
+  Brunei: "🇧🇳",
+  Cambodia: "🇰🇭",
+  Laos: "🇱🇦",
+  Malaysia: "🇲🇾",
+  Myanmar: "🇲🇲",
+  Philippines: "🇵🇭",
+  Thailand: "🇹🇭",
+  Vietnam: "🇻🇳",
+};
 export type Gender = "Female" | "Male";
 
 export type RegistrationData = {
