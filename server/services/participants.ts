@@ -1,5 +1,6 @@
 import { getDb, snapshot } from "../db.js";
 import type {
+  ImportParticipantInput,
   Participant,
   ParticipantInput,
   ParticipantPatch,
@@ -64,6 +65,55 @@ export async function createParticipant(input: ParticipantInput): Promise<Partic
   const created = rowToParticipant(rows[0]);
   await snapshot();
   return created;
+}
+
+/**
+ * Bulk-restore path used by the admin import endpoint. Preserves the record's
+ * original status/notes/submittedAt and stores no files (empty file ids — the
+ * schema's `option<string>` rejects NULL, matching the seed convention).
+ *
+ * Idempotent by email: an existing address is skipped, so re-running after a
+ * future redeploy wipe is safe.
+ */
+export async function importParticipant(
+  input: ImportParticipantInput,
+): Promise<{ status: "imported" | "skipped" }> {
+  const db = await getDb();
+
+  const [existing] = await db.query<[{ id: unknown }[]]>(
+    "SELECT id FROM participant WHERE email = $email LIMIT 1",
+    { email: input.email },
+  );
+  if (existing && existing.length > 0) return { status: "skipped" };
+
+  const now = new Date().toISOString();
+  const submittedAt = new Date(input.submittedAt).toISOString();
+
+  const [rows] = await db.query<[SurrealRow[]]>(
+    `CREATE participant CONTENT {
+       fullName: $fullName,
+       nationality: $nationality,
+       university: $university,
+       gender: $gender,
+       email: $email,
+       phone: $phone,
+       messenger: $messenger,
+       dietary: $dietary,
+       priorExperience: $priorExperience,
+       motivation: $motivation,
+       passportFileId: "",
+       studentCardFileId: "",
+       status: $status,
+       notes: $notes,
+       submittedAt: <datetime> $submittedAt,
+       updatedAt: <datetime> $now
+     } RETURN AFTER`,
+    { ...input, submittedAt, now },
+  );
+
+  if (!rows || rows.length === 0) throw new Error("Failed to import participant.");
+  await snapshot();
+  return { status: "imported" };
 }
 
 export async function listParticipants(opts: ListOptions = {}): Promise<{

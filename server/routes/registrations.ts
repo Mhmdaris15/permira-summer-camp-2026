@@ -5,10 +5,16 @@ import {
   createParticipant,
   deleteParticipant,
   getParticipant,
+  importParticipant,
   listParticipants,
   updateParticipant,
 } from "../services/participants.js";
-import type { ParticipantInput, ParticipantPatch, ParticipantStatus } from "../types.js";
+import type {
+  ImportParticipantInput,
+  ParticipantInput,
+  ParticipantPatch,
+  ParticipantStatus,
+} from "../types.js";
 
 export const registrationsRouter: Router = Router();
 
@@ -98,6 +104,46 @@ registrationsRouter.use(
 
 // --- Admin endpoints ---
 
+/**
+ * Admin bulk import: restore already-vetted registrations from a JSON backup
+ * after a redeploy wipes the data volume. Files are not part of an import.
+ * Body: `{ participants: [...] }`. Duplicate emails are skipped (not errored)
+ * so the call is safe to re-run.
+ */
+registrationsRouter.post("/import", requireAdmin, async (req, res) => {
+  try {
+    const body = req.body as { participants?: unknown };
+    if (!Array.isArray(body.participants)) {
+      throw new Error("Body must be { participants: [ ... ] }.");
+    }
+
+    const results = {
+      imported: 0,
+      skipped: 0,
+      errors: [] as { index: number; email?: string; error: string }[],
+    };
+
+    for (let i = 0; i < body.participants.length; i++) {
+      const row = body.participants[i] as Record<string, unknown>;
+      try {
+        const { status } = await importParticipant(normalizeImport(row));
+        if (status === "imported") results.imported++;
+        else results.skipped++;
+      } catch (err) {
+        results.errors.push({
+          index: i,
+          email: typeof row?.email === "string" ? row.email : undefined,
+          error: err instanceof Error ? err.message : "Unknown error.",
+        });
+      }
+    }
+
+    res.json(results);
+  } catch (err) {
+    handleError(err, res);
+  }
+});
+
 registrationsRouter.get("/", requireAdmin, async (req, res) => {
   const { status, search, limit, offset } = req.query;
   const result = await listParticipants({
@@ -183,6 +229,54 @@ function requireEmail(v: unknown, name: string) {
   if (typeof v !== "string" || !EMAIL_RE.test(v.trim()))
     throw new Error(`${name} must be a valid email.`);
   return v.trim();
+}
+
+/**
+ * Lenient coercion for imported records. These are already-vetted submissions,
+ * so we only enforce what the DB schema itself requires (name length, a valid
+ * email, a known status) and default everything else — no motivation minimum,
+ * so nothing gets rejected on restore.
+ */
+function normalizeImport(raw: unknown): ImportParticipantInput {
+  if (!raw || typeof raw !== "object") throw new Error("Each participant must be an object.");
+  const r = raw as Record<string, unknown>;
+  const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+
+  const fullName = str(r.fullName);
+  if (fullName.length < 2 || fullName.length > 80) {
+    throw new Error("fullName must be 2–80 characters.");
+  }
+  const email = str(r.email);
+  if (!EMAIL_RE.test(email)) throw new Error("A valid email is required.");
+  const nationality = str(r.nationality);
+  if (!nationality) throw new Error("nationality is required.");
+
+  const status = (str(r.status) || "pending") as ParticipantStatus;
+  if (!STATUSES.includes(status)) {
+    throw new Error(`status must be one of: ${STATUSES.join(", ")}`);
+  }
+
+  const submittedRaw = str(r.submittedAt);
+  const submittedAt =
+    submittedRaw && !Number.isNaN(Date.parse(submittedRaw))
+      ? submittedRaw
+      : new Date().toISOString();
+
+  return {
+    fullName,
+    nationality,
+    university: str(r.university),
+    gender: str(r.gender),
+    email,
+    phone: str(r.phone),
+    messenger: str(r.messenger),
+    dietary: str(r.dietary),
+    priorExperience: str(r.priorExperience),
+    motivation: str(r.motivation),
+    status,
+    notes: str(r.notes),
+    submittedAt,
+  };
 }
 
 function handleError(err: unknown, res: Response) {

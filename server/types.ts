@@ -64,6 +64,29 @@ export type ParticipantInput = Omit<
   "id" | "status" | "notes" | "submittedAt" | "updatedAt"
 >;
 
+/**
+ * Shape accepted by the admin bulk-import endpoint. Unlike a public
+ * registration, an import preserves the original `status`, `notes`, and
+ * `submittedAt` (these are already-vetted records being restored), and
+ * carries no uploaded files.
+ */
+export type ImportParticipantInput = {
+  fullName: string;
+  nationality: string;
+  university: string;
+  gender: string;
+  email: string;
+  phone: string;
+  messenger: string;
+  dietary: string;
+  priorExperience: string;
+  motivation: string;
+  status: ParticipantStatus;
+  notes: string;
+  /** ISO 8601 string; preserved from the original submission. */
+  submittedAt: string;
+};
+
 export type ParticipantPatch = Partial<
   Pick<
     Participant,
