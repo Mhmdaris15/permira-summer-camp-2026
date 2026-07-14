@@ -7,9 +7,9 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-import brunei from "../assets/organization/asean/brunei.svg";
-import cambodia from "../assets/organization/asean/cambodia.svg";
-import laos from "../assets/organization/asean/laos.svg";
+import brunei from "../assets/organization/brunei-darussalam.png";
+import cambodia from "../assets/organization/cambodia-flag.svg";
+import laos from "../assets/organization/laos-flag.png";
 import indonesia from "../assets/organization/Flag_of_Indonesia.png";
 import malaysia from "../assets/organization/malaysia-flag.jpg";
 import myanmar from "../assets/organization/myanmar-flag.jpg";

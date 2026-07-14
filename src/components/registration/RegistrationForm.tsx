@@ -192,7 +192,6 @@ export function RegistrationForm({ onClose }: { onClose: () => void }) {
           />
           <FileField
             label={t("registration.studentCard")}
-            required
             accept="image/jpeg,image/png,image/webp,application/pdf"
             value={data.studentCard}
             onChange={(f) => {

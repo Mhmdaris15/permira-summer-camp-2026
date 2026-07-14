@@ -335,7 +335,7 @@ export const id: Translation = {
     phone: "Telepon", phonePh: "+7 921 000 00 00",
     messenger: "Telegram atau WhatsApp", messengerPh: "@nama_kamu atau + kode negara",
     passport: "Pindaian paspor", passportHint: "Pindaian jelas halaman foto paspormu.",
-    studentCard: "Kartu mahasiswa", studentCardHint: "Kartu mahasiswa universitas Rusiamu (Studencheskiy Bilet / Propusk).",
+    studentCard: "Kartu mahasiswa (opsional)", studentCardHint: "Opsional — kartu mahasiswa universitas Rusiamu (Studencheskiy Bilet / Propusk).",
     consent: "Formulir persetujuan bertanda tangan", consentHint: "Unduh formulir dari situs kami, tanda tangani, lalu unggah ulang.",
     fileHint: "Klik untuk mengunggah · PDF, JPG, PNG, WebP hingga 10 MB",
     remove: "Hapus",

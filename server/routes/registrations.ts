@@ -60,7 +60,7 @@ registrationsRouter.post(
       const studentCard = files?.studentCard?.[0];
 
       if (!passport) throw new Error("Passport file is required.");
-      if (!studentCard) throw new Error("Student card file is required.");
+      // Student card is optional.
 
       const input: ParticipantInput = {
         fullName: requireString(body.fullName, "fullName", { min: 2, max: 80 }),
@@ -74,7 +74,7 @@ registrationsRouter.post(
         priorExperience: optionalString(body.priorExperience, 600),
         motivation: requireString(body.motivation, "motivation", { min: 40, max: 800 }),
         passportFileId: (await recordFile(passport)).id,
-        studentCardFileId: (await recordFile(studentCard)).id,
+        studentCardFileId: studentCard ? (await recordFile(studentCard)).id : "",
       };
 
       const created = await createParticipant(input);

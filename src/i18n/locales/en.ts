@@ -333,7 +333,7 @@ export const en = {
     phone: "Phone", phonePh: "+7 921 000 00 00",
     messenger: "Telegram or WhatsApp", messengerPh: "@your_handle or +country code",
     passport: "Passport scan", passportHint: "A clear scan of your passport's photo page.",
-    studentCard: "Student card", studentCardHint: "Your Russian university student card (Studencheskiy Bilet / Propusk).",
+    studentCard: "Student card (optional)", studentCardHint: "Optional — your Russian university student card (Studencheskiy Bilet / Propusk).",
     consent: "Signed consent form", consentHint: "Download the form from our site, sign it, and re-upload.",
     fileHint: "Click to upload · PDF, JPG, PNG, WebP up to 10 MB",
     remove: "Remove",

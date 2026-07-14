@@ -335,7 +335,7 @@ export const ru: Translation = {
     phone: "Телефон", phonePh: "+7 921 000 00 00",
     messenger: "Telegram или WhatsApp", messengerPh: "@ваш_ник или + код страны",
     passport: "Скан паспорта", passportHint: "Чёткий скан страницы с фото.",
-    studentCard: "Студенческий билет", studentCardHint: "Ваш студенческий билет российского вуза (Студенческий билет / Пропуск).",
+    studentCard: "Студенческий билет (необязательно)", studentCardHint: "Необязательно — ваш студенческий билет российского вуза (Студенческий билет / Пропуск).",
     consent: "Подписанное согласие", consentHint: "Скачайте форму с сайта, подпишите и загрузите.",
     fileHint: "Нажмите для загрузки · PDF, JPG, PNG, WebP до 10 МБ",
     remove: "Удалить",

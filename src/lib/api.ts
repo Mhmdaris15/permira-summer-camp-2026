@@ -18,9 +18,6 @@ export async function submitRegistration(data: RegistrationData): Promise<Submit
   if (!data.passport) {
     return { ok: false, error: "Passport scan is required." };
   }
-  if (!data.studentCard) {
-    return { ok: false, error: "Student card is required." };
-  }
 
   const fd = new FormData();
   for (const [key, value] of Object.entries(data)) {

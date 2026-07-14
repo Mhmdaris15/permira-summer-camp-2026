@@ -39,16 +39,21 @@ export function validate(data: RegistrationData): FieldErrors {
   else if (data.motivation.trim().length < 40) errors.motivation = "validation.motivationShort";
   else if (data.motivation.length > LIMITS.motivation) errors.motivation = "validation.motivationLong";
 
-  const passport = validateFile(data.passport, "passport");
+  const passport = validateFile(data.passport, "passport", true);
   if (passport) errors.passport = passport;
-  const studentCard = validateFile(data.studentCard, "studentCard");
+  // Student card is optional — only validate size/type when one is provided.
+  const studentCard = validateFile(data.studentCard, "studentCard", false);
   if (studentCard) errors.studentCard = studentCard;
 
   return errors;
 }
 
-function validateFile(file: File | null, which: "passport" | "studentCard"): string | undefined {
-  if (!file) return `validation.${which}Req`;
+function validateFile(
+  file: File | null,
+  which: "passport" | "studentCard",
+  required: boolean,
+): string | undefined {
+  if (!file) return required ? `validation.${which}Req` : undefined;
   if (file.size > FILE_LIMITS.maxBytes) return `validation.${which}Big`;
   if (!FILE_LIMITS.acceptedMime.includes(file.type as typeof FILE_LIMITS.acceptedMime[number]))
     return `validation.${which}Type`;
