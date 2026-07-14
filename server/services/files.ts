@@ -1,5 +1,6 @@
 import path from "node:path";
 import { randomUUID } from "node:crypto";
+import type { Readable } from "node:stream";
 import multer from "multer";
 import {
   S3Client,
@@ -186,6 +187,53 @@ export async function getSignedFileUrl(id: string): Promise<{
     mime: meta.mime,
     expiresAt: new Date(Date.now() + SIGNED_URL_TTL_SECONDS * 1000).toISOString(),
   };
+}
+
+/**
+ * Streams an object's bytes straight from R2 — used for server-side bulk export
+ * (zipping uploaded documents). Returns the body as a Node Readable plus the
+ * original name, mime, and file extension (from the key).
+ */
+export async function getFileObject(id: string): Promise<{
+  body: Readable;
+  originalName: string;
+  mime: string;
+  ext: string;
+} | null> {
+  if (!KEY_RE.test(id)) return null;
+  try {
+    const res = await client().send(
+      new GetObjectCommand({ Bucket: R2_BUCKET, Key: id }),
+    );
+    if (!res.Body) return null;
+    const originalName = res.Metadata?.originalname
+      ? decodeURIComponent(res.Metadata.originalname)
+      : id;
+    return {
+      body: res.Body as Readable,
+      originalName,
+      mime: res.ContentType ?? "application/octet-stream",
+      ext: path.extname(id) || extFromMime(res.ContentType),
+    };
+  } catch (err) {
+    if (isNotFound(err)) return null;
+    throw err;
+  }
+}
+
+function extFromMime(mime?: string): string {
+  switch (mime) {
+    case "image/jpeg":
+      return ".jpg";
+    case "image/png":
+      return ".png";
+    case "image/webp":
+      return ".webp";
+    case "application/pdf":
+      return ".pdf";
+    default:
+      return "";
+  }
 }
 
 function isNotFound(err: unknown): boolean {

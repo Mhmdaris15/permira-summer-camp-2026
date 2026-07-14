@@ -122,4 +122,20 @@ export async function getFileUrl(id: string): Promise<string> {
   return body.url;
 }
 
+/**
+ * Downloads a ZIP of every participant's uploaded documents (passport +
+ * student card), built and streamed server-side from R2. Returns the blob.
+ */
+export async function exportParticipantFiles(): Promise<Blob> {
+  const res = await fetch(apiUrl("/api/registrations/export-files"), {
+    headers: adminHeaders(),
+  });
+  if (res.status === 401) {
+    clearAdminToken();
+    throw new AuthError("Session expired. Please sign in again.");
+  }
+  if (!res.ok) throw new Error(`File export failed (${res.status}).`);
+  return res.blob();
+}
+
 export { AuthError };

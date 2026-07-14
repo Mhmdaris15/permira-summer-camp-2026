@@ -5,6 +5,7 @@ import { clearAdminToken, verifyAdminSession } from "../lib/adminAuth";
 import {
   AuthError,
   deleteParticipant,
+  exportParticipantFiles,
   listParticipants,
   type ListResponse,
   type Participant,
@@ -152,6 +153,29 @@ export function AdminParticipants() {
     }
   }
 
+  const [exportingFiles, setExportingFiles] = useState(false);
+
+  // Bulk export of uploaded documents — the server streams a ZIP straight from
+  // R2 (passport + student card per participant), which we download as a blob.
+  async function exportFiles() {
+    setExportingFiles(true);
+    setError(null);
+    try {
+      const blob = await exportParticipantFiles();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `permira-files-${new Date().toISOString().slice(0, 10)}.zip`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      if (err instanceof AuthError) handleAuthLost();
+      else setError(err instanceof Error ? err.message : "File export failed.");
+    } finally {
+      setExportingFiles(false);
+    }
+  }
+
   const counts = useMemo(() => {
     if (!data) return null;
     const out: Record<ParticipantStatus, number> = {
@@ -267,6 +291,17 @@ export function AdminParticipants() {
               <path d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
             </svg>
             {exporting ? "Exporting…" : "Export CSV"}
+          </button>
+          <button
+            type="button"
+            onClick={() => void exportFiles()}
+            disabled={exportingFiles}
+            className="inline-flex items-center gap-2 rounded-full border border-clove-900/15 bg-cream-50 px-4 py-2 text-sm font-medium text-clove-700 transition hover:border-terracotta-500/40 hover:text-terracotta-500 disabled:opacity-60"
+          >
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+            </svg>
+            {exportingFiles ? "Exporting…" : "Export files"}
           </button>
         </div>
 

@@ -1,6 +1,7 @@
 import { Router, type Request, type Response, type NextFunction } from "express";
+import { ZipArchive } from "archiver";
 import { requireAdmin } from "../auth.js";
-import { recordFile, upload, deleteFile } from "../services/files.js";
+import { recordFile, upload, deleteFile, getFileObject } from "../services/files.js";
 import {
   createParticipant,
   deleteParticipant,
@@ -157,6 +158,65 @@ registrationsRouter.get("/", requireAdmin, async (req, res) => {
   res.json(result);
 });
 
+/**
+ * Admin bulk file export: streams a ZIP of every uploaded document (passport +
+ * student card) straight from R2. Each participant gets a folder
+ * `NN-Full Name/` containing `passport.<ext>` / `student-card.<ext>`.
+ * Registered before `/:id` so the literal path isn't captured as an id.
+ */
+registrationsRouter.get("/export-files", requireAdmin, async (req, res) => {
+  try {
+    const { status, search } = req.query;
+    const { rows } = await listParticipants({
+      status:
+        typeof status === "string" && STATUSES.includes(status as ParticipantStatus)
+          ? (status as ParticipantStatus)
+          : undefined,
+      search: typeof search === "string" ? search : undefined,
+      limit: 500,
+    });
+
+    const stamp = new Date().toISOString().slice(0, 10);
+    res.setHeader("Content-Type", "application/zip");
+    res.setHeader("Content-Disposition", `attachment; filename="permira-files-${stamp}.zip"`);
+
+    const archive = new ZipArchive({ zlib: { level: 9 } });
+    archive.on("warning", (err: Error) => console.warn("[export-files] warning:", err));
+    archive.on("error", (err: Error) => {
+      console.error("[export-files] archive error:", err);
+      if (!res.headersSent) res.status(500).json({ error: "Export failed." });
+      else res.destroy(err);
+    });
+    archive.pipe(res);
+
+    let index = 0;
+    let fileCount = 0;
+    for (const p of rows) {
+      index++;
+      const folder = `${String(index).padStart(2, "0")}-${safeFolderName(p.fullName)}`;
+      for (const [kind, fileId] of [
+        ["passport", p.passportFileId],
+        ["student-card", p.studentCardFileId],
+      ] as const) {
+        if (!fileId) continue;
+        const obj = await getFileObject(fileId);
+        if (!obj) continue;
+        archive.append(obj.body, { name: `${folder}/${kind}${obj.ext}` });
+        fileCount++;
+      }
+    }
+
+    if (fileCount === 0) {
+      archive.append("No uploaded files found.\n", { name: "README.txt" });
+    }
+
+    await archive.finalize();
+  } catch (err) {
+    console.error("[export-files] error:", err);
+    if (!res.headersSent) handleError(err, res);
+  }
+});
+
 registrationsRouter.get("/:id", requireAdmin, async (req, res) => {
   const p = await getParticipant(decodeURIComponent(req.params.id as string));
   if (!p) {
@@ -281,6 +341,17 @@ function normalizeImport(raw: unknown): ImportParticipantInput {
     passportFileId: str(r.passportFileId),
     studentCardFileId: str(r.studentCardFileId),
   };
+}
+
+// Sanitize a name for a zip folder: strip path/reserved chars, keep unicode
+// (Cyrillic) letters, collapse whitespace, and cap the length.
+function safeFolderName(name: string): string {
+  const cleaned = name
+    .replace(/[/\\:*?"<>|]+/g, "_")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 60);
+  return cleaned || "participant";
 }
 
 function handleError(err: unknown, res: Response) {
