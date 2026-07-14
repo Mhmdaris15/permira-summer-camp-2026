@@ -101,14 +101,20 @@ export async function importParticipant(
        dietary: $dietary,
        priorExperience: $priorExperience,
        motivation: $motivation,
-       passportFileId: "",
-       studentCardFileId: "",
+       passportFileId: $passportFileId,
+       studentCardFileId: $studentCardFileId,
        status: $status,
        notes: $notes,
        submittedAt: <datetime> $submittedAt,
        updatedAt: <datetime> $now
      } RETURN AFTER`,
-    { ...input, submittedAt, now },
+    {
+      ...input,
+      passportFileId: input.passportFileId ?? "",
+      studentCardFileId: input.studentCardFileId ?? "",
+      submittedAt,
+      now,
+    },
   );
 
   if (!rows || rows.length === 0) throw new Error("Failed to import participant.");

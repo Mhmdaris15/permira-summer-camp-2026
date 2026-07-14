@@ -34,3 +34,6 @@ art-source/
 *.njsproj
 *.sln
 *.sw?
+src/assets/main.ipynb
+src/assets/merged-participants-2026-07-14.csv
+src/assets/permira-participants-2026-07-14.csv

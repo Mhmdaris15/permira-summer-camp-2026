@@ -93,6 +93,12 @@ export async function snapshot(): Promise<void> {
     await fs.writeFile(SNAPSHOT_PATH, serialized, "utf8");
   });
   await writeQueue;
+
+  // Mirror the table to Google Sheets — best-effort, never blocks the caller or
+  // throws. Dynamic import avoids a db ↔ sheets ↔ participants import cycle.
+  void import("./services/sheets.js")
+    .then((m) => m.mirrorParticipants())
+    .catch((err) => console.error("[sheets] mirror hook failed:", err));
 }
 
 /**

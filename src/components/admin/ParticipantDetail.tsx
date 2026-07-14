@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  fetchFileAsBlobUrl,
+  getFileUrl,
   patchParticipant,
   type Participant,
   type ParticipantPatch,
@@ -58,17 +58,13 @@ export function ParticipantDetail({
       try {
         const [passport, studentCard] = await Promise.all([
           participant.passportFileId
-            ? fetchFileAsBlobUrl(participant.passportFileId)
+            ? getFileUrl(participant.passportFileId)
             : Promise.resolve(undefined),
           participant.studentCardFileId
-            ? fetchFileAsBlobUrl(participant.studentCardFileId)
+            ? getFileUrl(participant.studentCardFileId)
             : Promise.resolve(undefined),
         ]);
-        if (cancelled) {
-          if (passport) URL.revokeObjectURL(passport);
-          if (studentCard) URL.revokeObjectURL(studentCard);
-          return;
-        }
+        if (cancelled) return;
         setDocs({ passport, studentCard });
       } catch (err) {
         if (!cancelled) setDocError(err instanceof Error ? err.message : "Failed to load documents.");
@@ -78,15 +74,6 @@ export function ParticipantDetail({
       cancelled = true;
     };
   }, [participant]);
-
-  // Revoke blob URLs on unmount.
-  useEffect(
-    () => () => {
-      if (docs.passport) URL.revokeObjectURL(docs.passport);
-      if (docs.studentCard) URL.revokeObjectURL(docs.studentCard);
-    },
-    [docs.passport, docs.studentCard],
-  );
 
   if (!participant) return null;
 

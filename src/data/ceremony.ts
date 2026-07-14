@@ -20,6 +20,7 @@ export const LIVESTREAM_URL = "https://summercamp2026.permiraspb.org";
 
 export const CEREMONY_ITEMS: CeremonyItem[] = [
   { time: "13:30", key: "anthems", kind: "moment" },
+  { time: "13:33", key: "pratikno", kind: "speaker", name: "Prof. Dr. Pratikno, M.Soc.Sc" },
   { time: "13:35", key: "ambassador", kind: "speaker", name: "H.E. José Antonio Morató Tavares" },
   { time: "13:40", key: "consul", kind: "speaker", name: "Valery A. Radchenko" },
   { time: "13:45", key: "stulov", kind: "speaker", name: "Fedor N. Stulov" },

@@ -1,24 +1,22 @@
 import { Router } from "express";
 import { requireAdmin } from "../auth.js";
-import { getFile, streamFile } from "../services/files.js";
+import { getSignedFileUrl } from "../services/files.js";
 
 export const filesRouter: Router = Router();
 
+// Returns a short-lived presigned R2 URL the admin browser can load directly
+// (image/PDF preview or download). Objects are private in R2; the JWT gate
+// here is what authorizes minting the signed URL.
 filesRouter.get("/:id", requireAdmin, async (req, res) => {
-  const meta = await getFile(req.params.id as string);
-  if (!meta) {
-    res.status(404).json({ error: "File not found." });
-    return;
+  try {
+    const result = await getSignedFileUrl(req.params.id as string);
+    if (!result) {
+      res.status(404).json({ error: "File not found." });
+      return;
+    }
+    res.json(result);
+  } catch (err) {
+    console.error("[files] presign error:", err);
+    res.status(500).json({ error: "Could not generate file URL." });
   }
-  res.setHeader("Content-Type", meta.mime);
-  res.setHeader("Content-Length", String(meta.size));
-  // `inline` so PDFs/images render in the browser tab; admin can still
-  // right-click → Save As if they need a local copy.
-  const safeName = meta.originalName.replace(/[^\w.\-+ ]/g, "_");
-  res.setHeader("Content-Disposition", `inline; filename="${safeName}"`);
-
-  streamFile(meta).on("error", (err) => {
-    console.error("[files] stream error:", err);
-    if (!res.headersSent) res.status(500).end();
-  }).pipe(res);
 });

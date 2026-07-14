@@ -111,7 +111,7 @@ function layout(opts: {
     eyebrow,
   )}</div>
               <div style="margin-top:8px;font-family:${SERIF};font-size:22px;color:${C.cream50};font-weight:400;">PERMIRA Summer Camp <span style="color:${C.saffron};">2026</span></div>
-              <div style="margin-top:4px;font-size:12px;color:rgba(253,248,241,0.65);letter-spacing:0.02em;">Taste of Nusantara · Indonesia × Russia × ASEAN</div>
+              <div style="margin-top:4px;font-size:12px;color:rgba(253,248,241,0.65);letter-spacing:0.02em;">Cuisine of Nusantara: Lessons of Nature and Friendship of Peoples · Indonesia × Russia × ASEAN</div>
             </td>
           </tr>
           <!-- Accent rule -->

@@ -85,6 +85,13 @@ export type ImportParticipantInput = {
   notes: string;
   /** ISO 8601 string; preserved from the original submission. */
   submittedAt: string;
+  /**
+   * Optional R2 object keys. The JSON backup restore leaves these empty (files
+   * were lost); a Sheet restore preserves them so participants reconnect to
+   * their files, which survive redeploys in R2.
+   */
+  passportFileId?: string;
+  studentCardFileId?: string;
 };
 
 export type ParticipantPatch = Partial<

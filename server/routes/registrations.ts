@@ -276,6 +276,10 @@ function normalizeImport(raw: unknown): ImportParticipantInput {
     status,
     notes: str(r.notes),
     submittedAt,
+    // Preserved on a Sheet restore (R2 keys survive wipes); empty for the
+    // JSON backup, whose files were lost.
+    passportFileId: str(r.passportFileId),
+    studentCardFileId: str(r.studentCardFileId),
   };
 }
 

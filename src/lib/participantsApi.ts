@@ -99,19 +99,27 @@ export async function deleteParticipant(id: string): Promise<void> {
 }
 
 /**
- * Builds a same-origin URL for a stored file. Files require an admin JWT,
- * so we can't put them in plain <img src> — components fetch and create
- * a blob URL instead. See `useFileBlobUrl`.
+ * Endpoint that mints a presigned R2 URL for a stored file. Requires an admin
+ * JWT; returns JSON `{ url, originalName, mime }`.
  */
 export function fileEndpoint(id: string): string {
   return apiUrl(`/api/files/${encodeURIComponent(id)}`);
 }
 
-export async function fetchFileAsBlobUrl(id: string): Promise<string> {
+/**
+ * Fetches a short-lived presigned URL for a stored file. The URL points at R2
+ * (custom domain) and can be used directly in <img>/<object>/<a> — no auth
+ * header needed on the URL itself, since the signature authorizes it.
+ */
+export async function getFileUrl(id: string): Promise<string> {
   const res = await fetch(fileEndpoint(id), { headers: adminHeaders() });
-  if (!res.ok) throw new Error(`File fetch failed (${res.status}).`);
-  const blob = await res.blob();
-  return URL.createObjectURL(blob);
+  if (res.status === 401) {
+    clearAdminToken();
+    throw new AuthError("Session expired. Please sign in again.");
+  }
+  if (!res.ok) throw new Error(`File URL fetch failed (${res.status}).`);
+  const body = (await res.json()) as { url: string };
+  return body.url;
 }
 
 export { AuthError };

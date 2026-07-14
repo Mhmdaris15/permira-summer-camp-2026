@@ -1,16 +1,26 @@
-import { promises as fs, createReadStream } from "node:fs";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import multer from "multer";
+import {
+  S3Client,
+  PutObjectCommand,
+  HeadObjectCommand,
+  DeleteObjectCommand,
+  GetObjectCommand,
+} from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import type { StoredFile } from "../types.js";
-import { UPLOADS_DIR } from "../paths.js";
 
-// Uploaded files + their metadata live in the persistent uploads volume.
-const UPLOAD_DIR = UPLOADS_DIR;
-const META_DIR = path.join(UPLOADS_DIR, ".meta");
-
-await fs.mkdir(UPLOAD_DIR, { recursive: true });
-await fs.mkdir(META_DIR, { recursive: true });
+/**
+ * File storage backed by Cloudflare R2 (S3-compatible). Uploaded bytes live in
+ * the R2 bucket — nothing touches the container filesystem, so files survive
+ * redeploys. Objects are private; the browser gets short-lived presigned URLs.
+ *
+ * Two S3 clients:
+ *  • the management client talks to the account S3 endpoint (PUT/HEAD/DELETE).
+ *  • the presign client (when R2_PUBLIC_HOST is set) signs GET URLs against the
+ *    public custom domain, so browser-facing URLs are https://<host>/<key>.
+ */
 
 const ALLOWED_MIME = new Set([
   "image/jpeg",
@@ -18,18 +28,71 @@ const ALLOWED_MIME = new Set([
   "image/webp",
   "application/pdf",
 ]);
-
 const MAX_BYTES = 10 * 1024 * 1024; // 10 MB
+const SIGNED_URL_TTL_SECONDS = 300; // 5 min
 
-/** Multer middleware factory — disk storage, uuid filenames, mime gating. */
+const R2_BUCKET = process.env.R2_BUCKET ?? "";
+// Custom domain for browser-facing URLs, e.g. storage.permiraspb.org. Scheme
+// and trailing slashes are stripped so either form works in .env.
+const R2_PUBLIC_HOST = (process.env.R2_PUBLIC_HOST ?? "")
+  .replace(/^https?:\/\//, "")
+  .replace(/\/+$/, "");
+
+/** True when the required R2 vars are present. */
+export function isStorageConfigured(): boolean {
+  return Boolean(
+    process.env.R2_ENDPOINT &&
+      process.env.R2_ACCESS_KEY_ID &&
+      process.env.R2_SECRET_ACCESS_KEY &&
+      process.env.R2_BUCKET,
+  );
+}
+
+function required(name: string): string {
+  const v = process.env[name];
+  if (!v) throw new Error(`${name} is not set — R2 object storage is not configured.`);
+  return v;
+}
+
+function credentials() {
+  return {
+    accessKeyId: required("R2_ACCESS_KEY_ID"),
+    secretAccessKey: required("R2_SECRET_ACCESS_KEY"),
+  };
+}
+
+let _client: S3Client | null = null;
+function client(): S3Client {
+  if (!_client) {
+    _client = new S3Client({
+      region: "auto",
+      endpoint: required("R2_ENDPOINT"),
+      credentials: credentials(),
+    });
+  }
+  return _client;
+}
+
+let _presignClient: S3Client | null = null;
+function presignClient(): S3Client {
+  if (!R2_PUBLIC_HOST) return client();
+  if (!_presignClient) {
+    _presignClient = new S3Client({
+      region: "auto",
+      endpoint: `https://${R2_PUBLIC_HOST}`,
+      // The endpoint already refers to the bucket (custom domain → bucket), so
+      // the SDK must not add the bucket to the host or path: URLs become
+      // https://<host>/<key>, which is what R2 serves.
+      bucketEndpoint: true,
+      credentials: credentials(),
+    });
+  }
+  return _presignClient;
+}
+
+/** Multer middleware — in-memory storage so bytes are available for R2 upload. */
 export const upload = multer({
-  storage: multer.diskStorage({
-    destination: UPLOAD_DIR,
-    filename: (_req, file, cb) => {
-      const ext = path.extname(file.originalname).toLowerCase().slice(0, 8) || "";
-      cb(null, `${randomUUID()}${ext}`);
-    },
-  }),
+  storage: multer.memoryStorage(),
   limits: { fileSize: MAX_BYTES, files: 4 },
   fileFilter: (_req, file, cb) => {
     if (ALLOWED_MIME.has(file.mimetype)) cb(null, true);
@@ -37,43 +100,95 @@ export const upload = multer({
   },
 });
 
-/**
- * Persists metadata for a multer-uploaded file and returns its stored
- * descriptor. Multer already wrote the bytes; we just record the mapping
- * id → path so files can be served with their original filename later.
- */
+// A stored key is a uuid plus an optional short extension. Guards getFile /
+// deleteFile against arbitrary keys.
+const KEY_RE = /^[a-f0-9-]{36}(\.[a-z0-9]{1,8})?$/i;
+
+/** Uploads a multer (memory) file to R2 and returns its descriptor. */
 export async function recordFile(file: Express.Multer.File): Promise<StoredFile> {
-  const id = path.basename(file.filename, path.extname(file.filename));
-  const meta: StoredFile = {
-    id,
+  const ext = path.extname(file.originalname).toLowerCase().slice(0, 8) || "";
+  const key = `${randomUUID()}${ext}`;
+  await client().send(
+    new PutObjectCommand({
+      Bucket: R2_BUCKET,
+      Key: key,
+      Body: file.buffer,
+      ContentType: file.mimetype,
+      ContentLength: file.size,
+      // Original name preserved for later download; encoded so non-ASCII names
+      // (Cyrillic passports) are valid HTTP header metadata.
+      Metadata: { originalname: encodeURIComponent(file.originalname) },
+    }),
+  );
+  return {
+    id: key,
     originalName: file.originalname,
     mime: file.mimetype,
     size: file.size,
-    path: file.path,
+    path: key,
   };
-  await fs.writeFile(path.join(META_DIR, `${id}.json`), JSON.stringify(meta), "utf8");
-  return meta;
 }
 
 export async function getFile(id: string): Promise<StoredFile | null> {
-  if (!/^[a-f0-9-]{36}$/.test(id)) return null; // hardens against path traversal
+  if (!KEY_RE.test(id)) return null;
   try {
-    const raw = await fs.readFile(path.join(META_DIR, `${id}.json`), "utf8");
-    return JSON.parse(raw) as StoredFile;
-  } catch {
-    return null;
+    const head = await client().send(
+      new HeadObjectCommand({ Bucket: R2_BUCKET, Key: id }),
+    );
+    const originalName = head.Metadata?.originalname
+      ? decodeURIComponent(head.Metadata.originalname)
+      : id;
+    return {
+      id,
+      originalName,
+      mime: head.ContentType ?? "application/octet-stream",
+      size: head.ContentLength ?? 0,
+      path: id,
+    };
+  } catch (err) {
+    if (isNotFound(err)) return null;
+    throw err;
   }
 }
 
 export async function deleteFile(id: string): Promise<void> {
-  const meta = await getFile(id);
-  if (!meta) return;
-  await Promise.all([
-    fs.unlink(meta.path).catch(() => undefined),
-    fs.unlink(path.join(META_DIR, `${id}.json`)).catch(() => undefined),
-  ]);
+  if (!KEY_RE.test(id)) return;
+  try {
+    await client().send(new DeleteObjectCommand({ Bucket: R2_BUCKET, Key: id }));
+  } catch (err) {
+    if (!isNotFound(err)) console.error("[files] delete failed:", err);
+  }
 }
 
-export function streamFile(meta: StoredFile) {
-  return createReadStream(meta.path);
+/** Short-lived presigned GET URL for browser-side preview/download. */
+export async function getSignedFileUrl(id: string): Promise<{
+  url: string;
+  originalName: string;
+  mime: string;
+  expiresAt: string;
+} | null> {
+  const meta = await getFile(id);
+  if (!meta) return null;
+  const safeName = meta.originalName.replace(/[^\w.\-+ ]/g, "_");
+  const url = await getSignedUrl(
+    presignClient(),
+    new GetObjectCommand({
+      Bucket: R2_BUCKET,
+      Key: id,
+      ResponseContentDisposition: `inline; filename="${safeName}"`,
+      ResponseContentType: meta.mime,
+    }),
+    { expiresIn: SIGNED_URL_TTL_SECONDS },
+  );
+  return {
+    url,
+    originalName: meta.originalName,
+    mime: meta.mime,
+    expiresAt: new Date(Date.now() + SIGNED_URL_TTL_SECONDS * 1000).toISOString(),
+  };
+}
+
+function isNotFound(err: unknown): boolean {
+  const e = err as { name?: string; $metadata?: { httpStatusCode?: number } };
+  return e?.name === "NotFound" || e?.$metadata?.httpStatusCode === 404;
 }
