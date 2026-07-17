@@ -43,7 +43,11 @@ export async function computeStats(): Promise<Stats> {
 
   const dateMap = new Map<string, number>();
   for (const p of rows) {
-    const date = (p.submittedAt || "").slice(0, 10);
+    // submittedAt is a Date at runtime (SurrealDB datetime) and only becomes an
+    // ISO string once serialized to JSON — normalise both to a YYYY-MM-DD key.
+    const raw = p.submittedAt as unknown;
+    const d = raw instanceof Date ? raw : new Date(String(raw ?? ""));
+    const date = Number.isNaN(d.getTime()) ? "" : d.toISOString().slice(0, 10);
     if (date) dateMap.set(date, (dateMap.get(date) ?? 0) + 1);
   }
   const byDate = [...dateMap.entries()]
