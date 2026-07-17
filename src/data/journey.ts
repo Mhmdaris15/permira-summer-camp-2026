@@ -28,7 +28,7 @@ export const journeyDays: JourneyDay[] = [
     label: "Day One",
     verb: "Arrive & Open",
     date: "July 19, 2026",
-    headline: "Arrive, settle, and an official opening.",
+    headline: "Opening Ceremony, Learning from Nature and Getting to Know Each Other.",
     body:
       "Gather at Ozerki metro, travel by coach to Cape Kiperort — a peninsula on Vyborg Bay — and pitch camp, then a bilingual opening ceremony with the national anthems, ministerial and diplomatic remarks, and a tumpeng, followed by a natural-materials masterclass, a cape walk, and campfire games.",
     activities: [

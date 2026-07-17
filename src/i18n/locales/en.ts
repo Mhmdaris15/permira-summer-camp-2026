@@ -42,7 +42,7 @@ export const en = {
       d1: {
         label: "Day One",
         verb: "Arrive & Open",
-        headline: "Arrive, settle, and an official opening.",
+        headline: "Opening Ceremony, Learning from Nature and Getting to Know Each Other.",
         body: "Participants gather at Ozerki metro and travel by coach to Cape Kiperort, a peninsula on Vyborg Bay. After settling into camp, a bilingual opening ceremony brings the national anthems, remarks from the Minister, Ambassador, and regional officials, and a tumpeng — followed by a natural-materials masterclass, a guided cape walk, and campfire games into the night.",
         a1t: "Gather & Transfer", a1d: "Meet at Ozerki metro (09:00 MSK), then travel by coach north to Cape Kiperort (Vyborg District) — please don't be late.",
         a2t: "Opening Ceremony", a2d: "A bilingual opening: anthems, remarks from the Minister, Ambassador, and regional officials, and the tumpeng cutting.",
