@@ -17,7 +17,7 @@ committee before public launch.
 | Official name | PERMIRA Summer Camp 3.0 — III Indonesian–Russian Students Summer Camp 2026 |
 | Theme | "Taste of Nusantara: The Eco-Culinary Bridge from ASEAN to Russia" |
 | Dates | 19–21 July 2026 |
-| Location | Camp site in Saint Petersburg / Leningrad Oblast (venue TBC) |
+| Location | Camp site in Leningrad Oblast / Leningrad Oblast (venue TBC) |
 | Capacity | 35 students — 15 Indonesia · 10 Russia · 10 ASEAN |
 | Ages | 18–35, active university students in Saint Petersburg |
 | Languages | Indonesian & Russian (basic English required) |
@@ -34,7 +34,7 @@ committee before public launch.
 | 2 | `src/components/CulinaryHighlights.tsx` | Dishes implied as a **guaranteed fixed menu** ("Three dishes worth telling") | Reframe as examples; add disclaimer | ✅ Retitled "Indonesian Culinary Inspirations / Examples of Indonesian culinary heritage" + disclaimer "Actual dishes may vary…" |
 | 3 | `src/data/dishes.ts` | Example dishes (Sate Madura, Ayam Lengkuas, Soto Ayam) | Verify against proposal | ✅ Match the proposal's masterclass menu — kept, now framed as examples |
 | 4 | `Footer.tsx`, `NavHeader.tsx` | Brand "Permira · Nusantara" / "Permira SPB · Nusantara" | Replace with official name | ✅ Now "PERMIRA Summer Camp · 2026" |
-| 5 | `src/components/CulturalExchange.tsx` | Showed only Indonesia ↔ Russia; **ASEAN missing** | Show Indonesia · Russia · ASEAN · Saint Petersburg | ✅ Added four-way collaboration row (real flags + ASEAN logo); reframed to "Eco-Culinary Bridge from ASEAN to Russia" |
+| 5 | `src/components/CulturalExchange.tsx` | Showed only Indonesia ↔ Russia; **ASEAN missing** | Show Indonesia · Russia · ASEAN · Leningrad Oblast | ✅ Added four-way collaboration row (real flags + ASEAN logo); reframed to "Eco-Culinary Bridge from ASEAN to Russia" |
 | 6 | `src/components/Partners.tsx`, `organizations.ts` | Weak/flat partner list | Tier as Organized by / In Collaboration With / Supported by; highlight environmental-government partner | ✅ Three tiers; Ecology Committee + Committee for External Relations under "In Collaboration With"; KBRI under "Supported by" |
 | 7 | Hero stats | "2 Cultures"; age framing absent | Reflect 35 participants + ASEAN | ✅ "35 Students · Indonesia · Russia · ASEAN"; eyebrow + subtitle include ASEAN |
 | 8 | `validate.ts`, `RegistrationForm.tsx` | Age bound **16–35** | Proposal says **18–35** | ✅ Changed to 18–35 |
@@ -49,7 +49,7 @@ committee before public launch.
 
 | Item | Where | Why it needs approval |
 |------|-------|------------------------|
-| **Partner attributions** — Committee for Nature Use & Environmental Safety; Committee for External Relations of Saint Petersburg; KBRI Moscow | `Partners.tsx` | Logos were supplied, but formal partnership/endorsement wording and logo-use permission should be confirmed in writing before public launch. |
+| **Partner attributions** — Committee for Nature Use & Environmental Safety; Committee for External Relations of Leningrad Oblast; KBRI Moscow | `Partners.tsx` | Logos were supplied, but formal partnership/endorsement wording and logo-use permission should be confirmed in writing before public launch. |
 | **Tier placement** of each partner (Organized / Collaboration / Supported) | `Partners.tsx` | Confirm each organisation agrees to its tier and naming. |
 | **Venue** | site-wide ("Saint Petersburg / Leningrad Oblast") | Exact camp site not yet fixed (proposal lists priority candidates: Ladozhskoye Ozero Beach, Lake Vuoksa, Lake Kavgolovskoye, Lesnaya Skazka). Kept generic on purpose. |
 | **Cost/inclusions** | chatbot FAQ | Proposal covers budget but participant-facing cost wording ("provided for selected participants") should be confirmed. |

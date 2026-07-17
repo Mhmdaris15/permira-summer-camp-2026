@@ -6,7 +6,7 @@ import { COLORS } from "./layout";
 
 type Item = { color: string; label: string };
 const ARRIVAL: Item[] = [
-  { color: COLORS.pier, label: "Pier (arrive by boat)" },
+  { color: COLORS.pier, label: "Pier (arrival & shore)" },
   { color: COLORS.sand, label: "Beach" },
 ];
 const CAMP: Item[] = [

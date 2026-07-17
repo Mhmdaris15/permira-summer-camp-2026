@@ -1,7 +1,7 @@
 /**
- * Pier — a short wooden jetty reaching off the west shore into the water,
- * marking where boats arrive. Replaces the old assembly "H"; the island is
- * reachable only by boat, so the pier is the camp's front door.
+ * Pier — a short wooden jetty reaching off the west shore into the water.
+ * The camp sits on the Vyborg Bay shore of Cape Kiperort, so the pier by the
+ * water is the camp's front door (the coach drops off nearby).
  */
 import { COLORS, ZONES } from "./layout";
 

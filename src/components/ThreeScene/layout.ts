@@ -99,7 +99,7 @@ export type Zone = {
   category?: "arrival" | "facility" | "food" | "gather" | "rest" | "nature";
 };
 
-// Camp laid out to match the hand sketch of Kubenskiy Island: the pier is the
+// Camp laid out to match the hand sketch of the camp at Cape Kiperort: the pier is the
 // hub on the west shore, organisers to the NE, kitchen + dining through the
 // centre, the common ground (campfire) to the east, tents south, beach SW.
 export const ZONES: Zone[] = [
@@ -167,7 +167,7 @@ export const PATHS: Path[] = [
 // -----------------------------------------------------------------------------
 
 /** [x, z, scale, variant] — variant 0|1 toggles foliage shade.
- *  Pine forest hugs the east + north of the island (as in the satellite);
+ *  Pine forest hugs the east + north of the cape (as in the satellite);
  *  the west shore (pier) and the south-west (beach) are left open to water. */
 export const TREES: Array<[number, number, number, 0 | 1]> = [
   // East forest band

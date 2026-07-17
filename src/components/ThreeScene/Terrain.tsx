@@ -17,7 +17,7 @@ export function Terrain() {
 
   return (
     <group>
-      {/* Lake — a broad water plane the island sits on. Kept just below the
+      {/* Bay — a broad water plane the cape sits on. Kept just below the
           shore so the land reads as a spit ringed by water. */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.06, 0]}>
         <planeGeometry args={[160, 160]} />

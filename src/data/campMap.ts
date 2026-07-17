@@ -14,7 +14,7 @@
  * container), so a marker at (50, 50) sits at the true centre of the artwork
  * and trail paths drawn in viewBox units line up exactly with the HTML markers.
  *
- * Positions follow the client's hand sketch of Kubenskiy Island, adjusted for
+ * Positions follow the client's hand sketch of the camp at Cape Kiperort, adjusted for
  * visual balance while preserving the real spatial relationships between areas.
  */
 

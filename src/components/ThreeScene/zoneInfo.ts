@@ -26,9 +26,9 @@ export type ZoneInfoEntry = {
 export const ZONE_INFO: Record<string, ZoneInfoEntry> = {
   pier: {
     icon: "⚓",
-    summary: "Where the island begins",
+    summary: "Where the cape meets the bay",
     description:
-      "The camp is reachable only by boat, so the pier is its front door. First footsteps, first hellos, and the daily rhythm of coming and going all cross these boards.",
+      "The coach drops off nearby, so the pier on the Vyborg Bay shore is the camp's front door. First footsteps, first hellos, and the daily rhythm of camp all begin at the water's edge.",
     activities: ["Boat arrival & departure", "Luggage drop", "Daily check-in point"],
     capacity: "All arrivals",
     schedule: [

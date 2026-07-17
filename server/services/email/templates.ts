@@ -36,7 +36,7 @@ const SERIF = "Georgia, 'Times New Roman', serif";
 const SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
 const CONTACT_EMAIL = "info@permiraspb.org";
-const EVENT_LINE = "19–21 July 2026 · Kubenskiy Island, Saint Petersburg";
+const EVENT_LINE = "19–21 July 2026 · Cape Kiperort, Leningrad Oblast";
 
 // --- HTML helpers ---
 
@@ -185,7 +185,7 @@ const BUILDERS: Record<EmailTemplateId, Builder> = {
     body:
       heading(`Thank you, ${esc(firstName(ctx.name))} — we've got your application.`) +
       p(
-        `We've received your registration for <strong>PERMIRA Summer Camp 2026</strong>, the Indonesia–Russia–ASEAN youth camp on Kubenskiy Island near Saint Petersburg.`,
+        `We've received your registration for <strong>PERMIRA Summer Camp 2026</strong>, the Indonesia–Russia–ASEAN youth camp at Cape Kiperort, Leningrad Oblast.`,
       ) +
       callout(
         C.river,
@@ -227,13 +227,13 @@ const BUILDERS: Record<EmailTemplateId, Builder> = {
       ) +
       callout(
         C.leaf,
-        `<strong>Your place is confirmed.</strong><br/>${EVENT_LINE}. You'll arrive by boat at the island pier — full joining details are on the way.`,
+        `<strong>Your place is confirmed.</strong><br/>${EVENT_LINE}. You'll travel together by coach from Saint Petersburg — full joining details are on the way.`,
       ) +
       p(
         `Keep an eye on this inbox for the next email with what to bring, the programme, and travel guidance. If you have questions, reply here or write to <a href="mailto:${CONTACT_EMAIL}" style="color:${C.terracotta};text-decoration:none;">${CONTACT_EMAIL}</a>.`,
       ) +
       noteBlock(ctx.message) +
-      p(`See you on the island,<br/>The PERMIRA Summer Camp team`),
+      p(`See you at the cape,<br/>The PERMIRA Summer Camp team`),
   }),
 
   rejected: (ctx) => ({

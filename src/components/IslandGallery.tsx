@@ -1,7 +1,7 @@
 /**
- * IslandGallery — a preview grid of real photos of Kubenskiy Island in the
- * Kivi Park nature reserve. Images are pulled in with import.meta.glob so any
- * photo dropped into src/assets/kubinskiy-island/ is picked up automatically
+ * IslandGallery — a preview grid of real photos of Cape Kiperort in the
+ * Vyborgsky nature reserve. Images are pulled in with import.meta.glob so any
+ * photo dropped into src/assets/kiperort/ is picked up automatically
  * (robust to the awkward filenames), hashed, and bundled by Vite.
  *
  * Clicking a photo opens a full-screen lightbox with prev/next + keyboard
@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 
 // Eager glob → each value is the final hashed asset URL.
 const modules = import.meta.glob(
-  "../assets/kubinskiy-island/*.{jpg,jpeg,png,webp}",
+  "../assets/kiperort/*.{jpg,jpeg,png,webp}",
   { eager: true, import: "default" },
 );
 const PHOTOS: string[] = Object.keys(modules)

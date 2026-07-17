@@ -15,13 +15,13 @@ export const id: Translation = {
   },
 
   hero: {
-    eyebrow: "Indonesia × Rusia × ASEAN · Saint Petersburg · 19–21 Juli 2026",
+    eyebrow: "Indonesia × Rusia × ASEAN · Leningrad Oblast · 19–21 Juli 2026",
     titleLead: "Kuliner",
     titleNusantara: "Nusantara",
     titleLine2: "pelajaran dari alam",
     titleLine3: "& persahabatan bangsa",
     subtitle:
-      "Kemah diplomasi pemuda selama tiga hari di Saint Petersburg, tempat mahasiswa dari Indonesia, Rusia, dan ASEAN memasak bersama, bertukar budaya, dan menjaga alam yang menaungi mereka — jembatan eco-culinary dari ASEAN ke Rusia.",
+      "Kemah diplomasi pemuda selama tiga hari di Leningrad Oblast, tempat mahasiswa dari Indonesia, Rusia, dan ASEAN memasak bersama, bertukar budaya, dan menjaga alam yang menaungi mereka — jembatan eco-culinary dari ASEAN ke Rusia.",
     ctaPrimary: "Amankan kursimu",
     ctaSecondary: "Lihat program",
     stat1: "3",
@@ -45,10 +45,10 @@ export const id: Translation = {
         label: "Hari Pertama",
         verb: "Tiba & Membuka",
         headline: "Tiba, menetap, dan upacara pembukaan resmi.",
-        body: "Peserta berkumpul di metro Ozerki lalu naik bus dan kapal motor menuju Pulau Kubenskiy. Setelah menempati kemah, upacara pembukaan dwibahasa menghadirkan lagu kebangsaan, sambutan Menteri, Duta Besar, dan pejabat daerah, serta pemotongan tumpeng — dilanjutkan masterclass dari bahan alam, tur keliling pulau, dan permainan di api unggun hingga malam.",
-        a1t: "Berkumpul & Transfer", a1d: "Berkumpul di metro Ozerki (09:00 MSK), lalu bus ke Desa Chulkovo dan kapal motor ke Pulau Kubenskiy — mohon jangan terlambat.",
+        body: "Peserta berkumpul di metro Ozerki lalu naik bus menuju Tanjung Kiperort, sebuah semenanjung di Teluk Vyborg. Setelah menempati kemah, upacara pembukaan dwibahasa menghadirkan lagu kebangsaan, sambutan Menteri, Duta Besar, dan pejabat daerah, serta pemotongan tumpeng — dilanjutkan masterclass dari bahan alam, jelajah tanjung, dan permainan di api unggun hingga malam.",
+        a1t: "Berkumpul & Transfer", a1d: "Berkumpul di metro Ozerki (09:00 MSK), lalu naik bus ke utara menuju Tanjung Kiperort (Distrik Vyborg) — mohon jangan terlambat.",
         a2t: "Upacara Pembukaan", a2d: "Pembukaan dwibahasa: lagu kebangsaan, sambutan Menteri, Duta Besar, dan pejabat daerah, serta pemotongan tumpeng.",
-        a3t: "Masterclass & Tur Pulau", a3d: "Masterclass dari bahan alam bersama ahli konservasi, tur keliling pulau, lalu permainan api unggun setelah makan malam.",
+        a3t: "Masterclass & Jelajah Tanjung", a3d: "Masterclass dari bahan alam bersama ahli konservasi, jelajah tanjung, lalu permainan api unggun setelah makan malam.",
       },
       d2: {
         label: "Hari Kedua",
@@ -63,8 +63,8 @@ export const id: Translation = {
         label: "Hari Ketiga",
         verb: "Refleksi & Pamit",
         headline: "Berbagi, refleksi, dan pulang.",
-        body: "Setelah senam pagi dan sarapan Cekodok, tim mengikuti aksi ekologi gotong royong membersihkan Pulau Kubenskiy dan meninggalkan pesan pada kapsul waktu persahabatan. Upacara penutupan dwibahasa mengapresiasi kerja sama dan semangat tim dengan penghargaan dan foto perpisahan — menutup akhir pekan persahabatan mahasiswa Indonesia, Rusia, dan ASEAN.",
-        a1t: "Aksi Ekologi (Gotong Royong)", a1d: "Tim membersihkan pulau dan berkemas bersama, tanpa meninggalkan jejak.",
+        body: "Setelah senam pagi dan sarapan Cekodok, tim mengikuti aksi ekologi gotong royong membersihkan Tanjung Kiperort dan meninggalkan pesan pada kapsul waktu persahabatan. Upacara penutupan dwibahasa mengapresiasi kerja sama dan semangat tim dengan penghargaan dan foto perpisahan — menutup akhir pekan persahabatan mahasiswa Indonesia, Rusia, dan ASEAN.",
+        a1t: "Aksi Ekologi (Gotong Royong)", a1d: "Tim membersihkan pesisir dan berkemas bersama, tanpa meninggalkan jejak.",
         a2t: "Kapsul Waktu", a2d: "Pesan persahabatan pada Papan Harapan, disegel hingga perkemahan musim dingin berikutnya.",
         a3t: "Upacara Penutupan & Penghargaan", a3d: "Penutupan dwibahasa, penghargaan untuk masakan terbaik, kerja sama, semangat, keaktifan, dan momen terbaik, lalu foto perpisahan.",
       },
@@ -125,11 +125,11 @@ export const id: Translation = {
     heading1: "Dari ASEAN ke Rusia,",
     heading2: "jembatan yang dibangun di meja makan.",
     intro:
-      "PERMIRA Summer Camp 2026 mempertemukan mahasiswa dari Indonesia, Rusia, dan seluruh ASEAN di Saint Petersburg — program diplomasi pemuda tempat kuliner, budaya, dan kepedulian pada alam berpadu.",
+      "PERMIRA Summer Camp 2026 mempertemukan mahasiswa dari Indonesia, Rusia, dan seluruh ASEAN di Leningrad Oblast — program diplomasi pemuda tempat kuliner, budaya, dan kepedulian pada alam berpadu.",
     indonesia: "Indonesia",
     russia: "Rusia",
     asean: "ASEAN",
-    stpetersburg: "Saint Petersburg",
+    stpetersburg: "Leningrad Oblast",
     aseanMembersTitle: "Terbuka untuk seluruh ASEAN",
     aseanMembersNote: "Sepuluh kursi dialokasikan untuk mahasiswa dari negara anggota ASEAN — bersama Indonesia dan Rusia.",
     cards: {
@@ -162,7 +162,7 @@ export const id: Translation = {
     c2t: "Pilah & kurangi",
     c2b: "Sampah dipilah menjadi organik, non-organik, dan B3 (berbahaya); porsi efisien menekan sisa makanan.",
     c3t: "Hormati alam",
-    c3b: "Kami menjelajahi danau dan hutan Saint Petersburg sebagai tamu — meninggalkan tiap tempat lebih baik dari semula.",
+    c3b: "Kami menjelajahi danau dan hutan Leningrad Oblast sebagai tamu — meninggalkan tiap tempat lebih baik dari semula.",
     closing: "Persahabatan yang bisa dicicipi · bumi yang layak dijaga",
   },
 
@@ -170,7 +170,7 @@ export const id: Translation = {
     eyebrow: "Dari atas",
     heading1: "Lihat kemah",
     heading2: "dari ketinggian.",
-    intro: "Penerbangan keliling lokasi — jalur hutan, tepi danau, dan tiap sudut kemah tempat cita rasa bertemu alam.",
+    intro: "Penerbangan keliling lokasi — jalur hutan, tepi teluk, dan tiap sudut kemah tempat cita rasa bertemu alam.",
     play: "Putar video keliling",
     loadNote: "Hanya dimuat saat kamu menekan putar",
     crossPre: "Ingin menjelajah sendiri?",
@@ -180,19 +180,19 @@ export const id: Translation = {
   location: {
     eyebrow: "Lokasi",
     headingLead: "Kemah di atas",
-    headingEm: "tanjung pulau liar.",
+    headingEm: "tanjung pesisir yang liar.",
     intro:
-      "Tiga hari di Pulau Kubenskiy — pulau hutan boreal di cagar alam Kivi Park, Distrik Vyborg, Oblast Leningrad. Dicapai dengan perahu; tanpa listrik dan sinyal, ini fokus murni pada memasak, alam, dan kebersamaan.",
-    place: "Pulau Kubenskiy",
-    placeMeta: "Cagar alam Kivi Park · Distrik Vyborg, Oblast Leningrad",
-    arriveNote: "Hanya bisa dicapai dengan perahu — dan tanpa jaringan: tidak ada listrik atau sinyal di pulau.",
-    gettingThere: "Cara ke sana: berkumpul di metro Ozerki pukul 09:00 MSK, lalu bersama naik bus ke Desa Chulkovo dan perahu cepat ke pulau. Mohon jangan terlambat.",
-    galleryTitle: "Sekilas pulau",
-    galleryNote: "Cagar alam Kivi Park · foto: Nikolay Stepanenko & Yu. Vtyurina",
-    galleryAlt: "Pulau Kubenskiy, cagar alam Kivi Park",
+      "Tiga hari di Tanjung Kiperort — semenanjung terbesar yang menjorok ke Teluk Vyborg, di cagar alam Vyborgsky, Distrik Vyborg, Oblast Leningrad. Hutan pinus kering, pantai barat berbatu dan pantai timur berpasir, serta langit yang penuh burung laut — fokus murni pada memasak, alam, dan kebersamaan.",
+    place: "Tanjung Kiperort",
+    placeMeta: "Cagar alam Vyborgsky · Distrik Vyborg, Oblast Leningrad",
+    arriveNote: "Semenanjung liar di Teluk Vyborg — hutan pinus kering, pantai berbatu dan berpasir, serta salah satu kawasan burung pesisir terkaya di wilayah ini.",
+    gettingThere: "Cara ke sana: berkumpul di metro Ozerki pukul 09:00 MSK, lalu bersama naik bus ke utara menuju Tanjung Kiperort di Distrik Vyborg. Mohon jangan terlambat.",
+    galleryTitle: "Sekilas tanjung",
+    galleryNote: "Cagar alam Vyborgsky · foto: Ivan Sablin & Valery Shitenkov",
+    galleryAlt: "Tanjung Kiperort, cagar alam Vyborgsky",
     galleryOpen: "Buka foto",
     overviewTitle: "Tata letak kawasan",
-    overviewBody: "Pilih penanda untuk menjelajahi setiap sudut kemah — tempat mendarat, memasak, berkumpul, dan tidur.",
+    overviewBody: "Pilih penanda untuk menjelajahi setiap sudut kemah — tempat tiba, memasak, berkumpul, dan tidur.",
     legendTitle: "Zona",
     beachNote: "Permainan & keseruan di pantai",
     nights: "3 malam · 19–21 Juli",
@@ -213,9 +213,9 @@ export const id: Translation = {
     zones: {
       pier: {
         title: "Dermaga",
-        tagline: "Tempat pulau dimulai",
-        body: "Perahu dari daratan bersandar di sini. Langkah pertama, sapaan pertama, dan ritme harian datang dan pergi melewati papan-papan ini.",
-        activities: ["Kedatangan & keberangkatan perahu", "Penurunan barang", "Titik check-in harian"],
+        tagline: "Tempat tanjung bertemu teluk",
+        body: "Dermaga di tepi Teluk Vyborg dan gerbang kemah — bus menurunkan peserta di dekatnya, dan langkah pertama, sapaan pertama, serta ritme harian kemah bermula di tepi air.",
+        activities: ["Titik turun bus & berkumpul", "Penurunan barang", "Titik check-in harian"],
       },
       organizer: {
         title: "Pos Panitia",
@@ -298,7 +298,7 @@ export const id: Translation = {
     cta: "Amankan kursiku",
     or: "atau tulis ke",
     datesLabel: "Tanggal", datesValue: "19–21 Juli 2026",
-    locLabel: "Lokasi", locValue: "Pulau Kubenskiy · Oblast Leningrad",
+    locLabel: "Lokasi", locValue: "Tanjung Kiperort · Oblast Leningrad",
     forLabel: "Untuk", forValue: "Mahasiswa · 18–35",
   },
 
@@ -313,7 +313,7 @@ export const id: Translation = {
 
   footer: {
     tagline:
-      "III Indonesian–Russian Students Summer Camp 2026 di Saint Petersburg — program diplomasi pemuda yang menghubungkan mahasiswa Indonesia, Rusia, dan ASEAN melalui budaya, kuliner, dan kepedulian lingkungan.",
+      "III Indonesian–Russian Students Summer Camp 2026 di Leningrad Oblast — program diplomasi pemuda yang menghubungkan mahasiswa Indonesia, Rusia, dan ASEAN melalui budaya, kuliner, dan kepedulian lingkungan.",
     copyright: "© 2026 PERMIRA Saint Petersburg. Hak cipta dilindungi.",
     script: "selamat makan · приятного аппетита",
     developedBy: "Dikembangkan oleh",
@@ -389,7 +389,7 @@ export const id: Translation = {
       },
       {
         q: "Di mana dan kapan kemah diadakan?",
-        a: "19–21 Juli 2026 di Pulau Kubenskiy, cagar alam Kivi Park, Distrik Vyborg, Oblast Leningrad. Semua berkumpul di metro Ozerki (Saint Petersburg) pukul 09:00 MSK, lalu bersama naik bus dan perahu.",
+        a: "19–21 Juli 2026 di Tanjung Kiperort, cagar alam Vyborgsky, Distrik Vyborg, Oblast Leningrad. Semua berkumpul di metro Ozerki (Saint Petersburg) pukul 09:00 MSK, lalu bersama naik bus.",
       },
       {
         q: "Berapa biayanya?",
@@ -401,7 +401,7 @@ export const id: Translation = {
       },
       {
         q: "Apa yang harus dibawa?",
-        a: "Pakaian sesuai cuaca dan lapisan hangat, obat pribadi, perlengkapan mandi, botol dan alat makan pakai-ulang, losion anti-nyamuk, senter, dan perlengkapan tidur. Pulau tanpa jaringan — tanpa listrik atau sinyal.",
+        a: "Pakaian sesuai cuaca dan lapisan hangat, obat pribadi, perlengkapan mandi, botol dan alat makan pakai-ulang, losion anti-nyamuk, senter, dan perlengkapan tidur. Tanjung ini cagar alam pesisir yang terpencil, jadi siapkan pakaian hangat untuk cuaca Baltik yang sejuk dan berubah-ubah.",
       },
       {
         q: "Saya pendaftar dari Indonesia — ada tambahan?",

@@ -30,11 +30,11 @@ export const journeyDays: JourneyDay[] = [
     date: "July 19, 2026",
     headline: "Arrive, settle, and an official opening.",
     body:
-      "Gather at Ozerki metro, travel by bus and speedboat to Kubenskiy Island, and pitch camp — then a bilingual opening ceremony with the national anthems, ministerial and diplomatic remarks, and a tumpeng, followed by a natural-materials masterclass, an island tour, and campfire games.",
+      "Gather at Ozerki metro, travel by coach to Cape Kiperort — a peninsula on Vyborg Bay — and pitch camp, then a bilingual opening ceremony with the national anthems, ministerial and diplomatic remarks, and a tumpeng, followed by a natural-materials masterclass, a cape walk, and campfire games.",
     activities: [
-      { time: "09:00", title: "Gather & Transfer", detail: "Meet at Ozerki metro, then bus to Chulkovo village and speedboat to Kubenskiy Island." },
+      { time: "09:00", title: "Gather & Transfer", detail: "Meet at Ozerki metro, then travel by coach north to Cape Kiperort (Vyborg District)." },
       { time: "13:30", title: "Opening Ceremony", detail: "A bilingual opening: anthems, remarks from the Minister, Ambassador, and regional officials, and the tumpeng cutting." },
-      { time: "15:30", title: "Masterclass & Island Tour", detail: "A natural-materials masterclass with conservation experts, a guided island tour, then campfire games after dinner." },
+      { time: "15:30", title: "Masterclass & Cape Walk", detail: "A natural-materials masterclass with conservation experts, a guided walk along the cape, then campfire games after dinner." },
     ],
     accent: "turmeric",
   },
@@ -60,9 +60,9 @@ export const journeyDays: JourneyDay[] = [
     date: "July 21, 2026",
     headline: "Give back, reflect, and head home.",
     body:
-      "Morning exercise and a Cekodok breakfast, a gotong-royong eco clean-up of Kubenskiy Island, a friendship time capsule on the Wish Board, and a bilingual closing ceremony with awards and a farewell photo before the journey home.",
+      "Morning exercise and a Cekodok breakfast, a gotong-royong eco clean-up of Cape Kiperort, a friendship time capsule on the Wish Board, and a bilingual closing ceremony with awards and a farewell photo before the journey home.",
     activities: [
-      { time: "09:30", title: "Eco Clean-Up (Gotong Royong)", detail: "Teams clear the island and pack up together, leaving no trace." },
+      { time: "09:30", title: "Eco Clean-Up (Gotong Royong)", detail: "Teams clear the shore and pack up together, leaving no trace." },
       { time: "11:30", title: "Time Capsule", detail: "Messages of friendship on the Wish Board, sealed until the next winter camp." },
       { time: "12:30", title: "Closing Ceremony & Awards", detail: "A bilingual closing, awards for best dish, teamwork, spirit, most active, and best moment, then a farewell photo." },
     ],

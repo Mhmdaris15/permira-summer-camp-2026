@@ -19,7 +19,7 @@ export const en = {
     titleLine2: "lessons of nature",
     titleLine3: "& friendship of peoples",
     subtitle:
-      "A three-day youth diplomacy camp in Saint Petersburg where students from Indonesia, Russia, and ASEAN cook together, share cultures, and care for the land that hosts them — an eco-culinary bridge from ASEAN to Russia.",
+      "A three-day youth diplomacy camp in Leningrad Oblast where students from Indonesia, Russia, and ASEAN cook together, share cultures, and care for the land that hosts them — an eco-culinary bridge from ASEAN to Russia.",
     ctaPrimary: "Reserve your seat",
     ctaSecondary: "See the programme",
     stat1: "3",
@@ -43,10 +43,10 @@ export const en = {
         label: "Day One",
         verb: "Arrive & Open",
         headline: "Arrive, settle, and an official opening.",
-        body: "Participants gather at Ozerki metro and travel by bus and speedboat to Kubenskiy Island. After settling into camp, a bilingual opening ceremony brings the national anthems, remarks from the Minister, Ambassador, and regional officials, and a tumpeng — followed by a natural-materials masterclass, a guided island tour, and campfire games into the night.",
-        a1t: "Gather & Transfer", a1d: "Meet at Ozerki metro (09:00 MSK), then bus to Chulkovo village and speedboat to Kubenskiy Island — please don't be late.",
+        body: "Participants gather at Ozerki metro and travel by coach to Cape Kiperort, a peninsula on Vyborg Bay. After settling into camp, a bilingual opening ceremony brings the national anthems, remarks from the Minister, Ambassador, and regional officials, and a tumpeng — followed by a natural-materials masterclass, a guided cape walk, and campfire games into the night.",
+        a1t: "Gather & Transfer", a1d: "Meet at Ozerki metro (09:00 MSK), then travel by coach north to Cape Kiperort (Vyborg District) — please don't be late.",
         a2t: "Opening Ceremony", a2d: "A bilingual opening: anthems, remarks from the Minister, Ambassador, and regional officials, and the tumpeng cutting.",
-        a3t: "Masterclass & Island Tour", a3d: "A natural-materials masterclass with conservation experts, a guided island tour, then campfire games after dinner.",
+        a3t: "Masterclass & Cape Walk", a3d: "A natural-materials masterclass with conservation experts, a guided walk along the cape, then campfire games after dinner.",
       },
       d2: {
         label: "Day Two",
@@ -61,8 +61,8 @@ export const en = {
         label: "Day Three",
         verb: "Reflect & Farewell",
         headline: "Give back, reflect, and head home.",
-        body: "After morning exercise and a Cekodok breakfast, teams join a gotong-royong eco clean-up of Kubenskiy Island and leave messages on a friendship time capsule. A bilingual closing ceremony recognises teamwork and spirit with awards and a farewell photo — closing a weekend of friendship between Indonesian, Russian, and ASEAN students.",
-        a1t: "Eco Clean-Up (Gotong Royong)", a1d: "Teams clear the island and pack up together, leaving no trace.",
+        body: "After morning exercise and a Cekodok breakfast, teams join a gotong-royong eco clean-up of Cape Kiperort and leave messages on a friendship time capsule. A bilingual closing ceremony recognises teamwork and spirit with awards and a farewell photo — closing a weekend of friendship between Indonesian, Russian, and ASEAN students.",
+        a1t: "Eco Clean-Up (Gotong Royong)", a1d: "Teams clear the shore and pack up together, leaving no trace.",
         a2t: "Time Capsule", a2d: "Messages of friendship on the Wish Board, sealed until the next winter camp.",
         a3t: "Closing Ceremony & Awards", a3d: "A bilingual closing, awards for best dish, teamwork, spirit, most active, and best moment, then a farewell photo.",
       },
@@ -123,11 +123,11 @@ export const en = {
     heading1: "From ASEAN to Russia,",
     heading2: "a bridge built at the table.",
     intro:
-      "PERMIRA Summer Camp 2026 brings together students from Indonesia, Russia, and across ASEAN, hosted in Saint Petersburg — a youth diplomacy programme where cuisine, culture, and care for nature meet.",
+      "PERMIRA Summer Camp 2026 brings together students from Indonesia, Russia, and across ASEAN, hosted in Leningrad Oblast — a youth diplomacy programme where cuisine, culture, and care for nature meet.",
     indonesia: "Indonesia",
     russia: "Russia",
     asean: "ASEAN",
-    stpetersburg: "Saint Petersburg",
+    stpetersburg: "Leningrad Oblast",
     aseanMembersTitle: "Open to all of ASEAN",
     aseanMembersNote: "Ten places are reserved for students from ASEAN member states, alongside Indonesia and Russia.",
     cards: {
@@ -160,7 +160,7 @@ export const en = {
     c2t: "Sort & reduce",
     c2b: "Waste is sorted into organic, non-organic, and hazardous (B3); efficient portions keep food waste low.",
     c3t: "Respect the wild",
-    c3b: "We explore Saint Petersburg's lakes and forests as guests — leaving every place better than we found it.",
+    c3b: "We explore Leningrad Oblast's lakes and forests as guests — leaving every place better than we found it.",
     closing: "Friendship you can taste · a planet worth keeping",
   },
 
@@ -168,7 +168,7 @@ export const en = {
     eyebrow: "From above",
     heading1: "See the camp",
     heading2: "from the sky.",
-    intro: "A flythrough of the grounds — the forest paths, the lakeside, and every corner of the camp where flavor meets nature.",
+    intro: "A flythrough of the grounds — the forest paths, the bay shore, and every corner of the camp where flavor meets nature.",
     play: "Play the flythrough",
     loadNote: "Loads only when you press play",
     crossPre: "Prefer to explore it yourself?",
@@ -177,20 +177,20 @@ export const en = {
 
   location: {
     eyebrow: "The setting",
-    headingLead: "A camp drawn on",
-    headingEm: "a wild island spit.",
+    headingLead: "A camp pitched on",
+    headingEm: "a windswept coastal cape.",
     intro:
-      "Three days on Kubenskiy Island — a boreal island in the Kivi Park nature reserve, Vyborg District, Leningrad Oblast. You reach it by boat; with no power grid or phone signal, it's pure focus on cooking, nature, and each other.",
-    place: "Kubenskiy Island",
-    placeMeta: "Kivi Park nature reserve · Vyborg District, Leningrad Oblast",
-    arriveNote: "Reachable only by boat — and off the grid: no electricity or phone signal on the island.",
-    gettingThere: "Getting there: gather at Ozerki metro at 09:00 MSK, then travel together by bus to Chulkovo village and by speedboat to the island. Please don't be late.",
-    galleryTitle: "Glimpses of the island",
-    galleryNote: "Kivi Park nature reserve · photos: Nikolay Stepanenko & Yu. Vtyurina",
-    galleryAlt: "Kubenskiy Island, Kivi Park nature reserve",
+      "Three days at Cape Kiperort — the largest peninsula reaching into Vyborg Bay, in the Vyborgsky nature reserve, Vyborg District, Leningrad Oblast. Dry pine forest, a rocky western shore and a sandy eastern one, and a sky full of seabirds — pure focus on cooking, nature, and each other.",
+    place: "Cape Kiperort",
+    placeMeta: "Vyborgsky nature reserve · Vyborg District, Leningrad Oblast",
+    arriveNote: "A wild peninsula on Vyborg Bay — dry pine forest, rocky and sandy shores, and one of the region's richest coastal birdlands.",
+    gettingThere: "Getting there: gather at Ozerki metro at 09:00 MSK, then travel together by coach north to Cape Kiperort in the Vyborg District. Please don't be late.",
+    galleryTitle: "Glimpses of the cape",
+    galleryNote: "Vyborgsky nature reserve · photos: Ivan Sablin & Valery Shitenkov",
+    galleryAlt: "Cape Kiperort, Vyborgsky nature reserve",
     galleryOpen: "Open photo",
     overviewTitle: "The lay of the land",
-    overviewBody: "Pick a marker to explore each corner of camp — where you land, cook, gather, and sleep.",
+    overviewBody: "Pick a marker to explore each corner of camp — where you arrive, cook, gather, and sleep.",
     legendTitle: "Zones",
     beachNote: "Games & fun on the beach",
     nights: "3 nights · July 19–21",
@@ -211,9 +211,9 @@ export const en = {
     zones: {
       pier: {
         title: "The Pier",
-        tagline: "Where the island begins",
-        body: "Boats from the mainland dock here. First footsteps, first hellos, and the daily rhythm of coming and going all cross these boards.",
-        activities: ["Boat arrival & departure", "Luggage drop", "Daily check-in point"],
+        tagline: "Where the cape meets the bay",
+        body: "A jetty on the Vyborg Bay shore and the camp's front door — the coach drops off nearby, and first footsteps, first hellos, and the daily rhythm of camp all begin at the water's edge.",
+        activities: ["Coach drop-off & meeting point", "Luggage drop", "Daily check-in point"],
       },
       organizer: {
         title: "Organisers' Post",
@@ -296,7 +296,7 @@ export const en = {
     cta: "Reserve my seat",
     or: "or write to",
     datesLabel: "Dates", datesValue: "July 19–21, 2026",
-    locLabel: "Location", locValue: "Kubenskiy Island · Kivi Park, Leningrad Oblast",
+    locLabel: "Location", locValue: "Cape Kiperort · Vyborgsky reserve, Leningrad Oblast",
     forLabel: "For", forValue: "Students · 18–35",
   },
 
@@ -311,7 +311,7 @@ export const en = {
 
   footer: {
     tagline:
-      "III Indonesian–Russian Students Summer Camp 2026, hosted in Saint Petersburg — a youth diplomacy programme connecting students from Indonesia, Russia, and ASEAN through culture, cuisine, and environmental stewardship.",
+      "III Indonesian–Russian Students Summer Camp 2026, hosted in Leningrad Oblast — a youth diplomacy programme connecting students from Indonesia, Russia, and ASEAN through culture, cuisine, and environmental stewardship.",
     copyright: "© 2026 PERMIRA St. Petersburg. All rights reserved.",
     script: "selamat makan · приятного аппетита",
     developedBy: "Developed by",
@@ -387,7 +387,7 @@ export const en = {
       },
       {
         q: "Where and when is the camp?",
-        a: "19–21 July 2026 on Kubenskiy Island in the Kivi Park nature reserve, Vyborg District, Leningrad Oblast. Everyone gathers at Ozerki metro (Saint Petersburg) at 09:00 MSK, then travels together by bus and boat.",
+        a: "19–21 July 2026 at Cape Kiperort in the Vyborgsky nature reserve, Vyborg District, Leningrad Oblast. Everyone gathers at Ozerki metro (Saint Petersburg) at 09:00 MSK, then travels together by coach.",
       },
       {
         q: "How much does it cost?",
@@ -399,7 +399,7 @@ export const en = {
       },
       {
         q: "What should I bring?",
-        a: "Weather-appropriate clothing and a warm layer, personal medication, toiletries, a reusable drink bottle and cutlery, insect repellent, a torch, and sleeping essentials. The island is off-grid — no electricity or phone signal.",
+        a: "Weather-appropriate clothing and a warm layer, personal medication, toiletries, a reusable drink bottle and cutlery, insect repellent, a torch, and sleeping essentials. The cape is a remote coastal reserve, so pack for cool, changeable Baltic weather.",
       },
       {
         q: "I'm an Indonesian applicant — anything extra?",

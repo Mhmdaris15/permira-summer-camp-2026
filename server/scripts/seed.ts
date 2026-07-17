@@ -19,7 +19,7 @@ const SEED = {
     {
       id: "overview",
       title: "Event Overview",
-      body: "PERMIRA Summer Camp 2026 — Cuisine of Nusantara: Lessons of Nature and Friendship of Peoples. Three-day cultural exchange between Indonesian and Russian students, July 19–21, 2026, Saint Petersburg.",
+      body: "PERMIRA Summer Camp 2026 — Cuisine of Nusantara: Lessons of Nature and Friendship of Peoples. Three-day cultural exchange between Indonesian and Russian students, July 19–21, 2026, Leningrad Oblast.",
     },
   ],
   faqs: [

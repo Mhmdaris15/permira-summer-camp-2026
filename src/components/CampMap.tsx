@@ -3,7 +3,7 @@
  *
  * Rather than a watermarked satellite screenshot or default map pins, the camp
  * is drawn as a warm sand spit ringed by lake water and pine forest (faithful
- * to the client's hand sketch of Kubenskiy Island). Function-coded medallion
+ * to the client's hand sketch of the camp at Cape Kiperort). Function-coded medallion
  * markers sit on the sand, linked by dashed trails that draw on when the map
  * scrolls into view. Selecting a marker slides its detail into the side panel.
  *
@@ -450,7 +450,7 @@ export function CampMap() {
           </div>
         </div>
 
-        {/* Real photos of the island */}
+        {/* Real photos of the cape */}
         <IslandGallery />
 
         {/* --- Secondary actions --- */}
