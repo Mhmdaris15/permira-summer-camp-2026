@@ -33,11 +33,6 @@ const MAX_BYTES = 10 * 1024 * 1024; // 10 MB
 const SIGNED_URL_TTL_SECONDS = 300; // 5 min
 
 const R2_BUCKET = process.env.R2_BUCKET ?? "";
-// Custom domain for browser-facing URLs, e.g. storage.permiraspb.org. Scheme
-// and trailing slashes are stripped so either form works in .env.
-const R2_PUBLIC_HOST = (process.env.R2_PUBLIC_HOST ?? "")
-  .replace(/^https?:\/\//, "")
-  .replace(/\/+$/, "");
 
 /** True when the required R2 vars are present. */
 export function isStorageConfigured(): boolean {
@@ -76,15 +71,16 @@ function client(): S3Client {
 
 let _presignClient: S3Client | null = null;
 function presignClient(): S3Client {
-  if (!R2_PUBLIC_HOST) return client();
   if (!_presignClient) {
+    // Sign against the account S3 endpoint with path-style addressing, so the
+    // URL host is exactly <account>.r2.cloudflarestorage.com (single label —
+    // matches the CSP allowlist) and the key sits in the path. R2 custom-domain
+    // presigning (bucketEndpoint) proved unreliable and 500'd, so we don't use
+    // R2_PUBLIC_HOST for signed URLs.
     _presignClient = new S3Client({
       region: "auto",
-      endpoint: `https://${R2_PUBLIC_HOST}`,
-      // The endpoint already refers to the bucket (custom domain → bucket), so
-      // the SDK must not add the bucket to the host or path: URLs become
-      // https://<host>/<key>, which is what R2 serves.
-      bucketEndpoint: true,
+      endpoint: required("R2_ENDPOINT"),
+      forcePathStyle: true,
       credentials: credentials(),
     });
   }

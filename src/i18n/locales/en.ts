@@ -263,6 +263,12 @@ export const en = {
     dateTime: "19 July 2026 · 13:30–14:35 MSK",
     watchLive: "Watch the live broadcast",
     livestreamNote: "Streamed live at summercamp2026.permiraspb.org",
+    countdownLabel: "Live broadcast begins in",
+    liveNow: "Live now",
+    unitDays: "Days",
+    unitHours: "Hours",
+    unitMins: "Min",
+    unitSecs: "Sec",
     items: {
       anthems: "National anthems of Indonesia & Russia",
       pratikno: "Coordinating Minister for Human Development and Culture, Republic of Indonesia",

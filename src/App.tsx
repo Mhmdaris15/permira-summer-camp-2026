@@ -16,6 +16,9 @@ const Admin = lazy(() => import("./pages/Admin").then((m) => ({ default: m.Admin
 const AdminParticipants = lazy(() =>
   import("./pages/AdminParticipants").then((m) => ({ default: m.AdminParticipants })),
 );
+const AdminAnalytics = lazy(() =>
+  import("./pages/AdminAnalytics").then((m) => ({ default: m.AdminAnalytics })),
+);
 const AdminEmail = lazy(() =>
   import("./pages/AdminEmail").then((m) => ({ default: m.AdminEmail })),
 );
@@ -50,6 +53,7 @@ function AppShell() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/participants" element={<AdminParticipants />} />
+          <Route path="/admin/analytics" element={<AdminAnalytics />} />
           <Route path="/admin/email" element={<AdminEmail />} />
           <Route path="/admin/email/history" element={<AdminEmailHistory />} />
           <Route path="/maps" element={<LayoutProposal />} />

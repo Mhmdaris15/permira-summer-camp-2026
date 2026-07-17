@@ -265,6 +265,12 @@ export const id: Translation = {
     dateTime: "19 Juli 2026 · 13:30–14:35 MSK",
     watchLive: "Tonton siaran langsung",
     livestreamNote: "Disiarkan langsung di summercamp2026.permiraspb.org",
+    countdownLabel: "Siaran langsung dimulai dalam",
+    liveNow: "Sedang tayang",
+    unitDays: "Hari",
+    unitHours: "Jam",
+    unitMins: "Mnt",
+    unitSecs: "Dtk",
     items: {
       anthems: "Lagu kebangsaan Indonesia & Rusia",
       pratikno: "Menteri Koordinator Bidang Pembangunan Manusia dan Kebudayaan Republik Indonesia",

@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { cn } from "../../lib/cn";
 import LogoPermira from "../../assets/organization/permira-logo-small.png";
 
-type Tab = "knowledge" | "participants" | "email" | "history";
+type Tab = "knowledge" | "participants" | "analytics" | "email" | "history";
 
 const TABS: { id: Tab; label: string; to: string }[] = [
   { id: "knowledge", label: "Knowledge", to: "/admin" },
   { id: "participants", label: "Participants", to: "/admin/participants" },
+  { id: "analytics", label: "Analytics", to: "/admin/analytics" },
   { id: "email", label: "Send email", to: "/admin/email" },
   { id: "history", label: "Email history", to: "/admin/email/history" },
 ];

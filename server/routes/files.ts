@@ -17,6 +17,10 @@ filesRouter.get("/:id", requireAdmin, async (req, res) => {
     res.json(result);
   } catch (err) {
     console.error("[files] presign error:", err);
-    res.status(500).json({ error: "Could not generate file URL." });
+    // Admin-only endpoint, so it's safe (and useful) to surface the reason.
+    res.status(500).json({
+      error: "Could not generate file URL.",
+      detail: err instanceof Error ? err.message : String(err),
+    });
   }
 });

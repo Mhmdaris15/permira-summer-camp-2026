@@ -265,6 +265,12 @@ export const ru: Translation = {
     dateTime: "19 июля 2026 · 13:30–14:35 МСК",
     watchLive: "Смотреть прямую трансляцию",
     livestreamNote: "Прямая трансляция на summercamp2026.permiraspb.org",
+    countdownLabel: "Прямая трансляция начнётся через",
+    liveNow: "В эфире",
+    unitDays: "Дней",
+    unitHours: "Часов",
+    unitMins: "Мин",
+    unitSecs: "Сек",
     items: {
       anthems: "Государственные гимны Индонезии и России",
       pratikno: "Министр-координатор по вопросам развития человеческого потенциала и культуры Республики Индонезия",

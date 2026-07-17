@@ -16,7 +16,14 @@ export type CeremonyItem = {
 };
 
 /** Official broadcast URL from the event information. */
-export const LIVESTREAM_URL = "https://summercamp2026.permiraspb.org";
+export const LIVESTREAM_URL = "https://vkvideo.ru/video-133435044_456239034";
+
+/** VK embeddable player for the same video (oid = owner id, id = video id). */
+export const LIVESTREAM_EMBED_URL =
+  "https://vkvideo.ru/video_ext.php?oid=-133435044&id=456239034&hd=2";
+
+/** Live broadcast / opening-ceremony start — 19 July 2026, 13:30 MSK (UTC+3). */
+export const LIVESTREAM_START = "2026-07-19T13:30:00+03:00";
 
 export const CEREMONY_ITEMS: CeremonyItem[] = [
   { time: "13:30", key: "anthems", kind: "moment" },

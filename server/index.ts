@@ -10,6 +10,7 @@ import { authRouter } from "./routes/auth.js";
 import { registrationsRouter } from "./routes/registrations.js";
 import { filesRouter } from "./routes/files.js";
 import { emailRouter } from "./routes/email.js";
+import { analyticsRouter } from "./routes/analytics.js";
 import { requireAdmin } from "./auth.js";
 import { getDb } from "./db.js";
 import { ensureRuntimeDirs } from "./paths.js";
@@ -94,6 +95,7 @@ app.use("/api/registrations", registrationsRouter);
 app.use("/api/knowledge", knowledgeRouter);
 app.use("/api/files", filesRouter);
 app.use("/api/email", requireAdmin, emailRouter);
+app.use("/api/analytics", requireAdmin, analyticsRouter);
 
 app.use("/api", (_req, res) => {
   res.status(404).json({ error: "Not found." });

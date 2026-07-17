@@ -6,7 +6,13 @@
  */
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { CEREMONY_ITEMS, LIVESTREAM_URL } from "../data/ceremony";
+import {
+  CEREMONY_ITEMS,
+  LIVESTREAM_URL,
+  LIVESTREAM_EMBED_URL,
+  LIVESTREAM_START,
+} from "../data/ceremony";
+import { Countdown } from "./Countdown";
 
 export function OpeningCeremony() {
   const { t } = useTranslation();
@@ -28,29 +34,50 @@ export function OpeningCeremony() {
           </p>
         </div>
 
-        {/* Live broadcast banner */}
-        <div className="reveal mt-8 flex flex-col gap-4 rounded-3xl border border-clove-900/8 bg-clove-900 p-6 text-cream-50 sm:flex-row sm:items-center sm:justify-between md:p-7">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-saffron">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-saffron/70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-saffron" />
-              </span>
-              {t("ceremony.dateTime")}
+        {/* Live broadcast banner — header, countdown, and embedded player */}
+        <div className="reveal mt-8 rounded-3xl border border-clove-900/8 bg-clove-900 p-6 text-cream-50 md:p-7">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-saffron">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-saffron/70" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-saffron" />
+                </span>
+                {t("ceremony.dateTime")}
+              </div>
+              <p className="mt-2 text-sm text-cream-100/75">{t("ceremony.livestreamNote")}</p>
             </div>
-            <p className="mt-2 text-sm text-cream-100/75">{t("ceremony.livestreamNote")}</p>
+            <a
+              href={LIVESTREAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-saffron px-5 py-2.5 text-sm font-medium text-clove-900 transition hover:bg-cream-50"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              {t("ceremony.watchLive")}
+            </a>
           </div>
-          <a
-            href={LIVESTREAM_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-saffron px-5 py-2.5 text-sm font-medium text-clove-900 transition hover:bg-cream-50"
-          >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            {t("ceremony.watchLive")}
-          </a>
+
+          {/* Countdown to the broadcast start */}
+          <div className="mt-6">
+            <Countdown target={LIVESTREAM_START} />
+          </div>
+
+          {/* Embedded VK player (16:9) */}
+          <div className="mt-6 overflow-hidden rounded-2xl border border-cream-100/10 bg-black">
+            <div className="relative aspect-video">
+              <iframe
+                src={LIVESTREAM_EMBED_URL}
+                title={t("ceremony.watchLive")}
+                loading="lazy"
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Programme timeline */}
