@@ -20,14 +20,14 @@ export const LIVESTREAM_URL = "https://summercamp2026.permiraspb.org";
 
 export const CEREMONY_ITEMS: CeremonyItem[] = [
   { time: "13:30", key: "anthems", kind: "moment" },
-  { time: "13:33", key: "pratikno", kind: "speaker", name: "Prof. Dr. Pratikno, M.Soc.Sc" },
-  { time: "13:35", key: "ambassador", kind: "speaker", name: "H.E. José Antonio Morató Tavares" },
-  { time: "13:40", key: "consul", kind: "speaker", name: "Valery A. Radchenko" },
-  { time: "13:45", key: "stulov", kind: "speaker", name: "Fedor N. Stulov" },
+  { time: "13:35", key: "pratikno", kind: "speaker", name: "Prof. Dr. Pratikno, M.Soc.Sc" },
+  { time: "13:40", key: "ambassador", kind: "speaker", name: "H.E. José Antonio Morató Tavares" },
+  { time: "13:45", key: "consul", kind: "speaker", name: "Valery A. Radchenko" },
+  { time: "13:50", key: "stulov", kind: "speaker", name: "Fedor N. Stulov" },
   { time: "13:55", key: "mikhalchenko", kind: "speaker", name: "Anastasia V. Mikhalchenko" },
-  { time: "14:05", key: "siluyanov", kind: "speaker", name: "Alexander N. Siluyanov" },
-  { time: "14:10", key: "kalyagina", kind: "speaker", name: "Natalya A. Kalyagina" },
-  { time: "14:15", key: "hidayatullah", kind: "speaker", name: "Muhammad Febri Hidayatullah" },
-  { time: "14:25", key: "shaleha", kind: "speaker", name: "Fikriya Shaleha" },
-  { time: "14:30", key: "tumpeng", kind: "moment" },
+  { time: "14:00", key: "siluyanov", kind: "speaker", name: "Alexander N. Siluyanov" },
+  { time: "14:05", key: "kalyagina", kind: "speaker", name: "Natalya A. Kalyagina" },
+  { time: "14:10", key: "hidayatullah", kind: "speaker", name: "Muhammad Febri Hidayatullah" },
+  { time: "14:15", key: "shaleha", kind: "speaker", name: "Fikriya Shaleha" },
+  { time: "14:20", key: "tumpeng", kind: "moment" },
 ];

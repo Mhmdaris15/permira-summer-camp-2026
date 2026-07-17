@@ -16,9 +16,11 @@ export type JourneyDay = {
 };
 
 /**
- * Programme summary — drawn from the official proposal (Rangkaian Acara,
- * §8). Session titles match the proposal. Times are MSK. The full minute-by-
- * minute schedule is finalised by the organising committee closer to the event.
+ * Programme summary — drawn from the official rundown (Rangkaian Acara).
+ * The visible times come from `activities[].time` here; the titles, verb,
+ * headline, and body are translated under `journey.days.dN.*` in the locales.
+ * Only three highlight moments per day are shown; the committee runs the full
+ * minute-by-minute schedule on site.
  */
 export const journeyDays: JourneyDay[] = [
   {
@@ -26,13 +28,13 @@ export const journeyDays: JourneyDay[] = [
     label: "Day One",
     verb: "Arrive & Open",
     date: "July 19, 2026",
-    headline: "Welcome, set up, and an official opening.",
+    headline: "Arrive, settle, and an official opening.",
     body:
-      "Participants arrive, build camp together, and gather for the official opening ceremony — national anthems, welcome remarks, and a traditional tumpeng — followed by a first shared meal and bonding circle.",
+      "Gather at Ozerki metro, travel by bus and speedboat to Kubenskiy Island, and pitch camp — then a bilingual opening ceremony with the national anthems, ministerial and diplomatic remarks, and a tumpeng, followed by a natural-materials masterclass, an island tour, and campfire games.",
     activities: [
-      { time: "09:00", title: "Meet & Transfer", detail: "Gather at Ozerki metro, then travel by bus and boat to the island." },
-      { time: "14:00", title: "Tent Setup & Team Bonding", detail: "Pitch tents by group, then ice-breaking games." },
-      { time: "16:30", title: "Fun Games & Storytelling", detail: "Traditional team games, dinner, and an evening sharing session." },
+      { time: "09:00", title: "Gather & Transfer", detail: "Meet at Ozerki metro, then bus to Chulkovo village and speedboat to Kubenskiy Island." },
+      { time: "13:30", title: "Opening Ceremony", detail: "A bilingual opening: anthems, remarks from the Minister, Ambassador, and regional officials, and the tumpeng cutting." },
+      { time: "15:30", title: "Masterclass & Island Tour", detail: "A natural-materials masterclass with conservation experts, a guided island tour, then campfire games after dinner." },
     ],
     accent: "turmeric",
   },
@@ -41,13 +43,13 @@ export const journeyDays: JourneyDay[] = [
     label: "Day Two",
     verb: "Cook & Connect",
     date: "July 20, 2026",
-    headline: "Cook together, play together.",
+    headline: "The heart of the camp — PERMIRA Master Chef.",
     body:
-      "The heart of the camp: two Culinary Masterclass & Cooking Sessions where mixed Indonesian, Russian, and ASEAN teams prepare Indonesian dishes, a fun session of traditional games, and an evening Cultural Night around the campfire.",
+      "Morning exercise and a Bubur Ayam breakfast, then PERMIRA Master Chef: an education & discussion session, a hands-on culinary masterclass, and a fusion cooking challenge blending Indonesia, Russia, and ASEAN. The evening brings open-air games, PERMIRA's Got Talent, and a heart-to-heart around the campfire.",
     activities: [
-      { time: "11:00", title: "Culinary Masterclass", detail: "Hands-on cooking session in small mixed teams." },
-      { time: "14:30", title: "Cooking Challenge & Presentation", detail: "Plate, present, and share your team's dish." },
-      { time: "19:00", title: "Fun Night & Closing Circle", detail: "Games, a photo & video screening, and an optional late campfire." },
+      { time: "09:30", title: "Culinary Masterclass", detail: "Hands-on cooking in teams of 5–6 with chef Aprilio Kristian Justin Teken — Nasi Goreng Kampung, Sate Taichan, and Sambal Matah." },
+      { time: "15:00", title: "Fusion Cooking Challenge", detail: "Each team invents a fusion dish — Indonesia 50%, Russia 30%, ASEAN 20% — judged by a panel." },
+      { time: "21:00", title: "PERMIRA's Got Talent", detail: "A bilingual cultural night of performances, then a heart-to-heart circle around the campfire." },
     ],
     accent: "saffron",
   },
@@ -56,13 +58,13 @@ export const journeyDays: JourneyDay[] = [
     label: "Day Three",
     verb: "Reflect & Farewell",
     date: "July 21, 2026",
-    headline: "Reflect, celebrate, and head home.",
+    headline: "Give back, reflect, and head home.",
     body:
-      "A morning reflection, a collective camp break-down, and an awarding session recognising teamwork and spirit — closing a weekend of friendship between Indonesian, Russian, and ASEAN students.",
+      "Morning exercise and a Cekodok breakfast, a gotong-royong eco clean-up of Kubenskiy Island, a friendship time capsule on the Wish Board, and a bilingual closing ceremony with awards and a farewell photo before the journey home.",
     activities: [
-      { time: "10:00", title: "Camp Break-Down", detail: "Pack up and tidy the site together, leaving no trace." },
-      { time: "11:30", title: "Awarding & Appreciation", detail: "Recognising best cooking, collaboration, team spirit, and participation." },
-      { time: "12:30", title: "Closing Session", detail: "Official close, farewell photos, and journey home." },
+      { time: "09:30", title: "Eco Clean-Up (Gotong Royong)", detail: "Teams clear the island and pack up together, leaving no trace." },
+      { time: "11:30", title: "Time Capsule", detail: "Messages of friendship on the Wish Board, sealed until the next winter camp." },
+      { time: "12:30", title: "Closing Ceremony & Awards", detail: "A bilingual closing, awards for best dish, teamwork, spirit, most active, and best moment, then a farewell photo." },
     ],
     accent: "terracotta",
   },
