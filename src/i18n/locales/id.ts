@@ -10,6 +10,8 @@ export const id: Translation = {
     exchange: "Kolaborasi",
     stewardship: "Keberlanjutan",
     memories: "Kenangan",
+    eventPhotos: "Foto Kegiatan",
+    publications: "Publikasi",
     faq: "FAQ",
     join: "Daftar",
   },
@@ -293,6 +295,39 @@ export const id: Translation = {
     heading2: "lebih lama dari santapnya.",
     intro:
       "Sekilas pertemuan PERMIRA sebelumnya — tawa di sela kerja bersama, ritual kecil yang mengubah orang asing menjadi teman.",
+  },
+
+  eventPhotos: {
+    eyebrow: "Foto Kegiatan",
+    heading1: "Kuadran dari",
+    headingItalic: "kemah",
+    heading2: "— tertangkap dalam waktu.",
+    intro:
+      "Foto-foto yang diambil selama PERMIRA Summer Camp 2026 di Tanjung Kiperort — upacara, memasak, percakapan, dan momen-momen tenang di antaranya.",
+    galleryAlt: "Foto PERMIRA Summer Camp 2026",
+  },
+
+  publications: {
+    eyebrow: "Cakupan Media",
+    heading1: "Apa yang",
+    headingItalic: "ditulis pers",
+    heading2: "tentang kami.",
+    intro:
+      "Kumpulan terkurasi publikasi media, artikel berita, dan cakupan media sosial PERMIRA Summer Camp 2026 di Indonesia dan Rusia.",
+    indonesiaMedia: "Media Indonesia",
+    russiaMedia: "Media Rusia",
+    type: {
+      mainstream: "Media Utama",
+      social: "Media Sosial",
+      tv: "Siaran TV",
+      print: "Media Cetak",
+    },
+    stats: {
+      indonesiaArticles: "Artikel Indonesia",
+      russiaArticles: "Artikel Rusia",
+      tvBroadcasts: "Siaran TV",
+      printMedia: "Media Cetak",
+    },
   },
 
   join: {

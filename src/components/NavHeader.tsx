@@ -10,6 +10,8 @@ const linkKeys = [
   { href: "#cuisine", key: "nav.cuisine" },
   { href: "#exchange", key: "nav.exchange" },
   { href: "#memories", key: "nav.memories" },
+  { href: "#event-photos", key: "nav.eventPhotos" },
+  { href: "#publications", key: "nav.publications" },
   { href: "#faq", key: "nav.faq" },
 ] as const;
 

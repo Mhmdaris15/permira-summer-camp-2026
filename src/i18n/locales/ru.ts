@@ -10,6 +10,8 @@ export const ru: Translation = {
     exchange: "Сотрудничество",
     stewardship: "Экология",
     memories: "Воспоминания",
+    eventPhotos: "Фото мероприятия",
+    publications: "Публикации",
     faq: "Вопросы",
     join: "Регистрация",
   },
@@ -293,6 +295,39 @@ export const ru: Translation = {
     heading2: "дольше, чем обед.",
     intro:
       "Взгляд на прошлые встречи PERMIRA — смех за общим делом, маленькие ритуалы, превращающие незнакомцев в друзей.",
+  },
+
+  eventPhotos: {
+    eyebrow: "Фото мероприятия",
+    heading1: "Кадры с",
+    headingItalic: "лагеря",
+    heading2: "— запечатлённые во времени.",
+    intro:
+      "Фотографии, сделанные во время PERMIRA Summer Camp 2026 на мысе Киперорт — церемонии, готовка, разговоры и тихие моменты между ними.",
+    galleryAlt: "Фото PERMIRA Summer Camp 2026",
+  },
+
+  publications: {
+    eyebrow: "Охват в СМИ",
+    heading1: "Что",
+    headingItalic: "написала пресса",
+    heading2: "о нас.",
+    intro:
+      "Курируемая коллекция медиа-публикаций, новостных статей и охвата в соцсетях PERMIRA Summer Camp 2026 в Индонезии и России.",
+    indonesiaMedia: "Медиа Индонезии",
+    russiaMedia: "Медиа России",
+    type: {
+      mainstream: "Основные СМИ",
+      social: "Соцсети",
+      tv: "ТВ-эфир",
+      print: "Печатные СМИ",
+    },
+    stats: {
+      indonesiaArticles: "Статьи Индонезии",
+      russiaArticles: "Статьи России",
+      tvBroadcasts: "ТВ-эфиры",
+      printMedia: "Печатные СМИ",
+    },
   },
 
   join: {

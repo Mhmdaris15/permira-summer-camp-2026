@@ -8,6 +8,8 @@ export const en = {
     exchange: "Collaboration",
     stewardship: "Stewardship",
     memories: "Memories",
+    eventPhotos: "Event Photos",
+    publications: "Publications",
     faq: "FAQ",
     join: "Register",
   },
@@ -291,6 +293,39 @@ export const en = {
     heading2: "longer than the meal.",
     intro:
       "A glimpse of past PERMIRA gatherings — laughter over shared work, the small rituals that turn strangers into friends.",
+  },
+
+  eventPhotos: {
+    eyebrow: "Event Photos",
+    heading1: "Frames from the",
+    headingItalic: "camp",
+    heading2: "— captured in time.",
+    intro:
+      "Photographs taken during PERMIRA Summer Camp 2026 at Cape Kiperort — the ceremonies, the cooking, the conversations, and the quiet moments between.",
+    galleryAlt: "PERMIRA Summer Camp 2026 photo",
+  },
+
+  publications: {
+    eyebrow: "Media Coverage",
+    heading1: "What the",
+    headingItalic: "press",
+    heading2: "wrote about us.",
+    intro:
+      "A curated collection of media publications, news articles, and social media coverage of PERMIRA Summer Camp 2026 across Indonesia and Russia.",
+    indonesiaMedia: "Indonesia Media",
+    russiaMedia: "Russia Media",
+    type: {
+      mainstream: "Mainstream Media",
+      social: "Social Media",
+      tv: "TV Broadcast",
+      print: "Print Media",
+    },
+    stats: {
+      indonesiaArticles: "Indonesia Articles",
+      russiaArticles: "Russia Articles",
+      tvBroadcasts: "TV Broadcasts",
+      printMedia: "Print Media",
+    },
   },
 
   join: {
